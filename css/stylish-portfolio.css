@@ -23,6 +23,12 @@ body {
   padding-bottom: 7.5rem;
 }
 
+.allegro {
+  color:white;
+  font-family: 'Great Vibes', cursive;
+  margin:auto;
+}
+
 .content-section-heading h2 {
   font-size: 3rem;
 }
