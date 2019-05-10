@@ -35,13 +35,12 @@ function render(x) {
   stave = new VF.Stave(0, 20, 200);
 
   // Add a clef.
-  stave.addClef("treble");
+  stave.addClef("bass");
 
 
   // Connect it to the rendering context and draw!
   stave.setContext(context).draw();
 
-  //var noteLetter = "d/6";
   // Create the notes
   notes = [
 
@@ -50,7 +49,7 @@ function render(x) {
     }),
 
     new VF.StaveNote({
-      keys: [x],
+      clef: "bass", keys: [x],
       duration: "q"
     }),
   ];
@@ -81,33 +80,33 @@ function changeNote() {
   var noteLetter;
   switch (rando) {
     case 0:
-      noteLetter = "a/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "a/" + Math.floor((Math.random() * 2) + 2);
       curNote = "A";
       break;
     case 1:
-      noteLetter = "b/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "b/" + Math.floor((Math.random() * 3) + 1);
       curNote = "B";
       break;
     case 2:
-      noteLetter = "c/" + Math.floor((Math.random() * 3) + 4);
+      noteLetter = "c/" + Math.floor((Math.random() * 3) + 2);
       curNote = "C";
       break;
     case 3:
-      noteLetter = "d/" + Math.floor((Math.random() * 3) + 4);
+      noteLetter = "d/" + Math.floor((Math.random() * 3) + 2);
       curNote = "D";
       break;
     case 4:
-      noteLetter = "e/" + Math.floor((Math.random() * 2) + 4);
+      noteLetter = "e/" + Math.floor((Math.random() * 3) + 2);
       curNote = "E";
       break;
 
     case 5:
-      noteLetter = "f/" + Math.floor((Math.random() * 2) + 4);
+      noteLetter = "f/" + Math.floor((Math.random() * 3) + 2);
       curNote = "F";
       break;
 
     case 6:
-      noteLetter = "g/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "g/" + Math.floor((Math.random() * 2) + 2);
       curNote = "G";
       break;
 

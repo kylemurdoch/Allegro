@@ -1,123 +1,161 @@
 openNav();
 var navOpen;
 
-
-/* ---------------1. Setting up Music score ----------------------------*/
-
-document.getElementById('boo').innerHTML = "";
-var div = document.getElementById("boo");
-
-VF = Vex.Flow;
-
-var curNote = "C";
-
-//Player's score
+var curNote = "B";
 var score = 0;
 
-// Create an SVG renderer and attach it to the DIV element named "boo".
-var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+/*
+function enhancedNote(VFNote, key){
 
-// Configure the rendering context.
-renderer.resize(202, 160);
-
-var context = renderer.getContext();
-render("c/4");
-changeNote();
-
-
-
-//for rerendering the context
-function render(x) {
-  // Open a group to hold all the SVG elements in the measure:
-  group = context.openGroup();
-
-  // Create a stave of width 400 at position 10, 40 on the canvas.
-  stave = new VF.Stave(0, 20, 200);
-
-  // Add a clef.
-  stave.addClef("treble");
-
-
-  // Connect it to the rendering context and draw!
-  stave.setContext(context).draw();
-
-  //var noteLetter = "d/6";
-  // Create the notes
-  notes = [
-
-    new VF.GhostNote({
-      duration: "q"
-    }),
-
-    new VF.StaveNote({
-      keys: [x],
-      duration: "q"
-    }),
-  ];
-
-  // Create a voice and add above notes
-  voice = new VF.Voice({
-    num_beats: 2,
-    beat_value: 4
-  });
-  voice.addTickables(notes);
-
-  // Format and justify the notes to 400 pixels.
-  formatter = new VF.Formatter().joinVoices([voice]).format([voice], 100);
-
-  // Render voice
-  voice.draw(context, stave);
-
-  // Then close the group:
-  context.closeGroup();
-
+  this.key = key;
+  this.VFNote = VFNote;
+  
 }
 
+enhancedNote.prototype.getVFNote = function () {
+  return this.VFNote;
+};
 
-function changeNote() {
+enhancedNote.prototype.getKey = function () {
+  return this.key;
+};
+*/
 
+
+// Basic setup boilerplate for using VexFlow with the SVG rendering context:
+VF = Vex.Flow;
+
+// Create an SVG renderer and attach it to the DIV element named "boo".
+var div = document.getElementById("boo")
+var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
+
+
+function randomNote() {
   //Generate random number between 0-6
   var rando = Math.floor((Math.random() * 7));
   var noteLetter;
+  var durations = ['8', '4', '2', '1'];
   switch (rando) {
     case 0:
       noteLetter = "a/" + Math.floor((Math.random() * 3) + 3);
-      curNote = "A";
+      //curNote = "A";
       break;
     case 1:
       noteLetter = "b/" + Math.floor((Math.random() * 3) + 3);
-      curNote = "B";
+      //curNote = "B";
       break;
     case 2:
       noteLetter = "c/" + Math.floor((Math.random() * 3) + 4);
-      curNote = "C";
+      //curNote = "C";
       break;
     case 3:
       noteLetter = "d/" + Math.floor((Math.random() * 3) + 4);
-      curNote = "D";
+      //curNote = "D";
       break;
     case 4:
       noteLetter = "e/" + Math.floor((Math.random() * 2) + 4);
-      curNote = "E";
+      //curNote = "E";
       break;
 
     case 5:
       noteLetter = "f/" + Math.floor((Math.random() * 2) + 4);
-      curNote = "F";
+      //curNote = "F";
       break;
 
     case 6:
       noteLetter = "g/" + Math.floor((Math.random() * 3) + 3);
-      curNote = "G";
+      //curNote = "G";
       break;
 
     default:
       // code block
   }
-  // And when you want to delete it, do this:
-  context.svg.removeChild(group);
-  render(noteLetter);
+ 
+  randoNote = new VF.StaveNote({
+    keys: [noteLetter],
+    duration: durations[Math.floor(Math.random()*durations.length)]
+  });
+  /*
+  randoNote = new enhancedNote(new VF.StaveNote({
+    keys: [noteLetter],
+    duration: durations[Math.floor(Math.random()*durations.length)]
+  }), noteLetter);
+
+  console.log(randoNote.getKey());*/
+  return randoNote;
 }
+
+// Configure the rendering context.
+renderer.resize(402, 160);
+var context = renderer.getContext();
+
+var tickContext = new VF.TickContext();
+
+// Create a stave of width 400 at position 0, 20 on the canvas.
+var stave = new VF.Stave(0, 20, 400)
+.addClef('treble');
+
+// Connect it to the rendering context and draw!
+stave.setContext(context).draw();
+
+tickContext.preFormat().setX(400);
+
+// This will contain any notes that are currently visible on the staff,
+// before they've either been answered correctly, or plumetted off
+// the staff when a user fails to answer them correctly in time.
+const visibleNoteGroups = [];
+
+// Add a note to the staff from the notes array (if there are any left).
+function addNote(){
+  randomNote();
+  //note = randomNote().getVFNote();
+  note = randomNote();
+  note.setContext(context).setStave(stave);
+  tickContext.addTickable(note);
+  
+  const group = context.openGroup();
+  visibleNoteGroups.push(group);
+	note.draw();
+  context.closeGroup();
+	group.classList.add('scroll');
+	// Force a dom-refresh by asking for the group's bounding box. Why? Most
+  // modern browsers are smart enough to realize that adding .scroll class
+  // hasn't changed anything about the rendering, so they wait to apply it
+  // at the next dom refresh, when they can apply any other changes at the
+  // same time for optimization. However, if we allow that to happen,
+  // then sometimes the note will immediately jump to its fully transformed
+  // position -- because the transform will be applied before the class with
+  // its transition rule. 
+  const box = group.getBoundingClientRect();
+	group.classList.add('scrolling');
+
+	// If a user doesn't answer in time make the note fall below the staff
+	window.setTimeout(() => {
+		const index = visibleNoteGroups.indexOf(group);
+		if(index === -1) return;
+		group.classList.add('too-slow');
+    visibleNoteGroups.shift();
+	}, 5000);
+};
+
+// If a user plays/identifies the note in time, send it up to note heaven.
+function removeNote() {
+	group = visibleNoteGroups.shift();
+  group.classList.add('correct');
+	// The note will be somewhere in the middle of its move to the left -- by
+  // getting its computed style we find its x-position, freeze it there, and
+  // then send it straight up to note heaven with no horizontal motion.
+	const transformMatrix = window.getComputedStyle(group).transform;
+  // transformMatrix will be something like 'matrix(1, 0, 0, 1, -118, 0)'
+  // where, since we're only translating in x, the 4th property will be
+  // the current x-translation. You can dive into the gory details of
+  // CSS3 transform matrices (along with matrix multiplication) if you want
+  // at http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/
+	const x = transformMatrix.split(',')[4].trim();
+	// And, finally, we set the note's style.transform property to send it skyward.
+	group.style.transform = `translate(${x}px, -800px)`;
+};
+
 
 
 /* ---------------2. Setting up Timer ----------------------------*/
@@ -134,6 +172,7 @@ function countdown(minutes, seconds) {
             
         if(timerOn){
         seconds--;
+        //addNote();
         } else{
           return;
         }
@@ -202,7 +241,7 @@ function playNote(e) {
       }
     }
   }
-  changeNote();
+  //changeNote();
 }
 }
 
@@ -243,6 +282,7 @@ function openGameOver() {
 function closeNav() {
   document.getElementById("myNav").style.display = "none";
   document.getElementsByClassName("menu-toggle")[0].style.display = "block";
+  start();
   navOpen = false;
 }
 
@@ -258,5 +298,16 @@ function newGame(){
   location.reload();
 }
 
+var started = false;
+function start(){
+  if (started) return;
+  started = true;
+  console.log("started");
+  setInterval(function(){addNote()}, 1000);}
 
+
+
+
+
+  
 

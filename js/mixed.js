@@ -21,39 +21,50 @@ var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 renderer.resize(202, 160);
 
 var context = renderer.getContext();
-render("c/4");
-changeNote();
+render("c/4", true);
+//changeNoteBass();
 
 
 
 //for rerendering the context
-function render(x) {
+function render(x, treble) {
   // Open a group to hold all the SVG elements in the measure:
   group = context.openGroup();
 
   // Create a stave of width 400 at position 10, 40 on the canvas.
   stave = new VF.Stave(0, 20, 200);
 
+  if(treble){
+    stave.addClef("treble");
+  } else{
   // Add a clef.
-  stave.addClef("treble");
-
+  stave.addClef("bass");
+  }
 
   // Connect it to the rendering context and draw!
   stave.setContext(context).draw();
 
-  //var noteLetter = "d/6";
   // Create the notes
   notes = [
 
     new VF.GhostNote({
       duration: "q"
-    }),
+    })
+  ];
 
+  if(treble){
+    notes[1] =
     new VF.StaveNote({
       keys: [x],
       duration: "q"
-    }),
-  ];
+    })
+  } else{
+    notes[1] =
+    new VF.StaveNote({
+      clef: "bass", keys: [x],
+      duration: "q"
+    })
+  }
 
   // Create a voice and add above notes
   voice = new VF.Voice({
@@ -73,41 +84,86 @@ function render(x) {
 
 }
 
+function changeNoteTreble() {
 
-function changeNote() {
+    //Generate random number between 0-6
+    var rando = Math.floor((Math.random() * 7));
+    var noteLetter;
+    switch (rando) {
+      case 0:
+        noteLetter = "a/" + Math.floor((Math.random() * 3) + 3);
+        curNote = "A";
+        break;
+      case 1:
+        noteLetter = "b/" + Math.floor((Math.random() * 3) + 3);
+        curNote = "B";
+        break;
+      case 2:
+        noteLetter = "c/" + Math.floor((Math.random() * 3) + 4);
+        curNote = "C";
+        break;
+      case 3:
+        noteLetter = "d/" + Math.floor((Math.random() * 3) + 4);
+        curNote = "D";
+        break;
+      case 4:
+        noteLetter = "e/" + Math.floor((Math.random() * 2) + 4);
+        curNote = "E";
+        break;
+  
+      case 5:
+        noteLetter = "f/" + Math.floor((Math.random() * 2) + 4);
+        curNote = "F";
+        break;
+  
+      case 6:
+        noteLetter = "g/" + Math.floor((Math.random() * 3) + 3);
+        curNote = "G";
+        break;
+  
+      default:
+        // code block
+    }
+    // And when you want to delete it, do this:
+    context.svg.removeChild(group);
+    render(noteLetter, true);
+  }
+
+
+function changeNoteBass() {
 
   //Generate random number between 0-6
   var rando = Math.floor((Math.random() * 7));
   var noteLetter;
   switch (rando) {
     case 0:
-      noteLetter = "a/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "a/" + Math.floor((Math.random() * 2) + 2);
       curNote = "A";
       break;
     case 1:
-      noteLetter = "b/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "b/" + Math.floor((Math.random() * 3) + 1);
       curNote = "B";
       break;
     case 2:
-      noteLetter = "c/" + Math.floor((Math.random() * 3) + 4);
+      noteLetter = "c/" + Math.floor((Math.random() * 3) + 2);
       curNote = "C";
       break;
     case 3:
-      noteLetter = "d/" + Math.floor((Math.random() * 3) + 4);
+      noteLetter = "d/" + Math.floor((Math.random() * 3) + 2);
       curNote = "D";
       break;
     case 4:
-      noteLetter = "e/" + Math.floor((Math.random() * 2) + 4);
+      noteLetter = "e/" + Math.floor((Math.random() * 3) + 2);
       curNote = "E";
       break;
 
     case 5:
-      noteLetter = "f/" + Math.floor((Math.random() * 2) + 4);
+      noteLetter = "f/" + Math.floor((Math.random() * 3) + 2);
       curNote = "F";
       break;
 
     case 6:
-      noteLetter = "g/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "g/" + Math.floor((Math.random() * 2) + 2);
       curNote = "G";
       break;
 
@@ -116,7 +172,7 @@ function changeNote() {
   }
   // And when you want to delete it, do this:
   context.svg.removeChild(group);
-  render(noteLetter);
+  render(noteLetter, false);
 }
 
 
@@ -202,7 +258,11 @@ function playNote(e) {
       }
     }
   }
-  changeNote();
+  if(Math.random() >= 0.5){
+  changeNoteTreble();
+  } else{
+      changeNoteBass();
+  }
 }
 }
 
