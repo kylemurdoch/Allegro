@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>AboutUs</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>COMP2930_Allegro</title>
+
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
 
         <!-- Bootstrap Core CSS -->
@@ -24,7 +27,7 @@
         <link href="css/stylish-portfolio.css" rel="stylesheet" />
     </head>
 
-    <body>
+    <body id="page-top">
         <!-- Navigation -->
         <a class="menu-toggle rounded" href="#">
             <i class="fas fa-bars"></i>
@@ -32,7 +35,7 @@
         <nav id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a class="js-scroll-trigger">About</a>
+                    <a class="js-scroll-trigger" href="#page-top">Home</a>
                 </li>
                 <li class="sidebar-nav-item">
                     <a class="js-scroll-trigger" href="./index.html">Home</a>
@@ -47,33 +50,79 @@
                     <a class="js-scroll-trigger" href="#global-scores">All Time High Scores</a>
                 </li>
                 <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger">About</a>
+                    <a class="js-scroll-trigger" href="./AboutUs.html">About</a>
                 </li>
                 <li class="sidebar-nav-item">
                     <a class="js-scroll-trigger" href="#SignOut">Sign Out</a>
                 </li>
             </ul>
         </nav>
-        <!-- About Us Section-->
-        <section class="content-section bg-primary text-white text-center" id="services">
-            <div class="content-section-heading">
-                <h3 class="text-secondary mb-0">Allegro</h3>
-                <h2 class="mb-5">About Us</h2>
+        <!-- Header -->
+        <header class="masthead d-flex">
+            <div class="allegro">
+                <h1 class="mb-1">Allegro</h1>
+                <h3 class="mb-5">
+                    <em>Learn Music Now</em>
+                </h3>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="/advancedGame.html">Play</a>
             </div>
+            <div class="overlay"></div>
+        </header>
 
-            <div class="content-section-Main">
-                <p>This is a project from <b>BCIT COMP2930</b> by <b>Team 22</b></p>
-                <hr id="hr1" />
-                <p>Developers:</p>
-                <hr id="hr2" />
-                <p>
-                    Kris Chen<br />
-                    Greg Makasoff<br /><span id="easteregg">Henry Juhyeong Kang</span><br />
-                    Saeed Naguib<br />
-                    Kyle Murdoch
-                </p>
+        <!-- Services -->
+        <section class="content-section bg-primary text-white text-center" id="services">
+            <div class="container">
+                <div class="content-section-heading">
+                    <h3 class="text-secondary mb-0">Allegro</h3>
+                    <h2 class="mb-5">About This Game</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                        <span class="service-icon rounded-circle mx-auto mb-3">
+                            <i class="icon-music-tone"></i>
+                        </span>
+                        <h4>
+                            <strong>Learn Music!</strong>
+                        </h4>
+                        <p class="text-faded mb-0">
+                            It's a website that you can learn how to read music sheet entertainingly!
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                        <span class="service-icon rounded-circle mx-auto mb-3">
+                            <i class="icon-screen-desktop"></i>
+                        </span>
+                        <h4>
+                            <strong>Simple</strong>
+                        </h4>
+                        <p class="text-faded mb-0">All you need to learn music is a computer & Internet!</p>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                        <span class="service-icon rounded-circle mx-auto mb-3">
+                            <i class="icon-game-controller"></i>
+                        </span>
+                        <h4>
+                            <strong>It's a Game!</strong>
+                        </h4>
+                        <p class="text-faded mb-0">
+                            Most People
+                            <i class="fas fa-heart"></i>
+                            Playing Game!
+                        </p>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <span class="service-icon rounded-circle mx-auto mb-3">
+                            <i class="icon-emotsmile"></i>
+                        </span>
+                        <h4>
+                            <strong>User Friendly</strong>
+                        </h4>
+                        <p class="text-faded mb-0">We made the website easy for users to use & learn music!</p>
+                    </div>
+                </div>
             </div>
         </section>
+
         <!-- Footer -->
         <footer class="footer text-center">
             <div class="container">
@@ -112,9 +161,5 @@
 
         <!-- Custom scripts for this template -->
         <script src="js/stylish-portfolio.min.js"></script>
-        <script type="text/javascript" src="https://cdn.rawgit.com/mikeflynn/egg.js/master/egg.min.js"></script>
-        <script src="jquery-3.4.0.min.js"></script>
-        <!-- Easter Egg Java Script by Henry-->
-        <script src="easteregg.js"></script>
     </body>
 </html>
