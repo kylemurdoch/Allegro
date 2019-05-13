@@ -1,0 +1,25 @@
+<div id=timer></div>
+<script type="text/javascript">
+
+    var maxTicks = 90;
+    var tickCount = 0;
+
+    var tick = function()
+    {
+        if (tickCount >= maxTicks)
+        {
+            // Stops the interval.
+            clearInterval(myInterval);
+            return;
+        }
+
+        /* The particular code you want to excute on each tick */
+        document.getElementById("timer").innerHtml = (maxTicks - tickCount);
+
+        tickCount++;
+    };
+
+    // Start calling tick function every 1 second.
+    var myInterval = setInterval(tick, 1000);
+
+</script>
