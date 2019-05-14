@@ -10,8 +10,6 @@
 
   <title> COMP2930_Allegro </title>
 
-  <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
-
   <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
 
   <!-- Bootstrap Core CSS -->
@@ -28,44 +26,42 @@
   <link href="css/stylish-portfolio.css" rel="stylesheet" />
 
   <!-- Custom CSS -->
-  <link href="css/beginGame.css" rel="stylesheet" />
+  <link href="css/vexflow.css" rel="stylesheet" />
 
-  <link href="css/piano.css" rel="stylesheet" />
-
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-  <link href="css/animate.css" rel="stylesheet" />
+  <link href="css/advanced.css" rel="stylesheet" />
 
   <link href="css/overlay.css" rel="stylesheet" />
+  <link href="css/piano.css" rel="stylesheet" />
+  <link href="css/animate.css" rel="stylesheet" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 </head>
 
 <body id="page-top">
   <!-- Navigation -->
-  <div class="menu-toggle rounded" href="#">
+  <a class="menu-toggle rounded" href="#">
     <i class="fas fa-bars"></i>
-  </div>
+  </a>
   <nav id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-        <a class="js-scroll-trigger" href="#page-top">Allegro</a>
+        <a class="js-scroll-trigger" href="#page-top">Start Bootstrap</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#page-top" onclick = openGameOver()>Quit Game</a>
+        <a class="js-scroll-trigger" href="#page-top">Home</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#about">B</a>
+        <a class="js-scroll-trigger" href="#about">About</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#services">C</a>
+        <a class="js-scroll-trigger" href="#services">Services</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#portfolio">D</a>
+        <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#contact">E</a>
+        <a class="js-scroll-trigger" href="#contact">Credit</a>
       </li>
     </ul>
   </nav>
@@ -131,69 +127,68 @@
   </div>
 
   <div id="myNav" class="overlay">
-      <div class="overlay-content">
-        <h1>Start Game</h1>
-        <div class="button" onclick = countdown(0,3)>
-            <p class="btnText">30 sec</p>
-            <div class="btnTwo">
-              <p class="btnText2">GO!</p>
-            </div>
-         </div>
-
-         <div class="button" onclick = countdown(1,0)>
-            <p class="btnText">1 min</p>
-            <div class="btnTwo">
-              <p class="btnText2">GO!</p>
-            </div>
-         </div>
-
-         <div class="button" onclick = countdown(2,0)>
-            <p class="btnText">2 min</p>
-            <div class="btnTwo">
-              <p class="btnText2">GO!</p>
-            </div>
-         </div>
-
-         <div class="button" onclick="location.href='/menu.html';">
-            <p class="btnText">Main Menu</p>
-            <div class="btnTwo">
-              <p class="btnText2">GO!</p>
-            </div>
-         </div>
-  
+    <div class="overlay-content">
+      <h1>Start Game</h1>
+      <div class="button" onclick=countdown(0,3)>
+        <p class="btnText">30 sec</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
+        </div>
       </div>
+
+      <div class="button" onclick=countdown(1,0)>
+        <p class="btnText">1 min</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
+        </div>
+      </div>
+
+      <div class="button" onclick=countdown(2,0)>
+        <p class="btnText">2 min</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
+        </div>
+      </div>
+
+      <div class="value">normal</div>
+      <input type="range" min="1" max="3" step="1" value="1">
+
+      <div class="button" onclick="location.href='/menu.html';">
+        <p class="btnText">Main Menu</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
+        </div>
+      </div>
+
     </div>
+  </div>
 
-    <div id="gameOver" class="overlay">
-        <div class="overlay-content">
-            <h1>Game Over</h1>
-            <h3 id = "finalScore"></h3>
-            <h3>High Score: </h3>
+  <div id="gameOver" class="overlay">
+    <div class="overlay-content">
+      <h1>Game Over</h1>
+      <h3 id="finalScore"></h3>
+      <h3>High Score: </h3>
 
-            <div class="button" onclick = newGame()>
-                <p class="btnText">New Game</p>
-                <div class="btnTwo">
-                  <p class="btnText2">GO!</p>
-                </div>
-             </div>
-    
-             <div class="button" onclick="location.href='/menu.html';">
-                <p class="btnText">Main Menu</p>
-                <div class="btnTwo">
-                  <p class="btnText2">GO!</p>
-                </div>
-             </div>
-          
-    
+      <div class="button" onclick=newGame()>
+        <p class="btnText">New Game</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
+        </div>
+      </div>
+
+      <div class="button" onclick="location.href='/menu.html';">
+        <p class="btnText">Main Menu</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
         </div>
       </div>
 
 
-
+    </div>
+  </div>
 
   <!--Importing vexflow script-->
-  <script src='js/vexflow.js'></script>
-
+  <script src='vexflow.js'></script>
 
 
 
@@ -209,14 +204,11 @@
   <!-- Plugin JavaScript -->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
-
   <!-- Custom scripts for this template -->
   <script src="js/stylish-portfolio.min.js"></script>
 
-  <script src="js/beginGame.js"></script>
-  <script src="js/piano.js"></script>
-
+  <script src="js/advancedBass.js">
+  </script>
 </body>
 
 </html>

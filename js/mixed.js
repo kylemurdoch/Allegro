@@ -225,7 +225,12 @@ function playNote(e) {
 
   if(!navOpen){
 
-  key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    if(e.keyCode !== undefined) {
+      key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      console.log(e.keyCode);
+      } else {
+        key = document.querySelector(`.key[data-key="${e}"]`);
+      }
 
   if (!key) return;
 
