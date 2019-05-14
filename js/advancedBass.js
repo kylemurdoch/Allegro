@@ -21,33 +21,42 @@ function randomNote() {
   var durations = ['8', '4', '2', '1'];
   switch (rando) {
     case 0:
-      noteLetter = "a/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "a/" + Math.floor((Math.random() * 2) + 2);
+      curNote = "A";
       break;
     case 1:
-      noteLetter = "b/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "b/" + Math.floor((Math.random() * 3) + 1);
+      curNote = "B";
       break;
     case 2:
-      noteLetter = "c/" + Math.floor((Math.random() * 3) + 4);
+      noteLetter = "c/" + Math.floor((Math.random() * 3) + 2);
+      curNote = "C";
       break;
     case 3:
-      noteLetter = "d/" + Math.floor((Math.random() * 3) + 4);
+      noteLetter = "d/" + Math.floor((Math.random() * 3) + 2);
+      curNote = "D";
       break;
     case 4:
-      noteLetter = "e/" + Math.floor((Math.random() * 2) + 4);
+      noteLetter = "e/" + Math.floor((Math.random() * 3) + 2);
+      curNote = "E";
       break;
 
     case 5:
-      noteLetter = "f/" + Math.floor((Math.random() * 2) + 4);
+      noteLetter = "f/" + Math.floor((Math.random() * 3) + 2);
+      curNote = "F";
       break;
 
     case 6:
-      noteLetter = "g/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "g/" + Math.floor((Math.random() * 2) + 2);
+      curNote = "G";
       break;
 
     default:
+      // code block
   }
 
   randoNote = new VF.StaveNote({
+    clef: "bass",
     keys: [noteLetter],
     duration: durations[Math.floor(Math.random() * durations.length)]
   });
@@ -63,7 +72,7 @@ var tickContext = new VF.TickContext();
 
 // Create a stave of width 400 at position 0, 20 on the canvas.
 var stave = new VF.Stave(0, 20, 400)
-  .addClef('treble');
+  .addClef('bass');
 
 // Connect it to the rendering context and draw!
 stave.setContext(context).draw();

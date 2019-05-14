@@ -8,12 +8,19 @@
 
         <title>COMP2930_Allegro</title>
 
+
+    <title>COMP2930_Allegro</title>
+
         <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
 
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
 
+
         <!-- Bootstrap Core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
 
         <!-- Custom Fonts -->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -22,6 +29,7 @@
             rel="stylesheet"
             type="text/css"
         />
+
 
         <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
 
@@ -39,40 +47,63 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     </head>
 
-    <body id="page-top">
-        <!-- Navigation -->
-        <a class="menu-toggle rounded" href="#">
-            <i class="fas fa-bars"></i>
-        </a>
-        <nav id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a class="js-scroll-trigger">Play</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="./index.html">Home</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger">Play</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="#your-scores">Your High Scores</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="#global-scores">All Time High Scores</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="./AboutUs.html">About</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="#SignOut">Sign Out</a>
-                </li>
-            </ul>
-        </nav>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
 
-        <div class="outer">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<body id="page-top">
+    <!-- Navigation -->
+    <div class="menu-toggle rounded" href="#">
+        <i class="fas fa-bars"></i>
+    </div>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a class="js-scroll-trigger" href="#page-top">Allegro</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#page-top" onclick="openGameOver()">Your High Scores</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#about">All Time High Scores</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#services">About Us</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#portfolio">Sign Out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="wrapper">
+        <div class="inner">
+            <div id="pic"></div>
             <div class="menu-content">
-                <h1>Main Menu</h1>
+                <h2>Getting Started</h2>
+                <p>For those new to reading music</p>
+                <div class="button" onclick="countdown(0,3)">
+                    <p class="btnText">Tutorial</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+
+                <div class="button" onclick="countdown(1,0)">
+                    <p class="btnText">Pratice Game</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="inner">
+            <div id="pic"></div>
+            <div class="menu-content">
+                <h2>Static Reading Games</h2>
+                <p>Identify one note at a time</p>
                 <div class="button" onclick="countdown(0,3)">
                     <p class="btnText">Treble Clef</p>
                     <div class="btnTwo">
@@ -88,28 +119,47 @@
                 </div>
 
                 <div class="button" onclick="countdown(2,0)">
-                    <p class="btnText">Mixed Clef</p>
+
+                    <p class="btnText">Mixed Clefs</p>
+
                     <div class="btnTwo">
                         <p class="btnText2">GO!</p>
                     </div>
                 </div>
 
-                <div class="button">
-                    <p class="btnText">Advanced Treble Clef</p>
+            </div>
+        </div>
+
+        <div class="inner">
+            <div id="pic"></div>
+            <div class="menu-content">
+                <h2>Dynamic Reading Games</h2>
+                <p>Identify a cascade of sliding notes</p>
+                <div class="button" onclick="countdown(0,3)">
+                    <p class="btnText">Treble Clef</p>
                     <div class="btnTwo">
                         <p class="btnText2">GO!</p>
                     </div>
                 </div>
 
-                <div class="button">
-                    <p class="btnText">Advanced Bass Clef</p>
+
+                <div class="button" onclick="countdown(1,0)">
+                    <p class="btnText">Bass Clef</p>
                     <div class="btnTwo">
                         <p class="btnText2">GO!</p>
                     </div>
                 </div>
 
-                <div class="button">
-                    <p class="btnText">Perfect Pitch</p>
+            </div>
+        </div>
+
+        <div class="inner">
+            <div id="pic"></div>
+            <div class="menu-content">
+                <h2>Pitch Game</h2>
+                <p></p>
+                <div class="button" onclick="countdown(0,3)">
+                    <p class="btnText">Treble Clef</p>
                     <div class="btnTwo">
                         <p class="btnText2">GO!</p>
                     </div>
@@ -117,38 +167,18 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="footer text-center">
-            <div class="container">
-                <ul class="list-inline mb-5">
-                    <li class="list-inline-item">
-                        <a class="social-link rounded-circle text-white mr-3" href="#">
-                            <i class="icon-social-facebook"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="social-link rounded-circle text-white mr-3" href="#">
-                            <i class="icon-social-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="social-link rounded-circle text-white" href="#">
-                            <i class="icon-social-github"></i>
-                        </a>
-                    </li>
-                </ul>
-                <p class="text-muted small mb-0">Copyright &copy; Your Website 2019</p>
-            </div>
-        </footer>
+    </div>
 
-        <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/stylish-portfolio.min.js"></script>
+</body>
 
-        <!-- Plugin JavaScript -->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
 
         <!-- Custom scripts for this template -->
         <script src="js/stylish-portfolio.min.js"></script>
