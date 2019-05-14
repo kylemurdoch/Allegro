@@ -25,15 +25,38 @@
 
         <!-- Custom CSS -->
         <link href="css/stylish-portfolio.css" rel="stylesheet" />
-
-        <!-- Firebase -->
-        <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
-        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
     </head>
 
     <body id="page-top">
+        <!-- Navigation -->
+        <a class="menu-toggle rounded" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a class="js-scroll-trigger" href="#page-top">Home</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="js-scroll-trigger" href="./index.html">Home</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="js-scroll-trigger" href="./menu.html">Play</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="js-scroll-trigger" href="#your-scores">Your High Scores</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="js-scroll-trigger" href="#global-scores">All Time High Scores</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="js-scroll-trigger" href="#about">About</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="js-scroll-trigger" href="#SignOut">Sign Out</a>
+                </li>
+            </ul>
+        </nav>
         <!-- Header -->
         <header class="masthead d-flex">
             <div class="allegro">
@@ -41,8 +64,7 @@
                 <h3 class="mb-5">
                     <em>Learn Music Now</em>
                 </h3>
-                <div id="firebaseui-auth-container"></div>
-                <div id="loader">Loading...</div>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="/advancedGame.html">Play</a>
             </div>
             <div class="overlay"></div>
         </header>
@@ -100,6 +122,8 @@
                 </div>
             </div>
         </section>
+
+
         <!--AboutUs[Bottom Section-->
         <section class="content-section bg-secondarys text-white text-center" id="about">
             <div class="content-section-heading">
@@ -124,7 +148,6 @@
         <!-- Footer -->
         <footer class="footer text-center">
             <div class="container">
-                
                 <p class="text-muted small mb-0">Copyright &copy; Team22_COMP2930 2019</p>
             </div>
         </footer>
@@ -143,10 +166,6 @@
 
         <!-- Custom scripts for this template -->
         <script src="js/stylish-portfolio.min.js"></script>
-        <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-
-        <!-- js -->
-        <script src="./js/login.js"></script>
         <!-- Easter Egg Java Script by Henry-->
         <script src="easteregg.js"></script>
     </body>

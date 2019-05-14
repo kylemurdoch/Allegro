@@ -344,6 +344,9 @@ a:active {
 .bg-primary {
   background-color: #1d809f !important;
 }
+.bg-secondarys{
+  background-color: #28a2c7
+}
 
 .text-primary {
   color: #1d809f !important;
@@ -351,4 +354,27 @@ a:active {
 
 .text-secondary {
   color: #ecb807 !important;
+}
+#hr1{
+  width:50%;
+  border:0.5px;
+  color:white;
+  display: block;
+  margin-top: 5px;
+  margin-bottom:5px;
+  margin-left:auto;
+  margin-right:auto;
+  border-style:inset;
+  
+}
+#hr2{
+  width:50%;
+  border:0.5px;
+  color:white;
+  display: block;
+  margin-top: 5px;
+  margin-bottom:5px;
+  margin-left:auto;
+  margin-right:auto;
+  border-style:inset;
 }
