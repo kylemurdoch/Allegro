@@ -344,6 +344,9 @@ a:active {
 .bg-primary {
   background-color: #1d809f !important;
 }
+.bg-secondarys{
+  background-color: #28a2c7
+}
 
 .text-primary {
   color: #1d809f !important;
