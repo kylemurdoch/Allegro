@@ -1,66 +1,70 @@
+.keys {
+  display: block;
+  height: 100px;
+  max-width: 620px;
+  position: relative;
+  text-align: center;
+  margin: auto;
 
 
- 
+}
 
 
-    .keys {
-      display: block;
-      height: 100px;
-      max-width: 620px;
-      position: relative;
-      text-align:center;
-      margin:auto;
 
-      
-    }
-
- 
-
-    .key {
-      position: relative;
-      border: 4px solid black;
-      border-radius: .5rem;
-      transition: all .07s ease;
-      box-sizing: border-box;
-      z-index: 2;
-      font-family: 'Poppins', sans-serif;
-      font-size:20pt;
-      float: left;
-      width: 14.2%;
-      height: 100%;
-      background: rgba(255, 255, 255, .8);    
-    }
+.key {
+  position: relative;
+  border: 4px solid black;
+  border-radius: .5rem;
+  transition: all .07s ease;
+  box-sizing: border-box;
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20pt;
+  float: left;
+  width: 14.2%;
+  height: 100%;
+  background: rgba(255, 255, 255, .8);
+}
 
 
-    .playing {
-      transform: scale(.95);
-      border-color: #028ae9;
-      box-shadow: 0 0 1rem #028ae9;
-    }
+.playing {
+  transform: scale(.95);
+  border-color: #028ae9;
+  box-shadow: 0 0 1rem #028ae9;
+}
 
-    
-    .right {
-      transform: scale(1);
-      background:rgb(9, 248, 1);
-      transition:.2s;
-    }
 
-    .wrong {
-      transform: scale(1);
-      background:red;
-      transition:.4s;
-    }
+.right {
+  transform: scale(1);
+  background: rgb(9, 248, 1);
+  transition: .2s;
+}
 
-    .hints {
-      display: block;
-      width: 100%;
-      position: absolute;
-      bottom: 7px;
-      opacity:0;
-      transition: opacity .3s ease-out;
-      font-size: 20px;
-    }
+.wrong {
+  transform: scale(1);
+  background: red;
+  transition: .4s;
+}
 
-    .keys:hover .hints {
-      opacity: 1;
-    }
+@media screen and (min-width: 770px) {
+  .hints {
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 7px;
+    opacity: 0;
+    transition: opacity .3s ease-out;
+    font-size: 15px;
+  }
+
+  .keys:hover .hints {
+    opacity: 1;
+  }
+}
+
+
+@media screen and (max-width:769px) {
+  .hints {
+    display: none;
+  }
+}

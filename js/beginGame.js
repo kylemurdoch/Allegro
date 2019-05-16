@@ -18,7 +18,7 @@ var score = 0;
 var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
 // Configure the rendering context.
-renderer.resize(202, 160);
+renderer.resize(152, 160);
 
 var context = renderer.getContext();
 render("c/4");
@@ -32,7 +32,7 @@ function render(x) {
   group = context.openGroup();
 
   // Create a stave of width 400 at position 10, 40 on the canvas.
-  stave = new VF.Stave(0, 20, 200);
+  stave = new VF.Stave(0, 20, 150);
 
   // Add a clef.
   stave.addClef("treble");
@@ -126,37 +126,37 @@ var timeoutHandle;
 var timerOn = true;
 
 function countdown(minutes, seconds) {
-    function tick() {
-        var counter = document.getElementById("time");
-        counter.innerHTML =
-            minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-        
-            
-        if(timerOn){
-        seconds--;
-        } else{
-          return;
-        }
-        if (seconds >= 0) {
-            timeoutHandle = setTimeout(tick, 1000);
-        } else {
-            if (minutes >= 1) {
-                // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function () {
-                    countdown(minutes - 1, 59);
-                }, 1000);
-            }
-            //WHEN TIMER RUNS OUT
-            else{
-              timesUp() 
-            }
-        }
+  function tick() {
+    var counter = document.getElementById("time");
+    counter.innerHTML =
+      minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+
+
+    if (timerOn) {
+      seconds--;
+    } else {
+      return;
     }
-    tick();
-    closeNav();
+    if (seconds >= 0) {
+      timeoutHandle = setTimeout(tick, 1000);
+    } else {
+      if (minutes >= 1) {
+        // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+        setTimeout(function () {
+          countdown(minutes - 1, 59);
+        }, 1000);
+      }
+      //WHEN TIMER RUNS OUT
+      else {
+        timesUp()
+      }
+    }
+  }
+  tick();
+  closeNav();
 }
 
-function timesUp(){
+function timesUp() {
   openGameOver();
 }
 
@@ -167,48 +167,48 @@ const keys = document.querySelectorAll(".key");
 
 function playNote(e) {
 
-  if(!navOpen){
+  if (!navOpen) {
 
-    if(e.keyCode !== undefined) {
+    if (e.keyCode !== undefined) {
       key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
       console.log(e.keyCode);
-      } else {
-        key = document.querySelector(`.key[data-key="${e}"]`);
-      }
+    } else {
+      key = document.querySelector(`.key[data-key="${e}"]`);
+    }
 
-  if (!key) return;
+    if (!key) return;
 
-  const keyNote = key.getAttribute("data-note");
+    const keyNote = key.getAttribute("data-note");
 
-  key.classList.add("playing");
-  
+    key.classList.add("playing");
 
-  if (keyNote === curNote) {
-    $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
-      $(".fancy-button").removeClass('active');
-    })
-    $(".fancy-button").addClass("active");
-    
-    key.classList.add("right");
-    document.getElementById('score').innerHTML = ++score;
 
-  } else {
+    if (keyNote === curNote) {
+      $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+        $(".fancy-button").removeClass('active');
+      })
+      $(".fancy-button").addClass("active");
 
-    $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
-      $(".fancy-button").removeClass('animated shake faster');
-    })
-    $(".fancy-button").addClass("animated shake faster");
-    document.getElementById('score').innerHTML = --score;
+      key.classList.add("right");
+      document.getElementById('score').innerHTML = ++score;
 
-    //Make curNote key flash 
-    for (var i = 0; i < keys.length; i++) {
-      if(keys[i].getAttribute("data-note") === curNote){
-        keys[i].classList.add("wrong");
+    } else {
+
+      $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+        $(".fancy-button").removeClass('animated shake faster');
+      })
+      $(".fancy-button").addClass("animated shake faster");
+      document.getElementById('score').innerHTML = --score;
+
+      //Make curNote key flash 
+      for (var i = 0; i < keys.length; i++) {
+        if (keys[i].getAttribute("data-note") === curNote) {
+          keys[i].classList.add("wrong");
+        }
       }
     }
+    changeNote();
   }
-  changeNote();
-}
 }
 
 
@@ -259,10 +259,6 @@ function closeGameOver() {
 
 /* ---------------5. Replaying a game ----------------------------*/
 
-function newGame(){
+function newGame() {
   location.reload();
 }
-
-
-
-
