@@ -4,14 +4,35 @@
     margin-top: 5%;
 }
 
-#pic {
+.pic {
     margin: auto;
     width: 160px;
     height: 160px;
     border-radius: 80px;
     border: 5px solid white;
-    background-image: url(../img/tut.jpg);
     background-size: contain;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+#listen {
+    background-image: url(../img/listen.png);
+    background-color: rgba(20, 230, 55, 0.63);
+}
+
+#dynamic {
+    background-image: url(../img/dynamic.png);
+    background-color: rgba(150, 0, 250, 0.411);
+}
+
+#static {
+    background-image: url(../img/search.png);
+    background-color: rgba(0, 17, 250, 0.568);
+}
+
+#start {
+    background-image: url(../img/book.png);
+    background-color: rgba(250, 0, 0, 0.568);
 }
 
 .inner {
@@ -86,4 +107,53 @@
 .button:active {
     /*Clicked and held*/
     box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.3);
+}
+
+.value {
+    background-image: url(../img/treble.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-size: 2em;
+    width: 50px;
+    height: 50px;
+    margin: 10px auto 0px;
+    letter-spacing: -.05em;
+    text-shadow: white 2px 2px 2px;
+}
+
+.label {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+input[type="range"] {
+    display: block;
+    -webkit-appearance: none;
+    background-color: #bdc3c7;
+    width: 150px;
+    height: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    outline: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #e74c3c;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+​ input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: white;
+    border: 2px solid #e74c3c;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    transform: scale(1.2);
 }
