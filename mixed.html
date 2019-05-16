@@ -53,7 +53,7 @@
         <a class="js-scroll-trigger" href="#page-top">Allegro</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#page-top" onclick = openGameOver()>Quit Game</a>
+        <a class="js-scroll-trigger" href="#page-top" onclick=openGameOver()>Quit Game</a>
       </li>
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="#about">B</a>
@@ -91,37 +91,37 @@
 
 
     <div class="keys">
-      <button data-key="81" class="key" data-note="A" onclick= playNote(81)>
+      <button data-key="81" class="key" data-note="A" onclick=playNote(81)>
         A
         <span class="hints">Q</span>
       </button>
 
-      <button data-key="87" class="key" data-note="B" onclick= playNote(87)>
+      <button data-key="87" class="key" data-note="B" onclick=playNote(87)>
         B
         <span class="hints">W</span>
       </button>
 
-      <button data-key="69" class="key" data-note="C" onclick= playNote(69)>
+      <button data-key="69" class="key" data-note="C" onclick=playNote(69)>
         C
         <span class="hints">R</span>
       </button>
 
-      <button data-key="82" class="key" data-note="D" onclick= playNote(82)>
+      <button data-key="82" class="key" data-note="D" onclick=playNote(82)>
         D
         <span class="hints">T</span>
       </button>
 
-      <button data-key="73" class="key" data-note="E" onclick= playNote(73)>
+      <button data-key="73" class="key" data-note="E" onclick=playNote(73)>
         E
         <span class="hints">I</span>
       </button>
 
-      <button data-key="79" class="key" data-note="F" onclick= playNote(79)>
+      <button data-key="79" class="key" data-note="F" onclick=playNote(79)>
         F
         <span class="hints">O</span>
       </button>
 
-      <button data-key="80" class="key" data-note="G" onclick= playNote(80)>
+      <button data-key="80" class="key" data-note="G" onclick=playNote(80)>
         G
 
         <span class="hints">P</span>
@@ -131,62 +131,62 @@
   </div>
 
   <div id="myNav" class="overlay">
-      <div class="overlay-content">
-        <h1>Start Game</h1>
-        <div class="button" onclick = countdown(0,3)>
-            <p class="btnText">30 sec</p>
-            <div class="btnTwo">
-              <p class="btnText2">GO!</p>
-            </div>
-         </div>
-
-         <div class="button" onclick = countdown(1,0)>
-            <p class="btnText">1 min</p>
-            <div class="btnTwo">
-              <p class="btnText2">GO!</p>
-            </div>
-         </div>
-
-         <div class="button" onclick = countdown(2,0)>
-            <p class="btnText">2 min</p>
-            <div class="btnTwo">
-              <p class="btnText2">GO!</p>
-            </div>
-         </div>
-
-         <div class="button">
-            <p class="btnText">Main Menu</p>
-            <div class="btnTwo">
-              <p class="btnText2">GO!</p>
-            </div>
-         </div>
-  
-      </div>
-    </div>
-
-    <div id="gameOver" class="overlay">
-        <div class="overlay-content">
-            <h1>Game Over</h1>
-            <h3 id = "finalScore"></h3>
-            <h3>High Score: </h3>
-
-            <div class="button" onclick = newGame()>
-                <p class="btnText">New Game</p>
-                <div class="btnTwo">
-                  <p class="btnText2">GO!</p>
-                </div>
-             </div>
-    
-             <div class="button">
-                <p class="btnText">Main Menu</p>
-                <div class="btnTwo">
-                  <p class="btnText2">GO!</p>
-                </div>
-             </div>
-          
-    
+    <div class="overlay-content">
+      <h1>Start Game</h1>
+      <div class="button" onclick=countdown(0,3)>
+        <p class="btnText">30 sec</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
         </div>
       </div>
+
+      <div class="button" onclick=countdown(1,0)>
+        <p class="btnText">1 min</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
+        </div>
+      </div>
+
+      <div class="button" onclick=countdown(2,0)>
+        <p class="btnText">2 min</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
+        </div>
+      </div>
+
+      <div class="button" onclick="location.href='/menu.html';">
+        <p class="btnText">Main Menu</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="gameOver" class="overlay">
+    <div class="overlay-content">
+      <h1>Game Over</h1>
+      <h3 id="finalScore"></h3>
+      <h3>High Score: </h3>
+
+      <div class="button" onclick=newGame()>
+        <p class="btnText">New Game</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
+        </div>
+      </div>
+
+      <div class="button" onclick="location.href='/menu.html';">
+        <p class="btnText">Main Menu</p>
+        <div class="btnTwo">
+          <p class="btnText2">GO!</p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
 
 
 
