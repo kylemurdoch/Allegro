@@ -6,14 +6,19 @@ app.use("/js", express.static(__dirname + "/js"));
 app.use("/scss", express.static(__dirname + "/scss"));
 app.use("/img", express.static(__dirname + "/img"));
 app.use("/icons", express.static(__dirname + "/icons"));
-app.use("/icons", express.static(__dirname + "/icons"));
+app.use("/vendor", express.static(__dirname + "/vendor"));
+app.use("/vexflow.js", express.static(__dirname + "/vexflow.js"));
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.get("/home.html", (req, res) => {
-    res.sendFile(__dirname + "/home.html");
+app.get("/menu.html", (req, res) => {
+    res.sendFile(__dirname + "/menu.html");
+});
+
+app.get("/advancedGame.html", (req, res) => {
+    res.sendFile(__dirname + "/advancedGame.html");
 });
 
 app.listen(5555);

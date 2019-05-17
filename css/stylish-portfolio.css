@@ -21,10 +21,10 @@ body {
 }
 
 .allegro {
-  color:white;
+  color: white;
   font-family: 'Great Vibes', cursive;
-  margin:auto;
-  text-align:center;
+  margin: auto;
+  text-align: center;
 }
 
 
@@ -38,19 +38,15 @@ body {
   height: auto;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  background: -webkit-gradient(
-      linear,
+  background: -webkit-gradient(linear,
       left top,
       right top,
       from(rgba(255, 255, 255, 0.1)),
-      to(rgba(255, 255, 255, 0.1))
-    ),
+      to(rgba(255, 255, 255, 0.1))),
     url("../img/bg-masthead.jpg");
-  background: linear-gradient(
-      90deg,
+  background: linear-gradient(90deg,
       rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.1) 100%
-    ),
+      rgba(255, 255, 255, 0.1) 100%),
     url("../img/bg-masthead.jpg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -67,6 +63,7 @@ body {
   .masthead {
     height: 100vh;
   }
+
   .masthead h1 {
     font-size: 5.5rem;
   }
@@ -75,7 +72,7 @@ body {
 /* Side Menu */
 #sidebar-wrapper {
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   right: 0;
   width: 250px;
   height: 100%;
@@ -114,7 +111,7 @@ body {
   text-decoration: none;
 }
 
-.sidebar-nav > .sidebar-brand {
+.sidebar-nav>.sidebar-brand {
   font-size: 1.2rem;
   background: rgba(52, 58, 64, 0.1);
   height: 80px;
@@ -124,11 +121,11 @@ body {
   padding-left: 15px;
 }
 
-.sidebar-nav > .sidebar-brand a {
+.sidebar-nav>.sidebar-brand a {
   color: #fff;
 }
 
-.sidebar-nav > .sidebar-brand a:hover {
+.sidebar-nav>.sidebar-brand a:hover {
   color: #fff;
   background: none;
 }
@@ -141,7 +138,7 @@ body {
 }
 
 .menu-toggle {
-  position: fixed;
+  position: absolute;
   right: 15px;
   top: 15px;
   width: 50px;
@@ -151,7 +148,7 @@ body {
   background: rgba(52, 58, 64, 0.5);
   line-height: 50px;
   z-index: 999;
-  display:block;
+  display: block;
 }
 
 .menu-toggle:focus,
@@ -177,19 +174,15 @@ body {
 
 .callout {
   padding: 15rem 0;
-  background: -webkit-gradient(
-      linear,
+  background: -webkit-gradient(linear,
       left top,
       right top,
       from(rgba(255, 255, 255, 0.1)),
-      to(rgba(255, 255, 255, 0.1))
-    ),
+      to(rgba(255, 255, 255, 0.1))),
     url("../img/bg-callout.jpg");
-  background: linear-gradient(
-      90deg,
+  background: linear-gradient(90deg,
       rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.1) 100%
-    ),
+      rgba(255, 255, 255, 0.1) 100%),
     url("../img/bg-callout.jpg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -244,11 +237,13 @@ body {
     max-width: none;
     margin: 0;
   }
+
   .portfolio-item .caption {
     -webkit-transition: -webkit-clip-path 0.25s ease-out, background-color 0.7s;
     -webkit-clip-path: inset(0px);
     clip-path: inset(0px);
   }
+
   .portfolio-item .caption .caption-content {
     -webkit-transition: opacity 0.25s;
     transition: opacity 0.25s;
@@ -256,15 +251,18 @@ body {
     margin-right: 5rem;
     margin-bottom: 5rem;
   }
+
   .portfolio-item img {
     -webkit-transition: -webkit-clip-path 0.25s ease-out;
     -webkit-clip-path: inset(-1px);
     clip-path: inset(-1px);
   }
+
   .portfolio-item:hover img {
     -webkit-clip-path: inset(2rem);
     clip-path: inset(2rem);
   }
+
   .portfolio-item:hover .caption {
     background-color: rgba(29, 128, 159, 0.9);
     -webkit-clip-path: inset(2rem);
@@ -344,7 +342,8 @@ a:active {
 .bg-primary {
   background-color: #1d809f !important;
 }
-.bg-secondarys{
+
+.bg-secondarys {
   background-color: #28a2c7
 }
 
@@ -355,26 +354,28 @@ a:active {
 .text-secondary {
   color: #ecb807 !important;
 }
-#hr1{
-  width:50%;
-  border:0.5px;
-  color:white;
+
+#hr1 {
+  width: 50%;
+  border: 0.5px;
+  color: white;
   display: block;
   margin-top: 5px;
-  margin-bottom:5px;
-  margin-left:auto;
-  margin-right:auto;
-  border-style:inset;
-  
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+
 }
-#hr2{
-  width:50%;
-  border:0.5px;
-  color:white;
+
+#hr2 {
+  width: 50%;
+  border: 0.5px;
+  color: white;
   display: block;
   margin-top: 5px;
-  margin-bottom:5px;
-  margin-left:auto;
-  margin-right:auto;
-  border-style:inset;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
 }

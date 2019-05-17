@@ -119,108 +119,118 @@
                     <span class="hints">P</span>
                 </button>
             </div>
+
+
+
+    <div id="myNav" class="overlay">
+      <div class="overlay-content">
+        <h1>Start Game</h1>
+        <div class="button" onclick="countdown(0,30)">
+          <p class="btnText">30 sec</p>
+          <div class="btnTwo">
+            <p class="btnText2">GO!</p>
+          </div>
         </div>
 
-        <div id="myNav" class="overlay">
-            <div class="overlay-content">
-                <h1>Start Game</h1>
-                <div class="button" onclick="countdown(0,30)">
-                    <p class="btnText">30 sec</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-
-                <div class="button" onclick="countdown(1,0)">
-                    <p class="btnText">1 min</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-
-                <div class="button" onclick="countdown(2,0)">
-                    <p class="btnText">2 min</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-
-                <div class="value">normal</div>
-                <input type="range" min="1" max="3" step="1" value="1" />
-
-                <div class="button" onclick="location.href='/menu.html';">
-                    <p class="btnText">Main Menu</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-            </div>
+        <div class="button" onclick="countdown(1,0)">
+          <p class="btnText">1 min</p>
+          <div class="btnTwo">
+            <p class="btnText2">GO!</p>
+          </div>
         </div>
 
-        <div id="gameOver" class="overlay">
-            <div class="overlay-content">
-                <h1>Game Over</h1>
-                <h3 id="finalScore"></h3>
-                <h3>High Score:</h3>
-
-                <div class="button" onclick="newGame()">
-                    <p class="btnText">New Game</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-
-                <div class="button" onclick="location.href='/menu.html';">
-                    <p class="btnText">Main Menu</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-            </div>
+        <div class="button" onclick="countdown(2,0)">
+          <p class="btnText">2 min</p>
+          <div class="btnTwo">
+            <p class="btnText2">GO!</p>
+          </div>
         </div>
 
-        <!--Importing vexflow script-->
-        <script src="vexflow.js"></script>
+        <div class="value">normal</div>
+        <input type="range" min="1" max="3" step="1" value="1" />
 
-        <!-- Footer -->
-        <footer class="footer text-center">
-            <div class="container">
-                <ul class="list-inline mb-5">
-                    <li class="list-inline-item">
-                        <a class="social-link rounded-circle text-white mr-3" href="#">
-                            <i class="icon-social-facebook"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="social-link rounded-circle text-white mr-3" href="#">
-                            <i class="icon-social-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="social-link rounded-circle text-white" href="#">
-                            <i class="icon-social-github"></i>
-                        </a>
-                    </li>
-                </ul>
-                <p class="text-muted small mb-0">Copyright &copy; Your Website 2019</p>
-            </div>
-        </footer>
+        <div class="button" onclick="location.href='/menu.html';">
+          <p class="btnText">Main Menu</p>
+          <div class="btnTwo">
+            <p class="btnText2">GO!</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    <div id="gameOver" class="overlay">
+      <div class="overlay-content">
+        <h1>Game Over</h1>
+        <h3 id="finalScore"></h3>
+        <h3>High Score:</h3>
 
-        <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <div class="button" onclick="newGame()">
+          <p class="btnText">New Game</p>
+          <div class="btnTwo">
+            <p class="btnText2">GO!</p>
+          </div>
+        </div>
 
-        <!-- Plugin JavaScript -->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <div class="button" onclick="location.href='/menu.html';">
+          <p class="btnText">Main Menu</p>
+          <div class="btnTwo">
+            <p class="btnText2">GO!</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <!-- Custom scripts for this template -->
-        <script src="js/stylish-portfolio.min.js"></script>
 
-        <script src="js/advancedGame.js"></script>
-    </body>
+
+    </div>
+    </div>
+
+    <div id="gameOver" class="overlay">
+      <div class="overlay-content">
+        <h1>Game Over</h1>
+        <h3 id="finalScore"></h3>
+        <h3>High Score: </h3>
+
+        <div class="button" onclick=newGame()>
+          <p class="btnText">New Game</p>
+          <div class="btnTwo">
+            <p class="btnText2">GO!</p>
+          </div>
+        </div>
+
+        <div class="button" onclick="location.href='/menu.html';">
+          <p class="btnText">Main Menu</p>
+          <div class="btnTwo">
+            <p class="btnText2">GO!</p>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!--Importing vexflow script-->
+    <script src='vexflow.js'></script>
+
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/stylish-portfolio.min.js"></script>
+
+    <script src="js/advancedGame.js">
+    </script>
+</body>
+
 </html>

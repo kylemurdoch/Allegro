@@ -1,115 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
 
-        <title>COMP2930_Allegro</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-        <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
+    <title>Main Menu</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
 
-        <!-- Bootstrap Core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
 
-        <!-- Custom Fonts -->
-        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-        <link
-            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
-            rel="stylesheet"
-            type="text/css"
-        />
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
 
-        <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
 
-        <!-- Custom CSS -->
-        <link href="css/stylish-portfolio.css" rel="stylesheet" />
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-        <!-- Custom CSS -->
-        <link href="css/beginGame.css" rel="stylesheet" />
 
-        <!-- Custom CSS -->
-        <link href="css/menu.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
 
-        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+        rel="stylesheet" type="text/css" />
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    </head>
 
-    <body id="page-top">
-        <!-- Navigation -->
-        <a class="menu-toggle rounded" href="#">
-            <i class="fas fa-bars"></i>
-        </a>
-        <nav id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a class="js-scroll-trigger">Play</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="./home.html">Home</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href=#page-top>Play</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="#your-scores">Your High Scores</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="#global-scores">All Time High Scores</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="./home.html#about">About</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="./index.html">Sign Out</a>
-                </li>
-            </ul>
-        </nav>
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
 
-        <div class="outer">
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/beginGame.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/menu.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<body id="page-top">
+    <!-- Navigation -->
+    <div class="menu-toggle rounded" href="#">
+        <i class="fas fa-bars"></i>
+    </div>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a class="js-scroll-trigger" href="#page-top">Allegro</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#page-top" onclick="openGameOver()">Your High Scores</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#about">All Time High Scores</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="./home.html#about">About Us</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="./index.html">Sign Out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="wrapper">
+        <div class="inner">
+            <div id="start" class="pic"></div>
             <div class="menu-content">
-                <h1>Main Menu</h1>
-                <div class="button" href="./trebleGame.html">
-                    <p class="btnText">Treble Clef</p>
+                <h2>Getting Started</h2>
+                <p>For those new to reading music</p>
+                <div class="button" onclick="countdown(0,3)">
+                    <p class="btnText">Tutorial</p>
                     <div class="btnTwo">
                         <p class="btnText2">GO!</p>
                     </div>
                 </div>
 
                 <div class="button" onclick="countdown(1,0)">
-                    <p class="btnText">Bass Clef</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-
-                <div class="button" href="./mixed.html" onclick="countdown(2,0)">
-                    <p class="btnText">Mixed Clef</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-
-                <div class="button">
-                    <p class="btnText">Advanced Treble Clef</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-
-                <div class="button">
-                    <p class="btnText">Advanced Bass Clef</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-
-                <div class="button">
-                    <p class="btnText">Perfect Pitch</p>
+                    <p class="btnText">Pratice Game</p>
                     <div class="btnTwo">
                         <p class="btnText2">GO!</p>
                     </div>
@@ -117,40 +95,84 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="footer text-center">
-            <div class="container">
-                <ul class="list-inline mb-5">
-                    <li class="list-inline-item">
-                        <a class="social-link rounded-circle text-white mr-3" href="#">
-                            <i class="icon-social-facebook"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="social-link rounded-circle text-white mr-3" href="#">
-                            <i class="icon-social-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="social-link rounded-circle text-white" href="#">
-                            <i class="icon-social-github"></i>
-                        </a>
-                    </li>
-                </ul>
-                <p class="text-muted small mb-0">Copyright &copy; Your Website 2019</p>
+        <div class="inner">
+            <div id="static" class="pic"></div>
+            <div class="menu-content">
+                <h2>Static Reading</h2>
+                <p>Identify one note at a time <br>in treble, bass, or mixed clef</p>
+                <div class="value"></div>
+                <div class="label">treble</div>
+                <input id="slider1" type="range" min="1" max="3" step="1" value="1" />
+                <div class="button" onclick="selectStatic()">
+                    <p class="btnText">Play</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+
             </div>
-        </footer>
+        </div>
 
-        <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <div class="inner">
+            <div id="dynamic" class="pic"></div>
+            <div class="menu-content">
+                <h2>Dynamic Reading</h2>
+                <p>Identify a cascade of sliding notes <br>in treble or bass clef</p>
+                <div id="value2" class="value"></div>
+                <div id="label2" class="label">treble</div>
+                <input id="slider2" type="range" min="1" max="2" step="1" value="1" />
+                <div class="button" onclick="selectDynamic()">
+                    <p class="btnText">Play</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
 
-        <!-- Plugin JavaScript -->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+            </div>
+        </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
+        <div class="inner">
+            <div id="listen" class="pic"></div>
+            <div class="menu-content">
+                <h2>Pitch Game</h2>
+                <p>Identify one note at time by its sound</p>
+                <div class="button" onclick="">
+                    <p class="btnText">Tutorial</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+                <div class="button" onclick="">
+                    <p class="btnText">Play</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <!-- Custom scripts for this template -->
-        <script src="js/stylish-portfolio.min.js"></script>
-    </body>
+    </div>
+
+    <script src="js/menu.js"></script>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/stylish-portfolio.min.js"></script>
+</body>
+
+
+<!-- Custom scripts for this template -->
+<script src="js/stylish-portfolio.min.js"></script>
+</body>
+
 </html>
