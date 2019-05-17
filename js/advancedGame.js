@@ -215,8 +215,9 @@ function playNote(e) {
     removeNote();
 
   } else {
-
-    document.getElementById('score').innerHTML = --score;
+    if (score > 0) {
+      document.getElementById('score').innerHTML = --score;
+    }
 
     //Make curNote key flash 
     for (var i = 0; i < keys.length; i++) {

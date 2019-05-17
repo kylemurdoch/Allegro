@@ -49,7 +49,8 @@ function render(x) {
     }),
 
     new VF.StaveNote({
-      clef: "bass", keys: [x],
+      clef: "bass",
+      keys: [x],
       duration: "q"
     }),
   ];
@@ -125,37 +126,37 @@ var timeoutHandle;
 var timerOn = true;
 
 function countdown(minutes, seconds) {
-    function tick() {
-        var counter = document.getElementById("time");
-        counter.innerHTML =
-            minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-        
-            
-        if(timerOn){
-        seconds--;
-        } else{
-          return;
-        }
-        if (seconds >= 0) {
-            timeoutHandle = setTimeout(tick, 1000);
-        } else {
-            if (minutes >= 1) {
-                // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function () {
-                    countdown(minutes - 1, 59);
-                }, 1000);
-            }
-            //WHEN TIMER RUNS OUT
-            else{
-              timesUp() 
-            }
-        }
+  function tick() {
+    var counter = document.getElementById("time");
+    counter.innerHTML =
+      minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+
+
+    if (timerOn) {
+      seconds--;
+    } else {
+      return;
     }
-    tick();
-    closeNav();
+    if (seconds >= 0) {
+      timeoutHandle = setTimeout(tick, 1000);
+    } else {
+      if (minutes >= 1) {
+        // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+        setTimeout(function () {
+          countdown(minutes - 1, 59);
+        }, 1000);
+      }
+      //WHEN TIMER RUNS OUT
+      else {
+        timesUp()
+      }
+    }
+  }
+  tick();
+  closeNav();
 }
 
-function timesUp(){
+function timesUp() {
   openGameOver();
 }
 
@@ -166,48 +167,50 @@ const keys = document.querySelectorAll(".key");
 
 function playNote(e) {
 
-  if(!navOpen){
+  if (!navOpen) {
 
-    if(e.keyCode !== undefined) {
+    if (e.keyCode !== undefined) {
       key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
       console.log(e.keyCode);
-      } else {
-        key = document.querySelector(`.key[data-key="${e}"]`);
+    } else {
+      key = document.querySelector(`.key[data-key="${e}"]`);
+    }
+
+    if (!key) return;
+
+    const keyNote = key.getAttribute("data-note");
+
+    key.classList.add("playing");
+
+
+    if (keyNote === curNote) {
+      $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+        $(".fancy-button").removeClass('active');
+      })
+      $(".fancy-button").addClass("active");
+
+      key.classList.add("right");
+      document.getElementById('score').innerHTML = ++score;
+
+    } else {
+
+      $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+        $(".fancy-button").removeClass('animated shake faster');
+      })
+      $(".fancy-button").addClass("animated shake faster");
+      if (score > 0) {
+        document.getElementById('score').innerHTML = --score;
       }
 
-  if (!key) return;
-
-  const keyNote = key.getAttribute("data-note");
-
-  key.classList.add("playing");
-  
-
-  if (keyNote === curNote) {
-    $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
-      $(".fancy-button").removeClass('active');
-    })
-    $(".fancy-button").addClass("active");
-    
-    key.classList.add("right");
-    document.getElementById('score').innerHTML = ++score;
-
-  } else {
-
-    $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
-      $(".fancy-button").removeClass('animated shake faster');
-    })
-    $(".fancy-button").addClass("animated shake faster");
-    document.getElementById('score').innerHTML = --score;
-
-    //Make curNote key flash 
-    for (var i = 0; i < keys.length; i++) {
-      if(keys[i].getAttribute("data-note") === curNote){
-        keys[i].classList.add("wrong");
+      //Make curNote key flash 
+      for (var i = 0; i < keys.length; i++) {
+        if (keys[i].getAttribute("data-note") === curNote) {
+          keys[i].classList.add("wrong");
+        }
       }
     }
+    changeNote();
   }
-  changeNote();
-}
 }
 
 
@@ -258,9 +261,6 @@ function closeGameOver() {
 
 /* ---------------5. Replaying a game ----------------------------*/
 
-function newGame(){
+function newGame() {
   location.reload();
 }
-
-
-
