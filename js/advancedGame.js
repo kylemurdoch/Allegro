@@ -115,7 +115,7 @@ function addNote() {
     group.classList.add('too-slow');
     visibleNoteGroups.shift();
     visibleNotes.shift();
-    if (!navOpen)
+    if (!navOpen && score > 0)
       document.getElementById('score').innerHTML = --score;
   }
 
@@ -337,23 +337,24 @@ elem.addEventListener("input", rangeValue);
 
 function saveScore() {
 
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            let ref = database.ref("scores/users/" + user.uid);
-            ref.on(
-                "value",
-                data => {
-                    if (data.val().dynamicTreble < score) {
-                        ref.set({ dynamicTreble: score });
-                    }
-                },
-                err => {
-                    console.log(err);
-                }
-            );
-        } else {
-            console.log("user not signed in");
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      let ref = database.ref("scores/users/" + user.uid);
+      ref.on(
+        "value",
+        data => {
+          if (data.val().dynamicTreble < score) {
+            ref.set({
+              dynamicTreble: score
+            });
+          }
+        },
+        err => {
+          console.log(err);
         }
-    });
+      );
+    } else {
+      console.log("user not signed in");
+    }
+  });
 }
-
