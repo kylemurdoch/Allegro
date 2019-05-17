@@ -2,6 +2,7 @@ openNav();
 var navOpen;
 
 let database = firebase.database();
+
 ref = database.ref("scores");
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -11,6 +12,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     console.log("user not signed in");
   }
 });
+
 
 var curNote;
 var score = 0;
@@ -331,18 +333,27 @@ var rangeValue = function () {
 
 elem.addEventListener("input", rangeValue);
 
-/* ---------------5. Replaying a game ----------------------------*/
+/* ---------------7. Saving the score ----------------------------*/
 
 function saveScore() {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      var data = {
-        uid: user.uid,
-        score: score
-      };
-      ref.push(data);
-    } else {
-      console.log("user not signed in");
-    }
-  });
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            let ref = database.ref("scores/users/" + user.uid);
+            ref.on(
+                "value",
+                data => {
+                    if (data.val().dynamicTreble < score) {
+                        ref.set({ dynamicTreble: score });
+                    }
+                },
+                err => {
+                    console.log(err);
+                }
+            );
+        } else {
+            console.log("user not signed in");
+        }
+    });
 }
+
