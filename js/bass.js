@@ -27,46 +27,49 @@ changeNote();
 
 //for rerendering the context
 function render(x) {
-    // Open a group to hold all the SVG elements in the measure:
-    group = context.openGroup();
 
-    // Create a stave of width 400 at position 10, 40 on the canvas.
-    stave = new VF.Stave(0, 20, 200);
+  // Open a group to hold all the SVG elements in the measure:
+  group = context.openGroup();
 
-    // Add a clef.
-    stave.addClef("bass");
+  // Create a stave of width 400 at position 10, 40 on the canvas.
+  stave = new VF.Stave(0, 20, 200);
 
-    // Connect it to the rendering context and draw!
-    stave.setContext(context).draw();
+  // Add a clef.
+  stave.addClef("bass");
 
-    // Create the notes
-    notes = [
-        new VF.GhostNote({
-            duration: "q"
-        }),
 
-        new VF.StaveNote({
-            clef: "bass",
-            keys: [x],
-            duration: "q"
-        })
-    ];
+  // Connect it to the rendering context and draw!
+  stave.setContext(context).draw();
 
-    // Create a voice and add above notes
-    voice = new VF.Voice({
-        num_beats: 2,
-        beat_value: 4
-    });
-    voice.addTickables(notes);
+  // Create the notes
+  notes = [
 
-    // Format and justify the notes to 400 pixels.
-    formatter = new VF.Formatter().joinVoices([voice]).format([voice], 100);
+    new VF.GhostNote({
+      duration: "q"
+    }),
 
-    // Render voice
-    voice.draw(context, stave);
+    new VF.StaveNote({
+      clef: "bass",
+      keys: [x],
+      duration: "q"
+    }),
+  ];
 
-    // Then close the group:
-    context.closeGroup();
+  // Create a voice and add above notes
+  voice = new VF.Voice({
+    num_beats: 2,
+    beat_value: 4
+  });
+  voice.addTickables(notes);
+
+  // Format and justify the notes to 400 pixels.
+  formatter = new VF.Formatter().joinVoices([voice]).format([voice], 100);
+
+  // Render voice
+  voice.draw(context, stave);
+
+  // Then close the group:
+  context.closeGroup();
 }
 
 function changeNote() {
@@ -119,36 +122,39 @@ var timeoutHandle;
 var timerOn = true;
 
 function countdown(minutes, seconds) {
-    function tick() {
-        var counter = document.getElementById("time");
-        counter.innerHTML = minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
 
-        if (timerOn) {
-            seconds--;
-        } else {
-            return;
-        }
-        if (seconds >= 0) {
-            timeoutHandle = setTimeout(tick, 1000);
-        } else {
-            if (minutes >= 1) {
-                // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function() {
-                    countdown(minutes - 1, 59);
-                }, 1000);
-            }
-            //WHEN TIMER RUNS OUT
-            else {
-                timesUp();
-            }
-        }
+  function tick() {
+    var counter = document.getElementById("time");
+    counter.innerHTML =
+      minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+
+
+    if (timerOn) {
+      seconds--;
+    } else {
+      return;
     }
-    tick();
-    closeNav();
+    if (seconds >= 0) {
+      timeoutHandle = setTimeout(tick, 1000);
+    } else {
+      if (minutes >= 1) {
+        // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+        setTimeout(function () {
+          countdown(minutes - 1, 59);
+        }, 1000);
+      }
+      //WHEN TIMER RUNS OUT
+      else {
+        timesUp()
+      }
+    }
+  }
+  tick();
+  closeNav();
 }
 
 function timesUp() {
-    openGameOver();
+  openGameOver();
 }
 
 /* ---------------3. Setting up Piano Keys ----------------------------*/
@@ -164,36 +170,50 @@ function playNote(e) {
             key = document.querySelector(`.key[data-key="${e}"]`);
         }
 
-        if (!key) return;
+  if (!navOpen) {
 
-        const keyNote = key.getAttribute("data-note");
-
-        key.classList.add("playing");
-
-        if (keyNote === curNote) {
-            $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
-                $(".fancy-button").removeClass("active");
-            });
-            $(".fancy-button").addClass("active");
-
-            key.classList.add("right");
-            document.getElementById("score").innerHTML = ++score;
-        } else {
-            $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
-                $(".fancy-button").removeClass("animated shake faster");
-            });
-            $(".fancy-button").addClass("animated shake faster");
-            document.getElementById("score").innerHTML = --score;
-
-            //Make curNote key flash
-            for (var i = 0; i < keys.length; i++) {
-                if (keys[i].getAttribute("data-note") === curNote) {
-                    keys[i].classList.add("wrong");
-                }
-            }
-        }
-        changeNote();
+    if (e.keyCode !== undefined) {
+      key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      console.log(e.keyCode);
+    } else {
+      key = document.querySelector(`.key[data-key="${e}"]`);
     }
+
+    if (!key) return;
+
+    const keyNote = key.getAttribute("data-note");
+
+    key.classList.add("playing");
+
+
+    if (keyNote === curNote) {
+      $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+        $(".fancy-button").removeClass('active');
+      })
+      $(".fancy-button").addClass("active");
+
+      key.classList.add("right");
+      document.getElementById('score').innerHTML = ++score;
+
+    } else {
+
+      $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+        $(".fancy-button").removeClass('animated shake faster');
+      })
+      $(".fancy-button").addClass("animated shake faster");
+      if (score > 0) {
+        document.getElementById('score').innerHTML = --score;
+      }
+
+      //Make curNote key flash 
+      for (var i = 0; i < keys.length; i++) {
+        if (keys[i].getAttribute("data-note") === curNote) {
+          keys[i].classList.add("wrong");
+        }
+      }
+    }
+    changeNote();
+  }
 }
 
 /*----------------------------------------------------------------------*/
@@ -266,3 +286,4 @@ function saveScore() {
         }
     });
 }
+

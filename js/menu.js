@@ -75,19 +75,31 @@ var rangeValue = function() {
 elem2.addEventListener("input", rangeValue);
 
 function selectDynamic() {
+<<<<<<< HEAD
     if (elem2.value === "1") {
         location.href = "/advancedGame.html";
+=======
+    if (elem2.value === '1') {
+        location.href = "./advancedGame.html";
+>>>>>>> e35b8de20d434b615eca1c35e9133d35778926f2
     } else {
-        location.href = "advancedBass.html";
+        location.href = "./advancedBass.html";
     }
 }
 
 function selectStatic() {
+<<<<<<< HEAD
     if (elem.value === "1") {
         location.href = "/trebleGame.html";
     } else if (elem.value === "2") {
         location.href = "/bass.html";
+=======
+    if (elem.value === '1') {
+        location.href = "./trebleGame.html";
+    } else if (elem.value === '2') {
+        location.href = "./bass.html";
+>>>>>>> e35b8de20d434b615eca1c35e9133d35778926f2
     } else {
-        location.href = "/mixed.html";
+        location.href = "./mixed.html";
     }
 }
