@@ -65,19 +65,62 @@ function randomNote() {
     return randoNote;
 }
 
-// Configure the rendering context.
-renderer.resize(402, 160);
+var width = screen.width;
+var height = screen.height;
+
+
+//Desktop
+if (width > 770 && height > 400) {
+    renderer.resize(402, 160);
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    renderer.resize(152, 160);
+}
+
+//Mobile Landscape 
+if (width < 770 && height < 400) {
+    renderer.resize(202, 120);
+}
+
 var context = renderer.getContext();
 
 var tickContext = new VF.TickContext();
 
 // Create a stave of width 400 at position 0, 20 on the canvas.
-var stave = new VF.Stave(0, 20, 400).addClef("bass");
+//var stave = new VF.Stave(0, 20, 400).addClef("treble");
+
+if (width > 770 && height > 400) {
+    stave = new VF.Stave(0, 20, 400).addClef("bass");;
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    stave = new VF.Stave(0, 20, 150).addClef("bass");
+}
+
+//Mobile Landscape 
+if (width < 770 && height < 400) {
+    stave = new VF.Stave(0, 0, 200).addClef("bass");
+}
+
 
 // Connect it to the rendering context and draw!
 stave.setContext(context).draw();
 
-tickContext.preFormat().setX(399);
+//tickContext.preFormat().setX(399);
+
+if (width > 770 && height > 400) {
+    tickContext.preFormat().setX(370);
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    tickContext.preFormat().setX(149);
+}
+
+//Mobile Landscape 
+if (width < 770 && height < 400) {
+    tickContext.preFormat().setX(199);
+}
 
 // This will contain any notes that are currently visible on the staff,
 // before they've either been answered correctly, or plumetted off
