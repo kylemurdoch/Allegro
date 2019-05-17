@@ -53,7 +53,7 @@ function randomNote() {
             break;
 
         default:
-        // code block
+            // code block
     }
 
     randoNote = new VF.StaveNote({
@@ -88,40 +88,40 @@ var visibleNotes = [];
 // Add a note to the staff from the notes array (if there are any left).
 function addNote() {
 
-  note = randomNote();
-  note.setContext(context).setStave(stave);
-  tickContext.addTickable(note);
-  const group = context.openGroup();
-  visibleNoteGroups.push(group);
-  visibleNotes.push(note);
-  note.draw();
-  context.closeGroup();
-  group.classList.add('scroll');
-  // Force a dom-refresh by asking for the group's bounding box. Why? Most
-  // modern browsers are smart enough to realize that adding .scroll class
-  // hasn't changed anything about the rendering, so they wait to apply it
-  // at the next dom refresh, when they can apply any other changes at the
-  // same time for optimization. However, if we allow that to happen,
-  // then sometimes the note will immediately jump to its fully transformed
-  // position -- because the transform will be applied before the class with
-  // its transition rule. 
-  const box = group.getBoundingClientRect();
-  group.classList.add('scrolling');
+    note = randomNote();
+    note.setContext(context).setStave(stave);
+    tickContext.addTickable(note);
+    const group = context.openGroup();
+    visibleNoteGroups.push(group);
+    visibleNotes.push(note);
+    note.draw();
+    context.closeGroup();
+    group.classList.add('scroll');
+    // Force a dom-refresh by asking for the group's bounding box. Why? Most
+    // modern browsers are smart enough to realize that adding .scroll class
+    // hasn't changed anything about the rendering, so they wait to apply it
+    // at the next dom refresh, when they can apply any other changes at the
+    // same time for optimization. However, if we allow that to happen,
+    // then sometimes the note will immediately jump to its fully transformed
+    // position -- because the transform will be applied before the class with
+    // its transition rule. 
+    const box = group.getBoundingClientRect();
+    group.classList.add('scrolling');
 
-  function fallNote() {
-    const index = visibleNoteGroups.indexOf(group);
-    if (index === -1) return;
-    group.classList.add('too-slow');
-    visibleNoteGroups.shift();
-    visibleNotes.shift();
-    if (!navOpen)
-      document.getElementById('score').innerHTML = --score;
-  }
+    function fallNote() {
+        const index = visibleNoteGroups.indexOf(group);
+        if (index === -1) return;
+        group.classList.add('too-slow');
+        visibleNoteGroups.shift();
+        visibleNotes.shift();
+        if (!navOpen && score > 0)
+            document.getElementById('score').innerHTML = --score;
+    }
 
-  // If a user doesn't answer in time make the note fall below the staff
-  window.setTimeout(function () {
-    fallNote()
-  }, 5000);
+    // If a user doesn't answer in time make the note fall below the staff
+    window.setTimeout(function () {
+        fallNote()
+    }, 5000);
 };
 
 
@@ -164,7 +164,7 @@ function countdown(minutes, seconds) {
         } else {
             if (minutes >= 1) {
                 // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function() {
+                setTimeout(function () {
                     countdown(minutes - 1, 59);
                 }, 1000);
             }
@@ -189,28 +189,15 @@ const keys = document.querySelectorAll(".key");
 
 function playNote(e) {
 
-  if (navOpen) return;
-  curNote = visibleNotes[0].keys[0].charAt(0).toUpperCase();
+    if (navOpen) return;
+    curNote = visibleNotes[0].keys[0].charAt(0).toUpperCase();
 
-  if (e.keyCode !== undefined) {
-    key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-    console.log(e.keyCode);
-  } else {
-    key = document.querySelector(`.key[data-key="${e}"]`);
-  }
-
-  if (!key) return;
-
-  const keyNote = key.getAttribute("data-note");
-  key.classList.add("playing");
-
-
-  if (keyNote === curNote) {
-    $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
-      $(".fancy-button").removeClass('active');
-    })
-    $(".fancy-button").addClass("active");
-
+    if (e.keyCode !== undefined) {
+        key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        console.log(e.keyCode);
+    } else {
+        key = document.querySelector(`.key[data-key="${e}"]`);
+    }
 
     if (!key) return;
 
@@ -218,33 +205,47 @@ function playNote(e) {
     key.classList.add("playing");
 
 
-  
-
     if (keyNote === curNote) {
-        $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
-            $(".fancy-button").removeClass("active");
-        });
+        $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+            $(".fancy-button").removeClass('active');
+        })
         $(".fancy-button").addClass("active");
 
 
-        key.classList.add("right");
-        document.getElementById("score").innerHTML = ++score;
-        removeNote();
-    } else {
-          if (score > 0) {
-      document.getElementById('score').innerHTML = --score;
-    }
+        if (!key) return;
 
-        //Make curNote key flash
-        for (var i = 0; i < keys.length; i++) {
-            if (keys[i].getAttribute("data-note") === curNote) {
-                keys[i].classList.add("wrong");
+        const keyNote = key.getAttribute("data-note");
+        key.classList.add("playing");
+
+
+
+
+        if (keyNote === curNote) {
+            $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function () {
+                $(".fancy-button").removeClass("active");
+            });
+            $(".fancy-button").addClass("active");
+
+
+            key.classList.add("right");
+            document.getElementById("score").innerHTML = ++score;
+            removeNote();
+        } else {
+            if (score > 0) {
+                document.getElementById('score').innerHTML = --score;
             }
-        }
 
-        group = visibleNoteGroups.shift();
-        visibleNotes.shift();
-        group.classList.add("too-slow");
+            //Make curNote key flash
+            for (var i = 0; i < keys.length; i++) {
+                if (keys[i].getAttribute("data-note") === curNote) {
+                    keys[i].classList.add("wrong");
+                }
+            }
+
+            group = visibleNoteGroups.shift();
+            visibleNotes.shift();
+            group.classList.add("too-slow");
+        }
     }
 }
 
@@ -279,22 +280,22 @@ function openGameOver() {
 
 function closeNav() {
 
-  document.getElementById("myNav").style.display = "none";
-  document.getElementsByClassName("menu-toggle")[0].style.display = "block";
-  navOpen = false;
-  switch (rangeValue()) {
-    case '1':
-      interval = 2000;
-      break;
-    case '2':
-      interval = 1500;
-      break;
-    case '3':
-      interval = 500;
-      break;
-    default:
-  }
-  start();
+    document.getElementById("myNav").style.display = "none";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "block";
+    navOpen = false;
+    switch (rangeValue()) {
+        case '1':
+            interval = 2000;
+            break;
+        case '2':
+            interval = 1500;
+            break;
+        case '3':
+            interval = 500;
+            break;
+        default:
+    }
+    start();
 }
 
 function closeGameOver() {
@@ -316,7 +317,7 @@ function start() {
     started = true;
     console.log("started");
     addNote();
-    noteSwitch = setInterval(function() {
+    noteSwitch = setInterval(function () {
         addNote();
     }, interval);
 }
@@ -329,21 +330,21 @@ var target = document.querySelector('.value');
 
 var rangeValue = function () {
 
-  switch (elem.value) {
+    switch (elem.value) {
 
-    case '1':
-      target.innerHTML = "normal";
-      break;
-    case '2':
-      target.innerHTML = "fast";
-      break;
-    case '3':
-      target.innerHTML = "fastest";
-      break;
-    default:
-  }
+        case '1':
+            target.innerHTML = "normal";
+            break;
+        case '2':
+            target.innerHTML = "fast";
+            break;
+        case '3':
+            target.innerHTML = "fastest";
+            break;
+        default:
+    }
 
-  return elem.value;
+    return elem.value;
 
 
     return elem.value;
@@ -354,14 +355,16 @@ elem.addEventListener("input", rangeValue);
 /* ---------------7. Saving the score ----------------------------*/
 
 function saveScore() {
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             let ref = database.ref("scores/users/" + user.uid);
             ref.on(
                 "value",
                 data => {
                     if (data.val().dynamicBass < score) {
-                        ref.set({ dynamicBass: score });
+                        ref.set({
+                            dynamicBass: score
+                        });
                     }
                 },
                 err => {
@@ -372,4 +375,5 @@ function saveScore() {
             console.log("user not signed in");
         }
     });
+
 }
