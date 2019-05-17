@@ -19,8 +19,14 @@ var score = 0;
 // Create an SVG renderer and attach it to the DIV element named "boo".
 var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
+
+var width = screen.width;
 // Configure the rendering context.
-renderer.resize(152, 160);
+if (width > 770) {
+  renderer.resize(202, 160);
+} else {
+  renderer.resize(152, 160)
+}
 
 var context = renderer.getContext();
 render("c/4");
@@ -28,46 +34,56 @@ changeNote();
 
 //for rerendering the context
 function render(x) {
-    // Open a group to hold all the SVG elements in the measure:
-    group = context.openGroup();
 
-    // Create a stave of width 400 at position 10, 40 on the canvas.
+  // Open a group to hold all the SVG elements in the measure:
+  group = context.openGroup();
+
+
+  console.log(width);
+
+  // Create a stave of width 400 at position 10, 40 on the canvas.
+  if (width > 770) {
+    stave = new VF.Stave(0, 20, 200);
+  } else {
     stave = new VF.Stave(0, 20, 150);
+  }
 
-    // Add a clef.
-    stave.addClef("treble");
+  // Add a clef.
+  stave.addClef("treble");
 
-    // Connect it to the rendering context and draw!
-    stave.setContext(context).draw();
 
-    //var noteLetter = "d/6";
-    // Create the notes
-    notes = [
-        new VF.GhostNote({
-            duration: "q"
-        }),
+  // Connect it to the rendering context and draw!
+  stave.setContext(context).draw();
 
-        new VF.StaveNote({
-            keys: [x],
-            duration: "q"
-        })
-    ];
+  //var noteLetter = "d/6";
+  // Create the notes
+  notes = [
 
-    // Create a voice and add above notes
-    voice = new VF.Voice({
-        num_beats: 2,
-        beat_value: 4
-    });
-    voice.addTickables(notes);
+    new VF.GhostNote({
+      duration: "q"
+    }),
 
-    // Format and justify the notes to 400 pixels.
-    formatter = new VF.Formatter().joinVoices([voice]).format([voice], 100);
+    new VF.StaveNote({
+      keys: [x],
+      duration: "q"
+    }),
+  ];
 
-    // Render voice
-    voice.draw(context, stave);
+  // Create a voice and add above notes
+  voice = new VF.Voice({
+    num_beats: 2,
+    beat_value: 4
+  });
+  voice.addTickables(notes);
 
-    // Then close the group:
-    context.closeGroup();
+  // Format and justify the notes to 400 pixels.
+  formatter = new VF.Formatter().joinVoices([voice]).format([voice], 100);
+
+  // Render voice
+  voice.draw(context, stave);
+
+  // Then close the group:
+  context.closeGroup();
 }
 
 function changeNote() {
