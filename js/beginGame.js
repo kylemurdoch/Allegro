@@ -17,8 +17,14 @@ var score = 0;
 // Create an SVG renderer and attach it to the DIV element named "boo".
 var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
+
+var width = screen.width;
 // Configure the rendering context.
-renderer.resize(152, 160);
+if (width > 770) {
+  renderer.resize(202, 160);
+} else {
+  renderer.resize(152, 160)
+}
 
 var context = renderer.getContext();
 render("c/4");
@@ -31,8 +37,15 @@ function render(x) {
   // Open a group to hold all the SVG elements in the measure:
   group = context.openGroup();
 
+
+  console.log(width);
+
   // Create a stave of width 400 at position 10, 40 on the canvas.
-  stave = new VF.Stave(0, 20, 150);
+  if (width > 770) {
+    stave = new VF.Stave(0, 20, 200);
+  } else {
+    stave = new VF.Stave(0, 20, 150);
+  }
 
   // Add a clef.
   stave.addClef("treble");
