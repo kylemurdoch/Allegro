@@ -101,18 +101,20 @@ function addNote() {
   const box = group.getBoundingClientRect();
   group.classList.add('scrolling');
 
-  function fallNote(){
+  function fallNote() {
     const index = visibleNoteGroups.indexOf(group);
     if (index === -1) return;
     group.classList.add('too-slow');
     visibleNoteGroups.shift();
     visibleNotes.shift();
-    if(!navOpen)
-    document.getElementById('score').innerHTML = --score;
+    if (!navOpen)
+      document.getElementById('score').innerHTML = --score;
   }
 
   // If a user doesn't answer in time make the note fall below the staff
-  window.setTimeout(function(){fallNote()}, 5000);
+  window.setTimeout(function () {
+    fallNote()
+  }, 5000);
 };
 
 
@@ -190,9 +192,9 @@ function playNote(e) {
   if (navOpen) return;
   curNote = visibleNotes[0].keys[0].charAt(0).toUpperCase();
 
-  if(e.keyCode !== undefined) {
-  key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-  console.log(e.keyCode);
+  if (e.keyCode !== undefined) {
+    key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    console.log(e.keyCode);
   } else {
     key = document.querySelector(`.key[data-key="${e}"]`);
   }
@@ -214,8 +216,9 @@ function playNote(e) {
     removeNote();
 
   } else {
-
-    document.getElementById('score').innerHTML = --score;
+    if (score >= 0) {
+      document.getElementById('score').innerHTML = --score;
+    }
 
     //Make curNote key flash 
     for (var i = 0; i < keys.length; i++) {
@@ -268,7 +271,7 @@ function closeNav() {
   document.getElementById("myNav").style.display = "none";
   document.getElementsByClassName("menu-toggle")[0].style.display = "block";
   navOpen = false;
-  switch (rangeValue()){
+  switch (rangeValue()) {
     case '1':
       interval = 2000;
       break;
@@ -315,7 +318,7 @@ var target = document.querySelector('.value');
 var rangeValue = function () {
 
   switch (elem.value) {
-    
+
     case '1':
       target.innerHTML = "normal";
       break;
