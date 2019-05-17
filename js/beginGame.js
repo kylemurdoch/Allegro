@@ -19,11 +19,21 @@ var score = 0;
 var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
 var width = screen.width;
+var height = screen.height;
 // Configure the rendering context.
-if (width > 770) {
-    renderer.resize(202, 160);
-} else {
-    renderer.resize(152, 160);
+
+//Desktop
+if (width > 770 && height > 400) {
+  renderer.resize(202, 160);
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+  renderer.resize(152, 160);
+}
+
+//Mobile Landscape 
+if (width < 770 && height < 400) {
+  renderer.resize(202, 120);
 }
 
 var context = renderer.getContext();
@@ -32,52 +42,60 @@ changeNote();
 
 //for rerendering the context
 function render(x) {
-    // Open a group to hold all the SVG elements in the measure:
-    group = context.openGroup();
+  // Open a group to hold all the SVG elements in the measure:
+  group = context.openGroup();
 
-    console.log(width);
 
-    // Create a stave of width 400 at position 10, 40 on the canvas.
-    if (width > 770) {
-        stave = new VF.Stave(0, 20, 200);
-    } else {
-        stave = new VF.Stave(0, 20, 150);
-    }
+  // Create a stave
+  //Desktop
+  if (width > 770 && height > 400) {
+    stave = new VF.Stave(0, 20, 200);
+  }
+  //Mobile Portrait
+  if (width < 770 && height > 400) {
+    stave = new VF.Stave(0, 20, 150);
+  }
 
-    // Add a clef.
-    stave.addClef("treble");
+  //Mobile Landscape 
+  if (width < 770 && height < 400) {
+    stave = new VF.Stave(0, 0, 200);
+  }
 
-    // Connect it to the rendering context and draw!
-    stave.setContext(context).draw();
 
-    //var noteLetter = "d/6";
-    // Create the notes
-    notes = [
-        new VF.GhostNote({
-            duration: "q"
-        }),
+  // Add a clef.
+  stave.addClef("treble");
 
-        new VF.StaveNote({
-            keys: [x],
-            duration: "q"
-        })
-    ];
+  // Connect it to the rendering context and draw!
+  stave.setContext(context).draw();
 
-    // Create a voice and add above notes
-    voice = new VF.Voice({
-        num_beats: 2,
-        beat_value: 4
-    });
-    voice.addTickables(notes);
+  //var noteLetter = "d/6";
+  // Create the notes
+  notes = [
+    new VF.GhostNote({
+      duration: "q"
+    }),
 
-    // Format and justify the notes to 400 pixels.
-    formatter = new VF.Formatter().joinVoices([voice]).format([voice], 100);
+    new VF.StaveNote({
+      keys: [x],
+      duration: "q"
+    })
+  ];
 
-    // Render voice
-    voice.draw(context, stave);
+  // Create a voice and add above notes
+  voice = new VF.Voice({
+    num_beats: 2,
+    beat_value: 4
+  });
+  voice.addTickables(notes);
 
-    // Then close the group:
-    context.closeGroup();
+  // Format and justify the notes to 400 pixels.
+  formatter = new VF.Formatter().joinVoices([voice]).format([voice], 100);
+
+  // Render voice
+  voice.draw(context, stave);
+
+  // Then close the group:
+  context.closeGroup();
 }
 
 function changeNote() {
@@ -232,12 +250,12 @@ function openNav() {
 
 function openGameOver() {
 
-    timerOn = false;
-    document.getElementById("gameOver").style.display = "block";
-    document.getElementsByClassName("menu-toggle")[0].style.display = "none";
-    document.getElementById("finalScore").innerHTML = "Your Score: " + score;
-    saveScore();
-    navOpen = true;
+  timerOn = false;
+  document.getElementById("gameOver").style.display = "block";
+  document.getElementsByClassName("menu-toggle")[0].style.display = "none";
+  document.getElementById("finalScore").innerHTML = "Your Score: " + score;
+  saveScore();
+  navOpen = true;
 
 }
 
@@ -263,23 +281,24 @@ function newGame() {
 /* ---------------7. Saving the score ----------------------------*/
 
 function saveScore() {
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            let ref = database.ref("scores/users/" + user.uid);
-            ref.on(
-                "value",
-                data => {
-                    if (data.val().staticTreble < score) {
-                        ref.set({ staticTreble: score });
-                    }
-                },
-                err => {
-                    console.log(err);
-                }
-            );
-        } else {
-            console.log("user not signed in");
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      let ref = database.ref("scores/users/" + user.uid);
+      ref.on(
+        "value",
+        data => {
+          if (data.val().staticTreble < score) {
+            ref.set({
+              staticTreble: score
+            });
+          }
+        },
+        err => {
+          console.log(err);
         }
-    });
+      );
+    } else {
+      console.log("user not signed in");
+    }
+  });
 }
-
