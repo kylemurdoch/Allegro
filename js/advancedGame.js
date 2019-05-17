@@ -1,6 +1,17 @@
 openNav();
 var navOpen;
 
+let database = firebase.database();
+ref = database.ref("scores");
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    console.log(user.uid);
+  } else {
+    console.log("user not signed in");
+  }
+});
+
 var curNote;
 var score = 0;
 var interval;
@@ -10,38 +21,37 @@ var noteSwitch;
 VF = Vex.Flow;
 
 // Create an SVG renderer and attach it to the DIV element named "boo".
-var div = document.getElementById("boo")
+var div = document.getElementById("boo");
 var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
-
 
 function randomNote() {
   //Generate random number between 0-6
-  var rando = Math.floor((Math.random() * 7));
+  var rando = Math.floor(Math.random() * 7);
   var noteLetter;
-  var durations = ['8', '4', '2', '1'];
+  var durations = ["8", "4", "2", "1"];
   switch (rando) {
     case 0:
-      noteLetter = "a/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "a/" + Math.floor(Math.random() * 3 + 3);
       break;
     case 1:
-      noteLetter = "b/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "b/" + Math.floor(Math.random() * 3 + 3);
       break;
     case 2:
-      noteLetter = "c/" + Math.floor((Math.random() * 3) + 4);
+      noteLetter = "c/" + Math.floor(Math.random() * 3 + 4);
       break;
     case 3:
-      noteLetter = "d/" + Math.floor((Math.random() * 3) + 4);
+      noteLetter = "d/" + Math.floor(Math.random() * 3 + 4);
       break;
     case 4:
-      noteLetter = "e/" + Math.floor((Math.random() * 2) + 4);
+      noteLetter = "e/" + Math.floor(Math.random() * 2 + 4);
       break;
 
     case 5:
-      noteLetter = "f/" + Math.floor((Math.random() * 2) + 4);
+      noteLetter = "f/" + Math.floor(Math.random() * 2 + 4);
       break;
 
     case 6:
-      noteLetter = "g/" + Math.floor((Math.random() * 3) + 3);
+      noteLetter = "g/" + Math.floor(Math.random() * 3 + 3);
       break;
 
     default:
@@ -62,8 +72,7 @@ var context = renderer.getContext();
 var tickContext = new VF.TickContext();
 
 // Create a stave of width 400 at position 0, 20 on the canvas.
-var stave = new VF.Stave(0, 20, 400)
-  .addClef('treble');
+var stave = new VF.Stave(0, 20, 400).addClef("treble");
 
 // Connect it to the rendering context and draw!
 stave.setContext(context).draw();
@@ -75,9 +84,6 @@ tickContext.preFormat().setX(399);
 // the staff when a user fails to answer them correctly in time.
 const visibleNoteGroups = [];
 var visibleNotes = [];
-
-
-
 
 // Add a note to the staff from the notes array (if there are any left).
 function addNote() {
@@ -118,12 +124,11 @@ function addNote() {
 };
 
 
-
 // If a user plays/identifies the note in time, send it up to note heaven.
 function removeNote() {
   group = visibleNoteGroups.shift();
   visibleNotes.shift();
-  group.classList.add('correct');
+  group.classList.add("correct");
   // The note will be somewhere in the middle of its move to the left -- by
   // getting its computed style we find its x-position, freeze it there, and
   // then send it straight up to note heaven with no horizontal motion.
@@ -133,12 +138,10 @@ function removeNote() {
   // the current x-translation. You can dive into the gory details of
   // CSS3 transform matrices (along with matrix multiplication) if you want
   // at http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/
-  const x = transformMatrix.split(',')[4].trim();
+  const x = transformMatrix.split(",")[4].trim();
   // And, finally, we set the note's style.transform property to send it skyward.
   group.style.transform = `translate(${x}px, -800px)`;
-};
-
-
+}
 
 /* ---------------2. Setting up Timer ----------------------------*/
 
@@ -148,9 +151,7 @@ var timerOn = true;
 function countdown(minutes, seconds) {
   function tick() {
     var counter = document.getElementById("time");
-    counter.innerHTML =
-      minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-
+    counter.innerHTML = minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
 
     if (timerOn) {
       seconds--;
@@ -168,7 +169,7 @@ function countdown(minutes, seconds) {
       }
       //WHEN TIMER RUNS OUT
       else {
-        timesUp()
+        timesUp();
       }
     }
   }
@@ -184,8 +185,6 @@ function timesUp() {
 /* ---------------3. Setting up Piano Keys ----------------------------*/
 
 const keys = document.querySelectorAll(".key");
-
-
 
 function playNote(e) {
 
@@ -216,9 +215,8 @@ function playNote(e) {
     removeNote();
 
   } else {
-    if (score >= 0) {
-      document.getElementById('score').innerHTML = --score;
-    }
+
+    document.getElementById('score').innerHTML = --score;
 
     //Make curNote key flash 
     for (var i = 0; i < keys.length; i++) {
@@ -233,10 +231,7 @@ function playNote(e) {
   }
 }
 
-
-
 /*----------------------------------------------------------------------*/
-
 
 function removeTransition(e) {
   this.classList.remove("playing");
@@ -248,10 +243,7 @@ keys.forEach(key => key.addEventListener("transitionend", removeTransition));
 
 window.addEventListener("keydown", playNote);
 
-
-
 /* ---------------4. Create an Overlay ----------------------------*/
-
 
 function openNav() {
   document.getElementById("myNav").style.display = "block";
@@ -264,6 +256,7 @@ function openGameOver() {
   document.getElementById("gameOver").style.display = "block";
   document.getElementsByClassName("menu-toggle")[0].style.display = "none";
   document.getElementById("finalScore").innerHTML = "Your Score: " + score;
+  saveScore();
   navOpen = true;
 }
 
@@ -306,7 +299,7 @@ function start() {
   console.log("started");
   addNote();
   noteSwitch = setInterval(function () {
-    addNote()
+    addNote();
   }, interval);
 }
 
@@ -333,6 +326,22 @@ var rangeValue = function () {
 
   return elem.value;
 
-}
+};
 
 elem.addEventListener("input", rangeValue);
+
+/* ---------------5. Replaying a game ----------------------------*/
+
+function saveScore() {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var data = {
+        uid: user.uid,
+        score: score
+      };
+      ref.push(data);
+    } else {
+      console.log("user not signed in");
+    }
+  });
+}
