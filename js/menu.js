@@ -51,18 +51,18 @@ elem2.addEventListener("input", rangeValue);
 
 function selectDynamic() {
     if (elem2.value === '1') {
-        location.href = "/advancedGame.html";
+        location.href = "./advancedGame.html";
     } else {
-        location.href = "advancedBass.html";
+        location.href = "./advancedBass.html";
     }
 }
 
 function selectStatic() {
     if (elem.value === '1') {
-        location.href = "/trebleGame.html";
+        location.href = "./trebleGame.html";
     } else if (elem.value === '2') {
-        location.href = "/bass.html";
+        location.href = "./bass.html";
     } else {
-        location.href = "/mixed.html";
+        location.href = "./mixed.html";
     }
 }
