@@ -6,27 +6,21 @@ let database = firebase.database();
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         let ref = database.ref("scores/users/" + user.uid);
-        ref.on(
-            "value",
-            data => {
-                try {
-                    if (data.val().initialized == true) {
-                    }
-                } catch (err) {
-                    ref.set({
-                        initialized: true,
-                        staticTreble: 0,
-                        staticBass: 0,
-                        dynamicTreble: 0,
-                        dynamicBass: 0,
-                        mixed: 0
-                    });
+        ref.once("value").then(data => {
+            try {
+                if (data.val().initialized == true) {
                 }
-            },
-            err => {
-                console.log(err);
+            } catch (err) {
+                ref.set({
+                    initialized: true,
+                    staticTreble: 0,
+                    staticBass: 0,
+                    dynamicTreble: 0,
+                    dynamicBass: 0,
+                    mixed: 0
+                });
             }
-        );
+        });
     } else {
         console.log("user not signed in");
     }
@@ -75,30 +69,18 @@ var rangeValue = function() {
 elem2.addEventListener("input", rangeValue);
 
 function selectDynamic() {
-<<<<<<< HEAD
     if (elem2.value === "1") {
-        location.href = "/advancedGame.html";
-=======
-    if (elem2.value === '1') {
         location.href = "./advancedGame.html";
->>>>>>> e35b8de20d434b615eca1c35e9133d35778926f2
     } else {
         location.href = "./advancedBass.html";
     }
 }
 
 function selectStatic() {
-<<<<<<< HEAD
     if (elem.value === "1") {
         location.href = "/trebleGame.html";
     } else if (elem.value === "2") {
         location.href = "/bass.html";
-=======
-    if (elem.value === '1') {
-        location.href = "./trebleGame.html";
-    } else if (elem.value === '2') {
-        location.href = "./bass.html";
->>>>>>> e35b8de20d434b615eca1c35e9133d35778926f2
     } else {
         location.href = "./mixed.html";
     }
