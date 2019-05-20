@@ -53,7 +53,7 @@ function randomNote() {
             break;
 
         default:
-            // code block
+        // code block
     }
 
     randoNote = new VF.StaveNote({
@@ -68,7 +68,6 @@ function randomNote() {
 var width = screen.width;
 var height = screen.height;
 
-
 //Desktop
 if (width > 770 && height > 400) {
     renderer.resize(402, 160);
@@ -78,7 +77,7 @@ if (width < 770 && height > 400) {
     renderer.resize(152, 160);
 }
 
-//Mobile Landscape 
+//Mobile Landscape
 if (width < 770 && height < 400) {
     renderer.resize(202, 120);
 }
@@ -91,18 +90,17 @@ var tickContext = new VF.TickContext();
 //var stave = new VF.Stave(0, 20, 400).addClef("treble");
 
 if (width > 770 && height > 400) {
-    stave = new VF.Stave(0, 20, 400).addClef("bass");;
+    stave = new VF.Stave(0, 20, 400).addClef("bass");
 }
 //Mobile Portrait
 if (width < 770 && height > 400) {
     stave = new VF.Stave(0, 20, 150).addClef("bass");
 }
 
-//Mobile Landscape 
+//Mobile Landscape
 if (width < 770 && height < 400) {
     stave = new VF.Stave(0, 0, 200).addClef("bass");
 }
-
 
 // Connect it to the rendering context and draw!
 stave.setContext(context).draw();
@@ -117,7 +115,7 @@ if (width < 770 && height > 400) {
     tickContext.preFormat().setX(149);
 }
 
-//Mobile Landscape 
+//Mobile Landscape
 if (width < 770 && height < 400) {
     tickContext.preFormat().setX(199);
 }
@@ -130,7 +128,6 @@ var visibleNotes = [];
 
 // Add a note to the staff from the notes array (if there are any left).
 function addNote() {
-
     note = randomNote();
     note.setContext(context).setStave(stave);
     tickContext.addTickable(note);
@@ -139,7 +136,7 @@ function addNote() {
     visibleNotes.push(note);
     note.draw();
     context.closeGroup();
-    group.classList.add('scroll');
+    group.classList.add("scroll");
     // Force a dom-refresh by asking for the group's bounding box. Why? Most
     // modern browsers are smart enough to realize that adding .scroll class
     // hasn't changed anything about the rendering, so they wait to apply it
@@ -147,26 +144,24 @@ function addNote() {
     // same time for optimization. However, if we allow that to happen,
     // then sometimes the note will immediately jump to its fully transformed
     // position -- because the transform will be applied before the class with
-    // its transition rule. 
+    // its transition rule.
     const box = group.getBoundingClientRect();
-    group.classList.add('scrolling');
+    group.classList.add("scrolling");
 
     function fallNote() {
         const index = visibleNoteGroups.indexOf(group);
         if (index === -1) return;
-        group.classList.add('too-slow');
+        group.classList.add("too-slow");
         visibleNoteGroups.shift();
         visibleNotes.shift();
-        if (!navOpen && score > 0)
-            document.getElementById('score').innerHTML = --score;
+        if (!navOpen && score > 0) document.getElementById("score").innerHTML = --score;
     }
 
     // If a user doesn't answer in time make the note fall below the staff
-    window.setTimeout(function () {
-        fallNote()
+    window.setTimeout(function() {
+        fallNote();
     }, 5000);
-};
-
+}
 
 // If a user plays/identifies the note in time, send it up to note heaven.
 function removeNote() {
@@ -207,7 +202,7 @@ function countdown(minutes, seconds) {
         } else {
             if (minutes >= 1) {
                 // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function () {
+                setTimeout(function() {
                     countdown(minutes - 1, 59);
                 }, 1000);
             }
@@ -231,7 +226,6 @@ function timesUp() {
 const keys = document.querySelectorAll(".key");
 
 function playNote(e) {
-
     if (navOpen) return;
     curNote = visibleNotes[0].keys[0].charAt(0).toUpperCase();
 
@@ -247,35 +241,29 @@ function playNote(e) {
     const keyNote = key.getAttribute("data-note");
     key.classList.add("playing");
 
-
     if (keyNote === curNote) {
-        $(".fancy-button").bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
-            $(".fancy-button").removeClass('active');
-        })
+        $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
+            $(".fancy-button").removeClass("active");
+        });
         $(".fancy-button").addClass("active");
-
 
         if (!key) return;
 
         const keyNote = key.getAttribute("data-note");
         key.classList.add("playing");
 
-
-
-
         if (keyNote === curNote) {
-            $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function () {
+            $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
                 $(".fancy-button").removeClass("active");
             });
             $(".fancy-button").addClass("active");
-
 
             key.classList.add("right");
             document.getElementById("score").innerHTML = ++score;
             removeNote();
         } else {
             if (score > 0) {
-                document.getElementById('score').innerHTML = --score;
+                document.getElementById("score").innerHTML = --score;
             }
 
             //Make curNote key flash
@@ -322,18 +310,17 @@ function openGameOver() {
 }
 
 function closeNav() {
-
     document.getElementById("myNav").style.display = "none";
     document.getElementsByClassName("menu-toggle")[0].style.display = "block";
     navOpen = false;
     switch (rangeValue()) {
-        case '1':
+        case "1":
             interval = 2000;
             break;
-        case '2':
+        case "2":
             interval = 1500;
             break;
-        case '3':
+        case "3":
             interval = 500;
             break;
         default:
@@ -360,7 +347,7 @@ function start() {
     started = true;
     console.log("started");
     addNote();
-    noteSwitch = setInterval(function () {
+    noteSwitch = setInterval(function() {
         addNote();
     }, interval);
 }
@@ -369,26 +356,23 @@ function start() {
 
 var elem = document.querySelector('input[type="range"]');
 
-var target = document.querySelector('.value');
+var target = document.querySelector(".value");
 
-var rangeValue = function () {
-
+var rangeValue = function() {
     switch (elem.value) {
-
-        case '1':
+        case "1":
             target.innerHTML = "normal";
             break;
-        case '2':
+        case "2":
             target.innerHTML = "fast";
             break;
-        case '3':
+        case "3":
             target.innerHTML = "fastest";
             break;
         default:
     }
 
     return elem.value;
-
 
     return elem.value;
 };
@@ -398,25 +382,18 @@ elem.addEventListener("input", rangeValue);
 /* ---------------7. Saving the score ----------------------------*/
 
 function saveScore() {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let ref = database.ref("scores/users/" + user.uid);
-            ref.on(
-                "value",
-                data => {
-                    if (data.val().dynamicBass < score) {
-                        ref.set({
-                            dynamicBass: score
-                        });
-                    }
-                },
-                err => {
-                    console.log(err);
+            ref.once("value").then(data => {
+                if (data.val().dynamicBass < score) {
+                    ref.set({
+                        dynamicBass: score
+                    });
                 }
-            );
+            });
         } else {
             console.log("user not signed in");
         }
     });
-
 }

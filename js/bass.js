@@ -287,17 +287,11 @@ function playNote(e) {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 let ref = database.ref("scores/users/" + user.uid);
-                ref.on(
-                    "value",
-                    data => {
-                        if (data.val().staticBass < score) {
-                            ref.set({ staticBass: score });
-                        }
-                    },
-                    err => {
-                        console.log(err);
+                ref.once("value").then(data => {
+                    if (data.val().staticBass < score) {
+                        ref.set({ staticBass: score });
                     }
-                );
+                });
             } else {
                 console.log("user not signed in");
             }
