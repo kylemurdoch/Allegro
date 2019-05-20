@@ -21,10 +21,11 @@ body {
 }
 
 .allegro {
-  color: white;
+  color: rgb(24, 20, 20);
   font-family: 'Great Vibes', cursive;
   margin: auto;
   text-align: center;
+  
 }
 
 
@@ -38,26 +39,33 @@ body {
   height: auto;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  background: -webkit-gradient(linear,
+  /*background: -webkit-gradient(linear,
       left top,
       right top,
       from(rgba(255, 255, 255, 0.1)),
       to(rgba(255, 255, 255, 0.1))),
-    url("../img/bg-masthead.jpg");
-  background: linear-gradient(90deg,
+    url("../img/bg-masthead.jpg");*/
+  
+  
+  /*background: linear-gradient(90deg,
       rgba(255, 255, 255, 0.1) 0%,
       rgba(255, 255, 255, 0.1) 100%),
-    url("../img/bg-masthead.jpg");
-  background-position: center center;
+    url("../img/bg-masthead.jpg");*/
+
+  background-color:#FFDC52;
+
+
+  background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .masthead h1 {
-  font-size: 4rem;
+  font-size: 20vw;
   margin: 0;
   padding: 0;
 }
+
 
 @media (min-width: 992px) {
   .masthead {
@@ -65,7 +73,19 @@ body {
   }
 
   .masthead h1 {
-    font-size: 5.5rem;
+    font-size: 15rem;
+  }
+  /*Piano in full screen */
+  #piano {
+    background-image:url(../img/piano.png);
+    background-color:#FFDC52;
+  
+    text-align:center;
+    margin: auto;
+    width: 500px;
+    height: 500px;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 
@@ -268,6 +288,7 @@ body {
     -webkit-clip-path: inset(2rem);
     clip-path: inset(2rem);
   }
+  
 }
 
 footer.footer {
@@ -378,4 +399,46 @@ a:active {
   margin-left: auto;
   margin-right: auto;
   border-style: inset;
+}
+
+
+#piano {
+  background-image:url(../img/piano.png);
+  background-color:#FFDC52;
+
+  text-align:center;
+  margin: auto;
+ 
+  width: 300px;
+  height: 300px;
+  background-size: contain;
+  background-repeat:no-repeat;
+  border-color:black;
+  border-
+}
+
+@media (min-width:320px max-width:900px;)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+
+  #piano {
+    background-image:url(../img/piano.png);
+    background-color:#FFDC52;
+  
+    text-align:center;
+  margin: auto;
+  margin-left:15px;
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    background-repeat:no-repeat;
+    
+  }
+  .masthead h1 {
+    font-size: 4.5rem;
+  }
+}
+@media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */ 
+}
+@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+}
+@media (min-width:801px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
 }

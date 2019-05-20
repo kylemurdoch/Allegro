@@ -1,39 +1,69 @@
 #container {
-    width: 400px;
-    height: 120px;
-    overflow: hidden;
-    border: 1px solid deeppink;
-    margin: 10px;
+  width: 400px;
+  height: 120px;
+  overflow: hidden;
+  border: 1px solid deeppink;
+  margin: 10px;
+}
+
+#container>div {
+  width: 10000px;
+  height: 120px;
+  white-space: nowrap;
+}
+
+#controls {
+  padding: 15px;
+}
+
+#controls>button {
+  margin: 5px;
+}
+
+.scroll {
+  transition: transform 5s linear, opacity 0.5s ease-out, fill 0.2s linear;
+}
+
+
+
+.correct {
+  opacity: 0;
+}
+
+
+
+/*Phone screen portrait */
+@media screen and (max-width: 770px) and (min-height:401px) {
+
+  .scrolling {
+    transform: translate(-150px, 0);
   }
-  
-  #container > div {
-    width: 10000px;
-    height: 120px;
-    white-space: nowrap;
+
+  .too-slow {
+    transform: translate(-150px, 2000px);
   }
-  
-  #controls {
-    padding: 15px;
+}
+
+/*Phone screen Landscape */
+@media screen and (max-height: 400px) {
+
+  .scrolling {
+    transform: translate(-200px, 0);
   }
-  
-  #controls > button {
-    margin: 5px;
+
+  .too-slow {
+    transform: translate(-200px, 2000px);
   }
-  
-  .scroll {
-    transition: transform 5s linear, opacity 0.5s ease-out, fill 0.2s linear;
-  }
-  
+}
+
+/*Desktop screen */
+@media screen and (min-width: 770px) and (min-height:401px) {
+
   .scrolling {
     transform: translate(-400px, 0);
   }
-  
-  .correct {
-    opacity: 0;
-  }
-  
+
   .too-slow {
     transform: translate(-400px, 2000px);
   }
-  
-  
+}

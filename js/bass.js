@@ -18,8 +18,23 @@ var score = 0;
 // Create an SVG renderer and attach it to the DIV element named "boo".
 var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
+var width = screen.width;
+var height = screen.height;
 // Configure the rendering context.
-renderer.resize(202, 160);
+
+//Desktop
+if (width > 770 && height > 400) {
+    renderer.resize(202, 160);
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    renderer.resize(152, 160);
+}
+
+//Mobile Landscape
+if (width < 770 && height < 400) {
+    renderer.resize(202, 120);
+}
 
 var context = renderer.getContext();
 render("c/4");
@@ -30,8 +45,20 @@ function render(x) {
     // Open a group to hold all the SVG elements in the measure:
     group = context.openGroup();
 
-    // Create a stave of width 400 at position 10, 40 on the canvas.
-    stave = new VF.Stave(0, 20, 200);
+    // Create a stave
+    //Desktop
+    if (width > 770 && height > 400) {
+        stave = new VF.Stave(0, 20, 200);
+    }
+    //Mobile Portrait
+    if (width < 770 && height > 400) {
+        stave = new VF.Stave(0, 20, 150);
+    }
+
+    //Mobile Landscape
+    if (width < 770 && height < 400) {
+        stave = new VF.Stave(0, 0, 200);
+    }
 
     // Add a clef.
     stave.addClef("bass");
