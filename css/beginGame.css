@@ -204,7 +204,6 @@ body {
   -webkit-animation: width-to-zero 0.38s ease-out, move-down 0.38s ease-out;
   animation: width-to-zero 0.38s ease-out, move-down 0.38s ease-out;
   border: solid 2px black;
-  qw
 }
 
 .left-frills:before,
