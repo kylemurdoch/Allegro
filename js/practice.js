@@ -5,6 +5,8 @@ var navOpen;
 
 var treble = true;
 
+note = document.querySelector(".nowplaying");
+
 function setBass() {
     treble = false;
     changeNote();
@@ -208,6 +210,7 @@ function changeNote() {
         }
 
     }
+    note.innerHTML = curNote;
     // And when you want to delete it, do this:
     context.svg.removeChild(group);
     render(noteLetter);
