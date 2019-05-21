@@ -8,10 +8,11 @@ firebase.auth().onAuthStateChanged(function(user) {
         let ref = database.ref("scores/users/" + user.uid);
         ref.once("value").then(data => {
             try {
-                if (data.val().staticTreble == 0) {
+                if (data.val().initialized == true) {
                 }
             } catch (err) {
                 ref.set({
+                    initialized: true,
                     staticTreble: 0,
                     staticBass: 0,
                     dynamicTreble: 0,
@@ -29,16 +30,16 @@ firebase.auth().onAuthStateChanged(function(user) {
 var rangeValue = function() {
     switch (elem.value) {
         case "1":
-            target.style.backgroundImage = "url('./img/treble.png')";
+            target.style.backgroundImage = "url('../img/treble.png')";
             label.innerHTML = "treble";
             break;
         case "2":
-            target.style.backgroundImage = "url('./img/bass.png')";
+            target.style.backgroundImage = "url('../img/bass.png')";
             label.innerHTML = "bass";
 
             break;
         case "3":
-            target.style.backgroundImage = "url('./img/mixed.svg')";
+            target.style.backgroundImage = "url('../img/mixed.svg')";
             label.innerHTML = "mixed";
             break;
         default:
@@ -54,11 +55,11 @@ var label2 = document.getElementById("label2");
 var rangeValue = function() {
     switch (elem2.value) {
         case "1":
-            target2.style.backgroundImage = "url('./img/treble.png')";
+            target2.style.backgroundImage = "url('../img/treble.png')";
             label2.innerHTML = "treble";
             break;
         case "2":
-            target2.style.backgroundImage = "url('./img/bass.png')";
+            target2.style.backgroundImage = "url('../img/bass.png')";
             label2.innerHTML = "bass";
 
             break;
@@ -78,9 +79,9 @@ function selectDynamic() {
 
 function selectStatic() {
     if (elem.value === "1") {
-        location.href = "./trebleGame.html";
+        location.href = "/trebleGame.html";
     } else if (elem.value === "2") {
-        location.href = "./bass.html";
+        location.href = "/bass.html";
     } else {
         location.href = "./mixed.html";
     }
