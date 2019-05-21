@@ -414,10 +414,9 @@ a:active {
   background-size: contain;
   background-repeat:no-repeat;
   border-color:black;
-  border-
 }
 
-@media (min-width:320px max-width:900px;)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (min-width:320px) and (max-width:900px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
 
   #piano {
     background-image:url(../img/piano.png);
@@ -441,4 +440,8 @@ a:active {
 @media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
 }
 @media (min-width:801px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+}
+#playbutton{
+  font-size:50px;
+  width:150px;
 }
