@@ -278,12 +278,10 @@ function newGame() {
 function saveScore() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            let ref = database.ref("scores/users/" + user.uid);
+            let ref = database.ref("scores/users/" + user.uid + "/staticTreble");
             ref.once("value").then(data => {
-                if (data.val().staticTreble < score) {
-                    ref.set({
-                        staticTreble: score
-                    });
+                if (data.val() < score) {
+                    ref.set(score);
                 }
             });
         } else {

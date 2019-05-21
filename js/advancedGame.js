@@ -371,12 +371,10 @@ elem.addEventListener("input", rangeValue);
 function saveScore() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            let ref = database.ref("scores/users/" + user.uid);
+            let ref = database.ref("scores/users/" + user.uid + "/dynamicTreble");
             ref.once("value").then(data => {
-                if (data.val().dynamicTreble < score) {
-                    ref.set({
-                        dynamicTreble: score
-                    });
+                if (data.val() < score) {
+                    ref.set(score);
                 }
             });
         } else {

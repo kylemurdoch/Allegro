@@ -286,10 +286,10 @@ function playNote(e) {
     function saveScore() {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                let ref = database.ref("scores/users/" + user.uid);
+                let ref = database.ref("scores/users/" + user.uid + "/staticBass");
                 ref.once("value").then(data => {
-                    if (data.val().staticBass < score) {
-                        ref.set({ staticBass: score });
+                    if (data.val() < score) {
+                        ref.set(score);
                     }
                 });
             } else {

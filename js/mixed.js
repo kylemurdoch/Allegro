@@ -346,12 +346,10 @@ function newGame() {
 function saveScore() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            let ref = database.ref("scores/users/" + user.uid);
+            let ref = database.ref("scores/users/" + user.uid + "/mixed");
             ref.once("value").then(data => {
-                if (data.val().mixed < score) {
-                    ref.set({
-                        mixed: score
-                    });
+                if (data.val() < score) {
+                    ref.set(score);
                 }
             });
         } else {

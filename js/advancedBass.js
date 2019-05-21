@@ -384,12 +384,10 @@ elem.addEventListener("input", rangeValue);
 function saveScore() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            let ref = database.ref("scores/users/" + user.uid);
+            let ref = database.ref("scores/users/" + user.uid + "/dynamicBass");
             ref.once("value").then(data => {
-                if (data.val().dynamicBass < score) {
-                    ref.set({
-                        dynamicBass: score
-                    });
+                if (data.val() < score) {
+                    ref.set(score);
                 }
             });
         } else {
