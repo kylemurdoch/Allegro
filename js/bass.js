@@ -1,4 +1,4 @@
-
+openNav();
 var navOpen;
 
 /* ---------------1. Setting up Music score ----------------------------*/
@@ -232,69 +232,96 @@ function playNote(e) {
             changeNote();
         }
     }
+}
 
-    /*----------------------------------------------------------------------*/
+/*----------------------------------------------------------------------*/
 
-    function removeTransition(e) {
-        /*if (e.propertyName !== "transform") return;*/ //Causes keys to get stuck.
-        this.classList.remove("playing");
-        this.classList.remove("right");
-        this.classList.remove("wrong");
-    }
+function removeTransition(e) {
+    /*if (e.propertyName !== "transform") return;*/ //Causes keys to get stuck.
+    this.classList.remove("playing");
+    this.classList.remove("right");
+    this.classList.remove("wrong");
+}
 
-    keys.forEach(key => key.addEventListener("transitionend", removeTransition));
+keys.forEach(key => key.addEventListener("transitionend", removeTransition));
 
-    window.addEventListener("keydown", playNote);
+window.addEventListener("keydown", playNote);
 
-    /* ---------------4. Create an Overlay ----------------------------*/
+/* ---------------4. Create an Overlay ----------------------------*/
 
-    function openNav() {
-        document.getElementById("myNav").style.display = "block";
-        document.getElementsByClassName("menu-toggle")[0].style.display = "none";
-        navOpen = true;
-    }
+function openNav() {
+    document.getElementById("myNav").style.display = "block";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "none";
+    navOpen = true;
+}
 
-    function openGameOver() {
-        timerOn = false;
-        document.getElementById("gameOver").style.display = "block";
-        document.getElementsByClassName("menu-toggle")[0].style.display = "none";
-        document.getElementById("finalScore").innerHTML = "Your Score: " + score;
-        saveScore();
-        navOpen = true;
-    }
+function openGameOver() {
+    timerOn = false;
+    document.getElementById("gameOver").style.display = "block";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "none";
+    document.getElementById("finalScore").innerHTML = "Your Score: " + score;
+    saveScore();
+    navOpen = true;
+}
 
-    function closeNav() {
-        document.getElementById("myNav").style.display = "none";
-        document.getElementsByClassName("menu-toggle")[0].style.display = "block";
-        navOpen = false;
-    }
+function closeNav() {
+    document.getElementById("myNav").style.display = "none";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "block";
+    navOpen = false;
+}
 
-    function closeGameOver() {
-        document.getElementById("gameOver").style.display = "none";
-        document.getElementsByClassName("menu-toggle")[0].style.display = "block";
-        navOpen = false;
-    }
+function closeGameOver() {
+    document.getElementById("gameOver").style.display = "none";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "block";
+    navOpen = false;
+}
 
-    /* ---------------5. Replaying a game ----------------------------*/
+/* ---------------5. Replaying a game ----------------------------*/
 
-    function newGame() {
-        location.reload();
-    }
+function newGame() {
+    location.reload();
+}
 
-    /* ---------------7. Saving the score ----------------------------*/
+/* ---------------7. Saving the score ----------------------------*/
 
-    function saveScore() {
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                let ref = database.ref("scores/users/" + user.uid + "/staticBass");
-                ref.once("value").then(data => {
-                    if (data.val() < score) {
-                        ref.set(score);
-                    }
-                });
-            } else {
-                console.log("user not signed in");
-            }
-        });
-    }
+function saveScore() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            let ref = database.ref("scores/users/" + user.uid + "/staticBass");
+            ref.once("value").then(data => {
+                if (data.val() < score) {
+                    ref.set(score);
+                }
+            });
+
+            //global high score
+            let ref = database.ref("scores/global/staticBass");
+            ref.once("value").then(data => {
+                if (data.val().first.score < score) {
+                    newData.first = {
+                        name: user.displayName,
+                        score: score
+                    };
+                    newData.second = data.val().first;
+                    newData.third = data.val().second;
+                } else if (data.val().second.score < score) {
+                    newData.first = data.val().first;
+                    newData.second = {
+                        name: user.displayName,
+                        score: score
+                    };
+                    newData.thrid = data.val().second;
+                } else if (data.val().third.score < score) {
+                    newData.first = data.val().first;
+                    newData.second = data.val().second;
+                    newData.third = {
+                        name: user.displayName,
+                        score: score
+                    };
+                }
+            });
+        } else {
+            console.log("user not signed in");
+        }
+    });
 }
