@@ -65,19 +65,60 @@ function randomNote() {
     return randoNote;
 }
 
-// Configure the rendering context.
-renderer.resize(402, 160);
+var width = screen.width;
+var height = screen.height;
+
+//Desktop
+if (width > 770 && height > 400) {
+    renderer.resize(402, 160);
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    renderer.resize(152, 160);
+}
+
+//Mobile Landscape
+if (width < 770 && height < 400) {
+    renderer.resize(202, 120);
+}
+
 var context = renderer.getContext();
 
 var tickContext = new VF.TickContext();
 
 // Create a stave of width 400 at position 0, 20 on the canvas.
-var stave = new VF.Stave(0, 20, 400).addClef("bass");
+//var stave = new VF.Stave(0, 20, 400).addClef("treble");
+
+if (width > 770 && height > 400) {
+    stave = new VF.Stave(0, 20, 400).addClef("bass");
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    stave = new VF.Stave(0, 20, 150).addClef("bass");
+}
+
+//Mobile Landscape
+if (width < 770 && height < 400) {
+    stave = new VF.Stave(0, 0, 200).addClef("bass");
+}
 
 // Connect it to the rendering context and draw!
 stave.setContext(context).draw();
 
-tickContext.preFormat().setX(399);
+//tickContext.preFormat().setX(399);
+
+if (width > 770 && height > 400) {
+    tickContext.preFormat().setX(370);
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    tickContext.preFormat().setX(149);
+}
+
+//Mobile Landscape
+if (width < 770 && height < 400) {
+    tickContext.preFormat().setX(199);
+}
 
 // This will contain any notes that are currently visible on the staff,
 // before they've either been answered correctly, or plumetted off
@@ -113,7 +154,7 @@ function addNote() {
         group.classList.add("too-slow");
         visibleNoteGroups.shift();
         visibleNotes.shift();
-        if (!navOpen) document.getElementById("score").innerHTML = --score;
+        if (!navOpen && score > 0) document.getElementById("score").innerHTML = --score;
     }
 
     // If a user doesn't answer in time make the note fall below the staff
@@ -206,22 +247,36 @@ function playNote(e) {
         });
         $(".fancy-button").addClass("active");
 
-        key.classList.add("right");
-        document.getElementById("score").innerHTML = ++score;
-        removeNote();
-    } else {
-        document.getElementById("score").innerHTML = --score;
+        if (!key) return;
 
-        //Make curNote key flash
-        for (var i = 0; i < keys.length; i++) {
-            if (keys[i].getAttribute("data-note") === curNote) {
-                keys[i].classList.add("wrong");
+        const keyNote = key.getAttribute("data-note");
+        key.classList.add("playing");
+
+        if (keyNote === curNote) {
+            $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
+                $(".fancy-button").removeClass("active");
+            });
+            $(".fancy-button").addClass("active");
+
+            key.classList.add("right");
+            document.getElementById("score").innerHTML = ++score;
+            removeNote();
+        } else {
+            if (score > 0) {
+                document.getElementById("score").innerHTML = --score;
             }
-        }
 
-        group = visibleNoteGroups.shift();
-        visibleNotes.shift();
-        group.classList.add("too-slow");
+            //Make curNote key flash
+            for (var i = 0; i < keys.length; i++) {
+                if (keys[i].getAttribute("data-note") === curNote) {
+                    keys[i].classList.add("wrong");
+                }
+            }
+
+            group = visibleNoteGroups.shift();
+            visibleNotes.shift();
+            group.classList.add("too-slow");
+        }
     }
 }
 
@@ -300,6 +355,7 @@ function start() {
 /*--------------------6. slider code ----------------------------*/
 
 var elem = document.querySelector('input[type="range"]');
+
 var target = document.querySelector(".value");
 
 var rangeValue = function() {
@@ -317,6 +373,8 @@ var rangeValue = function() {
     }
 
     return elem.value;
+
+    return elem.value;
 };
 
 elem.addEventListener("input", rangeValue);
@@ -326,18 +384,12 @@ elem.addEventListener("input", rangeValue);
 function saveScore() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            let ref = database.ref("scores/users/" + user.uid);
-            ref.on(
-                "value",
-                data => {
-                    if (data.val().dynamicBass < score) {
-                        ref.set({ dynamicBass: score });
-                    }
-                },
-                err => {
-                    console.log(err);
+            let ref = database.ref("scores/users/" + user.uid + "/dynamicBass");
+            ref.once("value").then(data => {
+                if (data.val() < score) {
+                    ref.set(score);
                 }
-            );
+            });
         } else {
             console.log("user not signed in");
         }

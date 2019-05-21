@@ -18,20 +18,47 @@ var score = 0;
 // Create an SVG renderer and attach it to the DIV element named "boo".
 var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
+var width = screen.width;
+var height = screen.height;
 // Configure the rendering context.
-renderer.resize(202, 160);
+
+//Desktop
+if (width > 770 && height > 400) {
+    renderer.resize(202, 160);
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    renderer.resize(152, 160);
+}
+
+//Mobile Landscape
+if (width < 770 && height < 400) {
+    renderer.resize(202, 120);
+}
 
 var context = renderer.getContext();
-render("c/4", true);
-//changeNoteBass();
+render("c/4");
+//changeNote();
 
 //for rerendering the context
 function render(x, treble) {
     // Open a group to hold all the SVG elements in the measure:
     group = context.openGroup();
 
-    // Create a stave of width 400 at position 10, 40 on the canvas.
-    stave = new VF.Stave(0, 20, 200);
+    // Create a stave
+    //Desktop
+    if (width > 770 && height > 400) {
+        stave = new VF.Stave(0, 20, 200);
+    }
+    //Mobile Portrait
+    if (width < 770 && height > 400) {
+        stave = new VF.Stave(0, 20, 150);
+    }
+
+    //Mobile Landscape
+    if (width < 770 && height < 400) {
+        stave = new VF.Stave(0, 0, 200);
+    }
 
     if (treble) {
         stave.addClef("treble");
@@ -219,38 +246,49 @@ function playNote(e) {
             key = document.querySelector(`.key[data-key="${e}"]`);
         }
 
-        if (!key) return;
+        if (!navOpen) {
+            if (e.keyCode !== undefined) {
+                key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+                console.log(e.keyCode);
+            } else {
+                key = document.querySelector(`.key[data-key="${e}"]`);
+            }
 
-        const keyNote = key.getAttribute("data-note");
+            if (!key) return;
 
-        key.classList.add("playing");
+            const keyNote = key.getAttribute("data-note");
 
-        if (keyNote === curNote) {
-            $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
-                $(".fancy-button").removeClass("active");
-            });
-            $(".fancy-button").addClass("active");
+            key.classList.add("playing");
 
-            key.classList.add("right");
-            document.getElementById("score").innerHTML = ++score;
-        } else {
-            $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
-                $(".fancy-button").removeClass("animated shake faster");
-            });
-            $(".fancy-button").addClass("animated shake faster");
-            document.getElementById("score").innerHTML = --score;
+            if (keyNote === curNote) {
+                $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
+                    $(".fancy-button").removeClass("active");
+                });
+                $(".fancy-button").addClass("active");
 
-            //Make curNote key flash
-            for (var i = 0; i < keys.length; i++) {
-                if (keys[i].getAttribute("data-note") === curNote) {
-                    keys[i].classList.add("wrong");
+                key.classList.add("right");
+                document.getElementById("score").innerHTML = ++score;
+            } else {
+                $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
+                    $(".fancy-button").removeClass("animated shake faster");
+                });
+                $(".fancy-button").addClass("animated shake faster");
+                if (score > 0) {
+                    document.getElementById("score").innerHTML = --score;
+                }
+
+                //Make curNote key flash
+                for (var i = 0; i < keys.length; i++) {
+                    if (keys[i].getAttribute("data-note") === curNote) {
+                        keys[i].classList.add("wrong");
+                    }
                 }
             }
-        }
-        if (Math.random() >= 0.5) {
-            changeNoteTreble();
-        } else {
-            changeNoteBass();
+            if (Math.random() >= 0.5) {
+                changeNoteTreble();
+            } else {
+                changeNoteBass();
+            }
         }
     }
 }
@@ -308,18 +346,12 @@ function newGame() {
 function saveScore() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            let ref = database.ref("scores/users/" + user.uid);
-            ref.on(
-                "value",
-                data => {
-                    if (data.val().mixed < score) {
-                        ref.set({ mixed: score });
-                    }
-                },
-                err => {
-                    console.log(err);
+            let ref = database.ref("scores/users/" + user.uid + "/mixed");
+            ref.once("value").then(data => {
+                if (data.val() < score) {
+                    ref.set(score);
                 }
-            );
+            });
         } else {
             console.log("user not signed in");
         }

@@ -3,6 +3,16 @@ var navOpen;
 
 let database = firebase.database();
 
+ref = database.ref("scores");
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log(user.uid);
+    } else {
+        console.log("user not signed in");
+    }
+});
+
 var curNote;
 var score = 0;
 var interval;
@@ -56,19 +66,60 @@ function randomNote() {
     return randoNote;
 }
 
-// Configure the rendering context.
-renderer.resize(402, 160);
+var width = screen.width;
+var height = screen.height;
+
+//Desktop
+if (width > 770 && height > 400) {
+    renderer.resize(402, 160);
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    renderer.resize(152, 160);
+}
+
+//Mobile Landscape
+if (width < 770 && height < 400) {
+    renderer.resize(202, 120);
+}
+
 var context = renderer.getContext();
 
 var tickContext = new VF.TickContext();
 
 // Create a stave of width 400 at position 0, 20 on the canvas.
-var stave = new VF.Stave(0, 20, 400).addClef("treble");
+//var stave = new VF.Stave(0, 20, 400).addClef("treble");
+
+if (width > 770 && height > 400) {
+    stave = new VF.Stave(0, 20, 400).addClef("treble");
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    stave = new VF.Stave(0, 20, 150).addClef("treble");
+}
+
+//Mobile Landscape
+if (width < 770 && height < 400) {
+    stave = new VF.Stave(0, 0, 200).addClef("treble");
+}
 
 // Connect it to the rendering context and draw!
 stave.setContext(context).draw();
 
-tickContext.preFormat().setX(399);
+//tickContext.preFormat().setX(399);
+
+if (width > 770 && height > 400) {
+    tickContext.preFormat().setX(370);
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
+    tickContext.preFormat().setX(149);
+}
+
+//Mobile Landscape
+if (width < 770 && height < 400) {
+    tickContext.preFormat().setX(199);
+}
 
 // This will contain any notes that are currently visible on the staff,
 // before they've either been answered correctly, or plumetted off
@@ -104,7 +155,7 @@ function addNote() {
         group.classList.add("too-slow");
         visibleNoteGroups.shift();
         visibleNotes.shift();
-        if (!navOpen) document.getElementById("score").innerHTML = --score;
+        if (!navOpen && score > 0) document.getElementById("score").innerHTML = --score;
     }
 
     // If a user doesn't answer in time make the note fall below the staff
@@ -117,19 +168,19 @@ function addNote() {
 function removeNote() {
     group = visibleNoteGroups.shift();
     visibleNotes.shift();
-    group.classList.add("correct");
-    // The note will be somewhere in the middle of its move to the left -- by
-    // getting its computed style we find its x-position, freeze it there, and
-    // then send it straight up to note heaven with no horizontal motion.
-    const transformMatrix = window.getComputedStyle(group).transform;
-    // transformMatrix will be something like 'matrix(1, 0, 0, 1, -118, 0)'
-    // where, since we're only translating in x, the 4th property will be
-    // the current x-translation. You can dive into the gory details of
-    // CSS3 transform matrices (along with matrix multiplication) if you want
-    // at http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/
-    const x = transformMatrix.split(",")[4].trim();
-    // And, finally, we set the note's style.transform property to send it skyward.
-    group.style.transform = `translate(${x}px, -800px)`;
+    if (group !== undefined) {
+        group.classList.add("correct");
+
+        const transformMatrix = window.getComputedStyle(group).transform;
+        // transformMatrix will be something like 'matrix(1, 0, 0, 1, -118, 0)'
+        // where, since we're only translating in x, the 4th property will be
+        // the current x-translation. You can dive into the gory details of
+        // CSS3 transform matrices (along with matrix multiplication) if you want
+        // at http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/
+        const x = transformMatrix.split(",")[4].trim();
+        // And, finally, we set the note's style.transform property to send it skyward.
+        group.style.transform = `translate(${x}px, -800px)`;
+    }
 }
 
 /* ---------------2. Setting up Timer ----------------------------*/
@@ -177,7 +228,8 @@ const keys = document.querySelectorAll(".key");
 
 function playNote(e) {
     if (navOpen) return;
-    curNote = visibleNotes[0].keys[0].charAt(0).toUpperCase();
+
+    if (visibleNotes[0] !== undefined) curNote = visibleNotes[0].keys[0].charAt(0).toUpperCase();
 
     if (e.keyCode !== undefined) {
         key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
@@ -201,7 +253,9 @@ function playNote(e) {
         document.getElementById("score").innerHTML = ++score;
         removeNote();
     } else {
-        document.getElementById("score").innerHTML = --score;
+        if (score > 0) {
+            document.getElementById("score").innerHTML = --score;
+        }
 
         //Make curNote key flash
         for (var i = 0; i < keys.length; i++) {
@@ -212,7 +266,7 @@ function playNote(e) {
 
         group = visibleNoteGroups.shift();
         visibleNotes.shift();
-        group.classList.add("too-slow");
+        if (group !== undefined) group.classList.add("too-slow");
     }
 }
 
@@ -317,18 +371,12 @@ elem.addEventListener("input", rangeValue);
 function saveScore() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            let ref = database.ref("scores/users/" + user.uid);
-            ref.on(
-                "value",
-                data => {
-                    if (data.val().dynamicTreble < score) {
-                        ref.set({ dynamicTreble: score });
-                    }
-                },
-                err => {
-                    console.log(err);
+            let ref = database.ref("scores/users/" + user.uid + "/dynamicTreble");
+            ref.once("value").then(data => {
+                if (data.val() < score) {
+                    ref.set(score);
                 }
-            );
+            });
         } else {
             console.log("user not signed in");
         }

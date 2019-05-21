@@ -19,11 +19,21 @@ var score = 0;
 var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
 var width = screen.width;
+var height = screen.height;
 // Configure the rendering context.
-if (width > 770) {
+
+//Desktop
+if (width > 770 && height > 400) {
     renderer.resize(202, 160);
-} else {
+}
+//Mobile Portrait
+if (width < 770 && height > 400) {
     renderer.resize(152, 160);
+}
+
+//Mobile Landscape
+if (width < 770 && height < 400) {
+    renderer.resize(202, 120);
 }
 
 var context = renderer.getContext();
@@ -35,13 +45,19 @@ function render(x) {
     // Open a group to hold all the SVG elements in the measure:
     group = context.openGroup();
 
-    console.log(width);
-
-    // Create a stave of width 400 at position 10, 40 on the canvas.
-    if (width > 770) {
+    // Create a stave
+    //Desktop
+    if (width > 770 && height > 400) {
         stave = new VF.Stave(0, 20, 200);
-    } else {
+    }
+    //Mobile Portrait
+    if (width < 770 && height > 400) {
         stave = new VF.Stave(0, 20, 150);
+    }
+
+    //Mobile Landscape
+    if (width < 770 && height < 400) {
+        stave = new VF.Stave(0, 0, 200);
     }
 
     // Add a clef.
@@ -194,7 +210,9 @@ function playNote(e) {
                 $(".fancy-button").removeClass("animated shake faster");
             });
             $(".fancy-button").addClass("animated shake faster");
-            document.getElementById("score").innerHTML = --score;
+            if (score > 0) {
+                document.getElementById("score").innerHTML = --score;
+            }
 
             //Make curNote key flash
             for (var i = 0; i < keys.length; i++) {
@@ -260,18 +278,12 @@ function newGame() {
 function saveScore() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            let ref = database.ref("scores/users/" + user.uid);
-            ref.on(
-                "value",
-                data => {
-                    if (data.val().staticTreble < score) {
-                        ref.set({ staticTreble: score });
-                    }
-                },
-                err => {
-                    console.log(err);
+            let ref = database.ref("scores/users/" + user.uid + "/staticTreble");
+            ref.once("value").then(data => {
+                if (data.val() < score) {
+                    ref.set(score);
                 }
-            );
+            });
         } else {
             console.log("user not signed in");
         }
