@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Main Menu</title>
+
+
+    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
+
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
+
+    <!-- Custom Fonts -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+        rel="stylesheet" type="text/css" />
+
+
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/beginGame.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/menu.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+    <script src="js/firebase.js"></script>
+</head>
+
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<body id="page-top">
+    <!-- Navigation -->
+    <div class="menu-toggle rounded" href="#">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a class="js-scroll-trigger" href="#page-top">Allegro</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#about">High Scores</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="./home.html#about">About Us</a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="./index.html">Sign Out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="wrapper">
+        <div class="inner">
+            <div id="start" class="pic"></div>
+            <div class="menu-content">
+                <h2>Getting Started</h2>
+                <p>For those new to reading music</p>
+                <div class="button" onclick="countdown(0,3)">
+                    <p class="btnText">Tutorial</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+
+                <div class="button" onclick="countdown(1,0)">
+                    <p class="btnText">Pratice Game</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="inner">
+            <div id="static" class="pic"></div>
+            <div class="menu-content">
+                <h2>Static Reading</h2>
+                <p>Identify one note at a time <br>in treble, bass, or mixed clef</p>
+                <div class="value"></div>
+                <div class="label">treble</div>
+                <input id="slider1" type="range" min="1" max="3" step="1" value="1" />
+                <div class="button" onclick="selectStatic()">
+                    <p class="btnText">Play</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="inner">
+            <div id="dynamic" class="pic"></div>
+            <div class="menu-content">
+                <h2>Dynamic Reading</h2>
+                <p>Identify a cascade of sliding notes <br>in treble or bass clef</p>
+                <div id="value2" class="value"></div>
+                <div id="label2" class="label">treble</div>
+                <input id="slider2" type="range" min="1" max="2" step="1" value="1" />
+                <div class="button" onclick="selectDynamic()">
+                    <p class="btnText">Play</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="inner">
+            <div id="listen" class="pic"></div>
+            <div class="menu-content">
+                <h2>Pitch Game</h2>
+                <p>Identify one note at time by its sound</p>
+                <div class="button" onclick="">
+                    <p class="btnText">Tutorial</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+                <div class="button" onclick="">
+                    <p class="btnText">Play</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/menu.js"></script>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/stylish-portfolio.min.js"></script>
+</body>
+
+</html>

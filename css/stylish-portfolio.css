@@ -14,9 +14,6 @@ body {
   font-family: "Source Sans Pro";
 }
 
-.btn-xl {
-  padding: 1.25rem 2.5rem;
-}
 
 .content-section {
   padding-top: 7.5rem;
@@ -24,74 +21,15 @@ body {
 }
 
 .allegro {
-  color:white;
+  color: rgb(24, 20, 20);
   font-family: 'Great Vibes', cursive;
-  margin:auto;
-  text-align:center;
-}
-
-.content-section-heading h2 {
-  font-size: 3rem;
-}
-
-.content-section-heading h3 {
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 700;
-}
-
-.text-faded {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Map */
-.map {
-  height: 30rem;
-}
-
-@media (max-width: 992px) {
-  .map {
-    height: 75%;
-  }
-}
-
-.map iframe {
-  pointer-events: none;
-}
-
-.scroll-to-top {
-  position: fixed;
-  right: 15px;
-  bottom: 15px;
-  display: none;
-  width: 50px;
-  height: 50px;
+  margin: auto;
   text-align: center;
-  color: white;
-  background: rgba(52, 58, 64, 0.5);
-  line-height: 45px;
+  
 }
 
-.scroll-to-top:focus,
-.scroll-to-top:hover {
-  color: white;
-}
 
-.scroll-to-top:hover {
-  background: #343a40;
-}
 
-.scroll-to-top i {
-  font-weight: 800;
-}
 
 .masthead {
   min-height: 30rem;
@@ -101,44 +39,60 @@ h6 {
   height: auto;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  background: -webkit-gradient(
-      linear,
+  /*background: -webkit-gradient(linear,
       left top,
       right top,
       from(rgba(255, 255, 255, 0.1)),
-      to(rgba(255, 255, 255, 0.1))
-    ),
-    url("../img/bg-masthead.jpg");
-  background: linear-gradient(
-      90deg,
+      to(rgba(255, 255, 255, 0.1))),
+    url("../img/bg-masthead.jpg");*/
+  
+  
+  /*background: linear-gradient(90deg,
       rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.1) 100%
-    ),
-    url("../img/bg-masthead.jpg");
-  background-position: center center;
+      rgba(255, 255, 255, 0.1) 100%),
+    url("../img/bg-masthead.jpg");*/
+
+  background-color:#FFDC52;
+
+
+  background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .masthead h1 {
-  font-size: 4rem;
+  font-size: 20vw;
   margin: 0;
   padding: 0;
 }
+
 
 @media (min-width: 992px) {
   .masthead {
     height: 100vh;
   }
+
   .masthead h1 {
-    font-size: 5.5rem;
+    font-size: 15rem;
+  }
+  /*Piano in full screen */
+  #piano {
+    background-image:url(../img/piano.png);
+    background-color:#FFDC52;
+  
+    text-align:center;
+    margin: auto;
+    width: 500px;
+    height: 500px;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 
 /* Side Menu */
 #sidebar-wrapper {
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   right: 0;
   width: 250px;
   height: 100%;
@@ -177,7 +131,7 @@ h6 {
   text-decoration: none;
 }
 
-.sidebar-nav > .sidebar-brand {
+.sidebar-nav>.sidebar-brand {
   font-size: 1.2rem;
   background: rgba(52, 58, 64, 0.1);
   height: 80px;
@@ -187,11 +141,11 @@ h6 {
   padding-left: 15px;
 }
 
-.sidebar-nav > .sidebar-brand a {
+.sidebar-nav>.sidebar-brand a {
   color: #fff;
 }
 
-.sidebar-nav > .sidebar-brand a:hover {
+.sidebar-nav>.sidebar-brand a:hover {
   color: #fff;
   background: none;
 }
@@ -204,7 +158,7 @@ h6 {
 }
 
 .menu-toggle {
-  position: fixed;
+  position: absolute;
   right: 15px;
   top: 15px;
   width: 50px;
@@ -214,6 +168,7 @@ h6 {
   background: rgba(52, 58, 64, 0.5);
   line-height: 50px;
   z-index: 999;
+  display: block;
 }
 
 .menu-toggle:focus,
@@ -239,19 +194,15 @@ h6 {
 
 .callout {
   padding: 15rem 0;
-  background: -webkit-gradient(
-      linear,
+  background: -webkit-gradient(linear,
       left top,
       right top,
       from(rgba(255, 255, 255, 0.1)),
-      to(rgba(255, 255, 255, 0.1))
-    ),
+      to(rgba(255, 255, 255, 0.1))),
     url("../img/bg-callout.jpg");
-  background: linear-gradient(
-      90deg,
+  background: linear-gradient(90deg,
       rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.1) 100%
-    ),
+      rgba(255, 255, 255, 0.1) 100%),
     url("../img/bg-callout.jpg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -306,11 +257,13 @@ h6 {
     max-width: none;
     margin: 0;
   }
+
   .portfolio-item .caption {
     -webkit-transition: -webkit-clip-path 0.25s ease-out, background-color 0.7s;
     -webkit-clip-path: inset(0px);
     clip-path: inset(0px);
   }
+
   .portfolio-item .caption .caption-content {
     -webkit-transition: opacity 0.25s;
     transition: opacity 0.25s;
@@ -318,20 +271,24 @@ h6 {
     margin-right: 5rem;
     margin-bottom: 5rem;
   }
+
   .portfolio-item img {
     -webkit-transition: -webkit-clip-path 0.25s ease-out;
     -webkit-clip-path: inset(-1px);
     clip-path: inset(-1px);
   }
+
   .portfolio-item:hover img {
     -webkit-clip-path: inset(2rem);
     clip-path: inset(2rem);
   }
+
   .portfolio-item:hover .caption {
     background-color: rgba(29, 128, 159, 0.9);
     -webkit-clip-path: inset(2rem);
     clip-path: inset(2rem);
   }
+  
 }
 
 footer.footer {
@@ -407,10 +364,81 @@ a:active {
   background-color: #1d809f !important;
 }
 
+.bg-secondarys {
+  background-color: #28a2c7
+}
+
 .text-primary {
   color: #1d809f !important;
 }
 
 .text-secondary {
   color: #ecb807 !important;
+}
+
+#hr1 {
+  width: 50%;
+  border: 0.5px;
+  color: white;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+
+}
+
+#hr2 {
+  width: 50%;
+  border: 0.5px;
+  color: white;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+}
+
+
+#piano {
+  background-image:url(../img/piano.png);
+  background-color:#FFDC52;
+
+  text-align:center;
+  margin: auto;
+ 
+  width: 300px;
+  height: 300px;
+  background-size: contain;
+  background-repeat:no-repeat;
+  border-color:black;
+  border-
+}
+
+@media (min-width:320px max-width:900px;)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+
+  #piano {
+    background-image:url(../img/piano.png);
+    background-color:#FFDC52;
+  
+    text-align:center;
+  margin: auto;
+  margin-left:15px;
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    background-repeat:no-repeat;
+    
+  }
+  .masthead h1 {
+    font-size: 4.5rem;
+  }
+}
+@media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */ 
+}
+@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+}
+@media (min-width:801px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
 }
