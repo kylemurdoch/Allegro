@@ -1,4 +1,4 @@
-openNav();
+
 var navOpen;
 
 /* ---------------1. Setting up Music score ----------------------------*/
