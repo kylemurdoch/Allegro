@@ -296,6 +296,7 @@ function saveScore() {
                     };
                     newData.second = data.val().first;
                     newData.third = data.val().second;
+                    console.log(newData);
                     ref.set(newData);
                 } else if (data.val().second.score < score) {
                     newData.first = data.val().first;
@@ -304,6 +305,7 @@ function saveScore() {
                         score: score
                     };
                     newData.thrid = data.val().second;
+                    console.log(newData);
                     ref.set(newData);
                 } else if (data.val().third.score < score) {
                     newData.first = data.val().first;
@@ -313,6 +315,9 @@ function saveScore() {
                         score: score
                     };
                     ref.set(newData);
+                    console.log(newData);
+                } else {
+                    console.log(newData);
                 }
             });
         } else {
