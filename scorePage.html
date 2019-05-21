@@ -39,7 +39,10 @@
         <a class="js-scroll-trigger" href="#page-top">Allegro</a>
       </li>
       <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#about">High Scores</a>
+          <a class="js-scroll-trigger" href="./home.html">Home</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="#page-top">High Scores</a>
       </li>
       <li class="sidebar-nav-item">
         <a class="js-scroll-trigger" href="./home.html#about">About Us</a>
@@ -51,9 +54,11 @@
   </nav>
 
   <div id="wrapper">
-    <h1 id="main-header">Allegro High Scores</h1>
+    <h1 id="main-header">Allegro High Scores</h1> 
+
+    <!--Treble Clef/////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <div class="inner">
-      <div id="start" class="pic"></div>
+      <div id="treble" class="pic"></div>
       <div class="menu-content">
         <h2>Treble Clef</h2>
         <div class="tab">
@@ -61,28 +66,18 @@
             Best</button>
           <button class="tablinks trebletabs" onclick="openBoard(event, 'globaltreble')">Global Best</button>
         </div>
+
+        <!--Treble Clef Player-->
         <table id="playertreble" class="scoretable trebletable">
           <tr>
-            <th>Rank</th>
-            <th>Name</th>
             <th>Score</th>
           </tr>
           <tr>
-            <td>1</td>
-            <td>Filthy Frank</td>
-            <td>666</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Pink Guy</td>
-            <td>311</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Chin-Chin</td>
-            <td>4</td>
+            <td id="trebleScore"></td>
           </tr>
         </table>
+
+        <!--Treble Clef Global-->
         <table id="globaltreble" class="scoretable trebletable">
           <tr>
             <th>Rank</th>
@@ -91,24 +86,26 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Jeff</td>
-            <td>420</td>
+            <td id="treble1name"></td>
+            <td id="treble1score"></td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Richard Biggums</td>
-            <td>123</td>
+            <td id="treble2name"></td>
+            <td id="treble2score"></td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Jebediah Knight</td>
-            <td>69</td>
+            <td id="treble3name"></td>
+            <td id="treble3score"></td>
           </tr>
         </table>
       </div>
     </div>
+
+    <!--Bass Clef///////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <div class="inner">
-      <div id="start" class="pic"></div>
+      <div id="bass" class="pic"></div>
       <div class="menu-content">
         <h2>Bass Clef</h2>
         <div class="tab">
@@ -116,28 +113,18 @@
             Best</button>
           <button class="tablinks basstabs" onclick="openBoard2(event, 'globalbass')">Global Best</button>
         </div>
+
+        <!--Bass Clef Player-->
         <table id="playerbass" class="scoretable basstable">
-          <tr class="tablerow">
-            <th>Rank</th>
-            <th>Name</th>
+          <tr>
             <th>Score</th>
           </tr>
-          <tr class="tablerow">
-            <td>1</td>
-            <td>Frank</td>
-            <td>69</td>
-          </tr>
-          <tr class="tablerow">
-            <td>2</td>
-            <td>Pink Guy</td>
-            <td>311</td>
-          </tr>
-          <tr class="tablerow">
-            <td>3</td>
-            <td>Chin-Chin</td>
-            <td>4</td>
+          <tr>
+            <td id="bassScore"></td>
           </tr>
         </table>
+
+        <!--Bass Clef Global-->
         <table id="globalbass" class="scoretable basstable">
           <tr>
             <th>Rank</th>
@@ -146,53 +133,45 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Jeff</td>
-            <td>420</td>
+            <td id="bass1name"></td>
+            <td id="bass1score"></td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Richard Biggums</td>
-            <td>123</td>
+            <td id="bass2name"></td>
+            <td id="bass2score"></td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Jebediah Knight</td>
-            <td>69</td>
+            <td id="bass3name"></td>
+            <td id="bass3score"></td>
           </tr>
         </table>
       </div>
     </div>
+
+    <!--Mixed Clef///////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <div class="inner">
-      <div id="start" class="pic"></div>
+      <div id="mixed" class="pic"></div>
       <div class="menu-content">
-        <h2>Treble Clef</h2>
+        <h2>Mixed Clef</h2>
         <div class="tab">
           <button id="mixeddefault" class="tablinks mixedtabs" onclick="openBoard3(event, 'playermixed')">Your
             Best</button>
           <button class="tablinks mixedtabs" onclick="openBoard3(event, 'globalmixed')">Global Best</button>
         </div>
+
+        <!--Mixed Clef Player-->
         <table id="playermixed" class="scoretable mixedtable">
           <tr>
-            <th>Rank</th>
-            <th>Name</th>
             <th>Score</th>
           </tr>
           <tr>
-            <td>1</td>
-            <td>Filthy Frank</td>
-            <td>666</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Pink Guy</td>
-            <td>311</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Chin-Chin</td>
-            <td>4</td>
+            <td id="mixedScore"></td>
           </tr>
         </table>
+
+        <!--Mixed Clef Global-->
         <table id="globalmixed" class="scoretable mixedtable">
           <tr>
             <th>Rank</th>
@@ -201,54 +180,46 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Jeff</td>
-            <td>420</td>
+            <td id="mixed1name"></td>
+            <td id="mixed1score"></td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Richard Biggums</td>
-            <td>123</td>
+            <td id="mixed2name"></td>
+            <td id="mixed2score"></td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Jebediah Knight</td>
-            <td>69</td>
+            <td id="mixed3name"></td>
+            <td id="mixed3score"></td>
           </tr>
         </table>
       </div>
     </div>
+
+    <!--Advanced Treble Cleff///////////////////////////////////////////////////////////////////////////////////////////////-->
     <div class="inner">
-      <div id="start" class="pic"></div>
+      <div id="advtreble" class="pic"></div>
       <div class="menu-content">
-        <h2>Treble Clef</h2>
+        <h2>Adv Treble Clef</h2>
         <div class="tab">
           <button id="advtrebledefault" class="tablinks advtrebletabs"
             onclick="openBoard4(event, 'playeradvtreble')">Your
             Best</button>
           <button class="tablinks advtrebletabs" onclick="openBoard4(event, 'globaladvtreble')">Global Best</button>
         </div>
+
+        <!--Advanced Treble Clef Player-->
         <table id="playeradvtreble" class="scoretable advtrebletable">
           <tr>
-            <th>Rank</th>
-            <th>Name</th>
             <th>Score</th>
           </tr>
           <tr>
-            <td>1</td>
-            <td>Filthy Frank</td>
-            <td>666</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Pink Guy</td>
-            <td>311</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Chin-Chin</td>
-            <td>4</td>
+            <td id="advTrebleScore"></td>
           </tr>
         </table>
+
+        <!--Advanced Trble Clef Global-->
         <table id="globaladvtreble" class="scoretable advtrebletable">
           <tr>
             <th>Rank</th>
@@ -257,53 +228,45 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Jeff</td>
-            <td>420</td>
+            <td id="advTreble1name"></td>
+            <td id="advTreble1score"></td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Richard Biggums</td>
-            <td>123</td>
+            <td id="advTreble2name"></td>
+            <td id="advTreble2score"></td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Jebediah Knight</td>
-            <td>69</td>
+            <td id="advTreble3name"></td>
+            <td id="advTreble3score"></td>
           </tr>
         </table>
       </div>
     </div>
+
+    <!--Advanced Bass Clef///////////////////////////////////////////////////////////////////////////////////////////////////-->
     <div class="inner">
-      <div id="start" class="pic"></div>
+      <div id="advbass" class="pic"></div>
       <div class="menu-content">
-        <h2>Treble Clef</h2>
+        <h2>Adv Bass Clef</h2>
         <div class="tab">
           <button id="advbassdefault" class="tablinks advbasstabs" onclick="openBoard5(event, 'playeradvbass')">Your
             Best</button>
           <button class="tablinks advbasstabs" onclick="openBoard5(event, 'globaladvbass')">Global Best</button>
         </div>
+
+        <!--Advanced Bass Clef Player-->
         <table id="playeradvbass" class="scoretable advbasstable">
           <tr>
-            <th>Rank</th>
-            <th>Name</th>
             <th>Score</th>
           </tr>
           <tr>
-            <td>1</td>
-            <td>Filthy Frank</td>
-            <td>666</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Pink Guy</td>
-            <td>311</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Chin-Chin</td>
-            <td>4</td>
+            <td id="advBassScore"></td>
           </tr>
         </table>
+
+        <!--Advanced Bass Clef Global-->
         <table id="globaladvbass" class="scoretable advbasstable">
           <tr>
             <th>Rank</th>
@@ -312,53 +275,45 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Jeff</td>
-            <td>420</td>
+            <td id="advBass1name"></td>
+            <td id="advBass1score"></td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Richard Biggums</td>
-            <td>123</td>
+            <td id="advBass2name"></td>
+            <td id="advBass2score"></td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Jebediah Knight</td>
-            <td>69</td>
+            <td id="advBass3name"></td>
+            <td id="advBass3score"></td>
           </tr>
         </table>
       </div>
     </div>
+
+    <!--Pitch///////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <div class="inner">
-      <div id="start" class="pic"></div>
+      <div id="pitch" class="pic"></div>
       <div class="menu-content">
-        <h2>Treble Clef</h2>
+        <h2>Pitch</h2>
         <div class="tab">
           <button id="pitchdefault" class="tablinks pitchtabs" onclick="openBoard6(event, 'playerpitch')">Your
             Best</button>
           <button class="tablinks pitchtabs" onclick="openBoard6(event, 'globalpitch')">Global Best</button>
         </div>
+
+        <!--Pitch Player-->
         <table id="playerpitch" class="scoretable pitchtable">
           <tr>
-            <th>Rank</th>
-            <th>Name</th>
             <th>Score</th>
           </tr>
           <tr>
-            <td>1</td>
-            <td>Filthy Frank</td>
-            <td>666</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Pink Guy</td>
-            <td>311</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Chin-Chin</td>
-            <td>4</td>
+            <td id="pitchScore"></td>
           </tr>
         </table>
+
+        <!--Pitch Global-->
         <table id="globalpitch" class="scoretable pitchtable">
           <tr>
             <th>Rank</th>
@@ -367,18 +322,18 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Jeff</td>
-            <td>420</td>
+            <td id="pitch1name"></td>
+            <td id="pitch1score"></td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Richard Biggums</td>
-            <td>123</td>
+            <td id="pitch2name"></td>
+            <td id="pitch2score"></td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Jebediah Knight</td>
-            <td>69</td>
+            <td id="pitch3name"></td>
+            <td id="pitch3score"></td>
           </tr>
         </table>
       </div>
