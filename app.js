@@ -21,4 +21,8 @@ app.get("/trebleGame.html", (req, res) => {
     res.sendFile(__dirname + "/trebleGame.html");
 });
 
+app.get("/bass.html", (req, res) => {
+    res.sendFile(__dirname + "/bass.html");
+});
+
 app.listen(5555);

@@ -384,7 +384,6 @@ elem.addEventListener("input", rangeValue);
 function saveScore() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            //personal high score
             let ref = database.ref("scores/users/" + user.uid + "/dynamicBass");
             ref.once("value").then(data => {
                 if (data.val() < score) {
@@ -393,8 +392,9 @@ function saveScore() {
             });
 
             //global high score
-            ref = database.ref("scores/global/dynamicBass");
-            ref.once("value").then(data => {
+            let ref2 = database.ref("scores/global/staticBass");
+            newData = {};
+            ref2.once("value").then(data => {
                 if (data.val().first.score < score) {
                     newData.first = {
                         name: user.displayName,
@@ -402,15 +402,15 @@ function saveScore() {
                     };
                     newData.second = data.val().first;
                     newData.third = data.val().second;
-                    ref.set(newData);
+                    ref2.set(newData);
                 } else if (data.val().second.score < score) {
                     newData.first = data.val().first;
                     newData.second = {
                         name: user.displayName,
                         score: score
                     };
-                    newData.thrid = data.val().second;
-                    ref.set(newData);
+                    newData.third = data.val().second;
+                    ref2.set(newData);
                 } else if (data.val().third.score < score) {
                     newData.first = data.val().first;
                     newData.second = data.val().second;
@@ -418,7 +418,7 @@ function saveScore() {
                         name: user.displayName,
                         score: score
                     };
-                    ref.set(newData);
+                    ref2.set(newData);
                 }
             });
         } else {
