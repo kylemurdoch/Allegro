@@ -8,14 +8,18 @@ let database = firebase.database();
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         let ref = database.ref("scores/users/" + user.uid);
-        ref.once("value").then(data => {
-            document.getElementById("trebleScore").innerHTML = data.val().staticTreble;
-            document.getElementById("advTrebleScore").innerHTML = data.val().dynamicTreble;
-            document.getElementById("bassScore").innerHTML = data.val().staticBass;
-            document.getElementById("advBassScore").innerHTML = data.val().dynamicBass;
-            document.getElementById("mixedScore").innerHTML = data.val().mixed;
-            document.getElementById("pitchScore").innerHTML = data.val().pitch;
-        });
+        ref.on(
+            "value",
+            data => {
+                document.getElementById("trebleScore").innerHTML = data.val().staticTreble;
+                document.getElementById("advTrebleScore").innerHTML = data.val().dynamicTreble;
+                document.getElementById("bassScore").innerHTML = data.val().staticBass;
+                document.getElementById("advBassScore").innerHTML = data.val().dynamicBass;
+                document.getElementById("mixedScore").innerHTML = data.val().mixed;
+                document.getElementById("pitchScore").innerHTML = data.val().pitch;
+            },
+            err => {}
+        );
     } else {
         console.log("user not signed in");
     }

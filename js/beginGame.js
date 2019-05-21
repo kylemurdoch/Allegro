@@ -284,6 +284,33 @@ function saveScore() {
                     ref.set(score);
                 }
             });
+
+            //global high score
+            let ref = database.ref("scores/global/staticTreble");
+            ref.once("value").then(data => {
+                if (data.val().first.score < score) {
+                    newData.first = {
+                        name: user.displayName,
+                        score: score
+                    };
+                    newData.second = data.val().first;
+                    newData.third = data.val().second;
+                } else if (data.val().second.score < score) {
+                    newData.first = data.val().first;
+                    newData.second = {
+                        name: user.displayName,
+                        score: score
+                    };
+                    newData.thrid = data.val().second;
+                } else if (data.val().third.score < score) {
+                    newData.first = data.val().first;
+                    newData.second = data.val().second;
+                    newData.third = {
+                        name: user.displayName,
+                        score: score
+                    };
+                }
+            });
         } else {
             console.log("user not signed in");
         }
