@@ -75,6 +75,15 @@ body {
 
 }
 
+.nowplaying {
+  font-size: 120px;
+  line-height: 1;
+  color: #eee;
+  text-shadow: 0 0 5rem #028ae9;
+  transition: all .07s ease;
+  min-height: 120px;
+}
+
 
 #time {
   background: #14173a;
