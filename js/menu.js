@@ -8,7 +8,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         let ref = database.ref("scores/users/" + user.uid);
         ref.once("value").then(data => {
             try {
-                data.val();
+                if (data.val().staticTreble == 0) {
+                }
             } catch (err) {
                 ref.set({
                     staticTreble: 0,
