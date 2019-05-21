@@ -3,6 +3,19 @@ var navOpen;
 
 /* ---------------1. Setting up Music score ----------------------------*/
 
+var treble = true;
+
+function setBass() {
+    treble = false;
+    changeNote();
+    closeNav();
+}
+
+function setTreble() {
+    treble = true;
+    closeNav();
+}
+
 let database = firebase.database();
 
 document.getElementById("boo").innerHTML = "";
@@ -61,25 +74,42 @@ function render(x) {
         stave = new VF.Stave(0, 0, 200);
     }
 
-
-    // Add a clef.
-    stave.addClef("treble");
+    if (treble) {
+        // Add a clef.
+        stave.addClef("treble");
+    } else {
+        stave.addClef("bass");
+    }
 
     // Connect it to the rendering context and draw!
     stave.setContext(context).draw();
 
-    //var noteLetter = "d/6";
-    // Create the notes
-    notes = [
-        new VF.GhostNote({
-            duration: "q"
-        }),
+    if (treble) {
+        // Create the notes
+        notes = [
+            new VF.GhostNote({
+                duration: "q"
+            }),
 
-        new VF.StaveNote({
-            keys: [x],
-            duration: "q"
-        })
-    ];
+            new VF.StaveNote({
+                keys: [x],
+                duration: "q"
+            })
+        ];
+    } else {
+        notes = [
+
+            new VF.GhostNote({
+                duration: "q"
+            }),
+
+            new VF.StaveNote({
+                clef: "bass",
+                keys: [x],
+                duration: "q"
+            }),
+        ];
+    }
 
     // Create a voice and add above notes
     voice = new VF.Voice({
@@ -102,40 +132,81 @@ function changeNote() {
     //Generate random number between 0-6
     var rando = Math.floor(Math.random() * 7);
     var noteLetter;
-    switch (rando) {
-        case 0:
-            noteLetter = "a/" + Math.floor(Math.random() * 3 + 3);
-            curNote = "A";
-            break;
-        case 1:
-            noteLetter = "b/" + Math.floor(Math.random() * 3 + 3);
-            curNote = "B";
-            break;
-        case 2:
-            noteLetter = "c/" + Math.floor(Math.random() * 3 + 4);
-            curNote = "C";
-            break;
-        case 3:
-            noteLetter = "d/" + Math.floor(Math.random() * 3 + 4);
-            curNote = "D";
-            break;
-        case 4:
-            noteLetter = "e/" + Math.floor(Math.random() * 2 + 4);
-            curNote = "E";
-            break;
 
-        case 5:
-            noteLetter = "f/" + Math.floor(Math.random() * 2 + 4);
-            curNote = "F";
-            break;
+    if (treble) {
+        switch (rando) {
+            case 0:
+                noteLetter = "a/" + Math.floor(Math.random() * 3 + 3);
+                curNote = "A";
+                break;
+            case 1:
+                noteLetter = "b/" + Math.floor(Math.random() * 3 + 3);
+                curNote = "B";
+                break;
+            case 2:
+                noteLetter = "c/" + Math.floor(Math.random() * 3 + 4);
+                curNote = "C";
+                break;
+            case 3:
+                noteLetter = "d/" + Math.floor(Math.random() * 3 + 4);
+                curNote = "D";
+                break;
+            case 4:
+                noteLetter = "e/" + Math.floor(Math.random() * 2 + 4);
+                curNote = "E";
+                break;
 
-        case 6:
-            noteLetter = "g/" + Math.floor(Math.random() * 3 + 3);
-            curNote = "G";
-            break;
+            case 5:
+                noteLetter = "f/" + Math.floor(Math.random() * 2 + 4);
+                curNote = "F";
+                break;
 
-        default:
-            // code block
+            case 6:
+                noteLetter = "g/" + Math.floor(Math.random() * 3 + 3);
+                curNote = "G";
+                break;
+
+            default:
+                // code block
+        }
+    } else {
+
+        switch (rando) {
+            case 0:
+                noteLetter = "a/" + Math.floor(Math.random() * 2 + 2);
+                curNote = "A";
+                break;
+            case 1:
+                noteLetter = "b/" + Math.floor(Math.random() * 3 + 1);
+                curNote = "B";
+                break;
+            case 2:
+                noteLetter = "c/" + Math.floor(Math.random() * 3 + 2);
+                curNote = "C";
+                break;
+            case 3:
+                noteLetter = "d/" + Math.floor(Math.random() * 3 + 2);
+                curNote = "D";
+                break;
+            case 4:
+                noteLetter = "e/" + Math.floor(Math.random() * 3 + 2);
+                curNote = "E";
+                break;
+
+            case 5:
+                noteLetter = "f/" + Math.floor(Math.random() * 3 + 2);
+                curNote = "F";
+                break;
+
+            case 6:
+                noteLetter = "g/" + Math.floor(Math.random() * 2 + 2);
+                curNote = "G";
+                break;
+
+            default:
+                // code block
+        }
+
     }
     // And when you want to delete it, do this:
     context.svg.removeChild(group);
@@ -188,7 +259,6 @@ function playNote(e) {
     if (!navOpen) {
         if (e.keyCode !== undefined) {
             key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-            console.log(e.keyCode);
         } else {
             key = document.querySelector(`.key[data-key="${e}"]`);
         }
@@ -206,15 +276,11 @@ function playNote(e) {
             $(".fancy-button").addClass("active");
 
             key.classList.add("right");
-            document.getElementById("score").innerHTML = ++score;
         } else {
             $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function () {
                 $(".fancy-button").removeClass("animated shake faster");
             });
             $(".fancy-button").addClass("animated shake faster");
-            if (score > 0) {
-                document.getElementById('score').innerHTML = --score;
-            }
 
             //Make curNote key flash
             for (var i = 0; i < keys.length; i++) {

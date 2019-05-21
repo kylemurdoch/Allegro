@@ -83,16 +83,9 @@
 
     <div id="wrap">
 
-        <div id="scorewrap">
-            <div id="time"></div>
-            <div class="fancy-button">
-                <div class="left-frills frills"></div>
-                <div id="score">0</div>
-                <div class="right-frills frills"></div>
-            </div>
-        </div>
 
 
+        <div class="nowplaying"></div>
         <!--Div that contains music bar-->
         <div id="boo"></div>
 
@@ -141,22 +134,15 @@
     <div id="myNav" class="overlay">
         <div class="overlay-content">
             <h1>Start Game</h1>
-            <div class="button" onclick=countdown(0,30)>
-                <p class="btnText">30 sec</p>
+            <div class="button" onclick=setTreble()>
+                <p class="btnText">Practice Treble</p>
                 <div class="btnTwo">
                     <p class="btnText2">GO!</p>
                 </div>
             </div>
 
-            <div class="button" onclick=countdown(1,0)>
-                <p class="btnText">1 min</p>
-                <div class="btnTwo">
-                    <p class="btnText2">GO!</p>
-                </div>
-            </div>
-
-            <div class="button" onclick=countdown(2,0)>
-                <p class="btnText">2 min</p>
+            <div class="button" onclick=setBass()>
+                <p class="btnText">Practice Bass</p>
                 <div class="btnTwo">
                     <p class="btnText2">GO!</p>
                 </div>
@@ -213,7 +199,7 @@
     <!-- Custom scripts for this template -->
     <script src="js/stylish-portfolio.min.js"></script>
 
-    <script src="js/beginGame.js"></script>
+    <script src="js/practice.js"></script>
 </body>
 
 </html>
