@@ -17,8 +17,8 @@ app.get("/menu.html", (req, res) => {
     res.sendFile(__dirname + "/menu.html");
 });
 
-app.get("/advancedGame.html", (req, res) => {
-    res.sendFile(__dirname + "/advancedGame.html");
+app.get("/trebleGame.html", (req, res) => {
+    res.sendFile(__dirname + "/trebleGame.html");
 });
 
 app.listen(5555);

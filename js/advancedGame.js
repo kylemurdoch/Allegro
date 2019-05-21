@@ -377,7 +377,7 @@ function saveScore() {
             });
 
             //global high score
-            let ref = database.ref("scores/global/dynamicTreble");
+            ref = database.ref("scores/global/dynamicTreble");
             ref.once("value").then(data => {
                 if (data.val().first.score < score) {
                     newData.first = {
@@ -386,6 +386,7 @@ function saveScore() {
                     };
                     newData.second = data.val().first;
                     newData.third = data.val().second;
+                    ref.set(newData);
                 } else if (data.val().second.score < score) {
                     newData.first = data.val().first;
                     newData.second = {
@@ -393,6 +394,7 @@ function saveScore() {
                         score: score
                     };
                     newData.thrid = data.val().second;
+                    ref.set(newData);
                 } else if (data.val().third.score < score) {
                     newData.first = data.val().first;
                     newData.second = data.val().second;
@@ -400,6 +402,7 @@ function saveScore() {
                         name: user.displayName,
                         score: score
                     };
+                    ref.set(newData);
                 }
             });
         } else {
