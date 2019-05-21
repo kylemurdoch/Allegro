@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>High Scores</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+
+  <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
+
+  <!-- Custom Fonts -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+    rel="stylesheet" type="text/css" />
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link href="css/stylish-portfolio.css" rel="stylesheet" />
+  <link href="./css/scorePage.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<body id="page-top">
+
+  <div class="menu-toggle rounded" href="#">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a class="js-scroll-trigger" href="#page-top">Allegro</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="#about">High Scores</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="./home.html#about">About Us</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="./index.html">Sign Out</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="wrapper">
+    <h1 id="main-header">Allegro High Scores</h1>
+    <div class="inner">
+      <div id="start" class="pic"></div>
+      <div class="menu-content">
+        <h2>Treble Clef</h2>
+        <div class="tab">
+          <button id="trebledefault" class="tablinks trebletabs" onclick="openBoard(event, 'playertreble')">Your
+            Best</button>
+          <button class="tablinks trebletabs" onclick="openBoard(event, 'globaltreble')">Global Best</button>
+        </div>
+        <table id="playertreble" class="scoretable trebletable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Filthy Frank</td>
+            <td>666</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Pink Guy</td>
+            <td>311</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Chin-Chin</td>
+            <td>4</td>
+          </tr>
+        </table>
+        <table id="globaltreble" class="scoretable trebletable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Jeff</td>
+            <td>420</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Richard Biggums</td>
+            <td>123</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Jebediah Knight</td>
+            <td>69</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="inner">
+      <div id="start" class="pic"></div>
+      <div class="menu-content">
+        <h2>Bass Clef</h2>
+        <div class="tab">
+          <button id="bassdefault" class="tablinks basstabs" onclick="openBoard2(event, 'playerbass')">Your
+            Best</button>
+          <button class="tablinks basstabs" onclick="openBoard2(event, 'globalbass')">Global Best</button>
+        </div>
+        <table id="playerbass" class="scoretable basstable">
+          <tr class="tablerow">
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr class="tablerow">
+            <td>1</td>
+            <td>Frank</td>
+            <td>69</td>
+          </tr>
+          <tr class="tablerow">
+            <td>2</td>
+            <td>Pink Guy</td>
+            <td>311</td>
+          </tr>
+          <tr class="tablerow">
+            <td>3</td>
+            <td>Chin-Chin</td>
+            <td>4</td>
+          </tr>
+        </table>
+        <table id="globalbass" class="scoretable basstable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Jeff</td>
+            <td>420</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Richard Biggums</td>
+            <td>123</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Jebediah Knight</td>
+            <td>69</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="inner">
+      <div id="start" class="pic"></div>
+      <div class="menu-content">
+        <h2>Treble Clef</h2>
+        <div class="tab">
+          <button id="mixeddefault" class="tablinks mixedtabs" onclick="openBoard3(event, 'playermixed')">Your
+            Best</button>
+          <button class="tablinks mixedtabs" onclick="openBoard3(event, 'globalmixed')">Global Best</button>
+        </div>
+        <table id="playermixed" class="scoretable mixedtable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Filthy Frank</td>
+            <td>666</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Pink Guy</td>
+            <td>311</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Chin-Chin</td>
+            <td>4</td>
+          </tr>
+        </table>
+        <table id="globalmixed" class="scoretable mixedtable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Jeff</td>
+            <td>420</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Richard Biggums</td>
+            <td>123</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Jebediah Knight</td>
+            <td>69</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="inner">
+      <div id="start" class="pic"></div>
+      <div class="menu-content">
+        <h2>Treble Clef</h2>
+        <div class="tab">
+          <button id="advtrebledefault" class="tablinks advtrebletabs"
+            onclick="openBoard4(event, 'playeradvtreble')">Your
+            Best</button>
+          <button class="tablinks advtrebletabs" onclick="openBoard4(event, 'globaladvtreble')">Global Best</button>
+        </div>
+        <table id="playeradvtreble" class="scoretable advtrebletable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Filthy Frank</td>
+            <td>666</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Pink Guy</td>
+            <td>311</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Chin-Chin</td>
+            <td>4</td>
+          </tr>
+        </table>
+        <table id="globaladvtreble" class="scoretable advtrebletable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Jeff</td>
+            <td>420</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Richard Biggums</td>
+            <td>123</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Jebediah Knight</td>
+            <td>69</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="inner">
+      <div id="start" class="pic"></div>
+      <div class="menu-content">
+        <h2>Treble Clef</h2>
+        <div class="tab">
+          <button id="advbassdefault" class="tablinks advbasstabs" onclick="openBoard5(event, 'playeradvbass')">Your
+            Best</button>
+          <button class="tablinks advbasstabs" onclick="openBoard5(event, 'globaladvbass')">Global Best</button>
+        </div>
+        <table id="playeradvbass" class="scoretable advbasstable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Filthy Frank</td>
+            <td>666</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Pink Guy</td>
+            <td>311</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Chin-Chin</td>
+            <td>4</td>
+          </tr>
+        </table>
+        <table id="globaladvbass" class="scoretable advbasstable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Jeff</td>
+            <td>420</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Richard Biggums</td>
+            <td>123</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Jebediah Knight</td>
+            <td>69</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="inner">
+      <div id="start" class="pic"></div>
+      <div class="menu-content">
+        <h2>Treble Clef</h2>
+        <div class="tab">
+          <button id="pitchdefault" class="tablinks pitchtabs" onclick="openBoard6(event, 'playerpitch')">Your
+            Best</button>
+          <button class="tablinks pitchtabs" onclick="openBoard6(event, 'globalpitch')">Global Best</button>
+        </div>
+        <table id="playerpitch" class="scoretable pitchtable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Filthy Frank</td>
+            <td>666</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Pink Guy</td>
+            <td>311</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Chin-Chin</td>
+            <td>4</td>
+          </tr>
+        </table>
+        <table id="globalpitch" class="scoretable pitchtable">
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Jeff</td>
+            <td>420</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Richard Biggums</td>
+            <td>123</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Jebediah Knight</td>
+            <td>69</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <script src="js/scorePage.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
+  <!-- Custom scripts for this template -->
+  <script src="js/stylish-portfolio.min.js"></script>
+</body>
+
+</html>
