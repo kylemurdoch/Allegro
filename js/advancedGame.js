@@ -3,8 +3,6 @@ var navOpen;
 
 let database = firebase.database();
 
-ref = database.ref("scores");
-
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log(user.uid);
