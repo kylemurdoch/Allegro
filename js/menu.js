@@ -8,16 +8,15 @@ firebase.auth().onAuthStateChanged(function(user) {
         let ref = database.ref("scores/users/" + user.uid);
         ref.once("value").then(data => {
             try {
-                if (data.val().initialized == true) {
-                }
+                data.val();
             } catch (err) {
                 ref.set({
-                    initialized: true,
                     staticTreble: 0,
                     staticBass: 0,
                     dynamicTreble: 0,
                     dynamicBass: 0,
-                    mixed: 0
+                    mixed: 0,
+                    pitch: 0
                 });
             }
         });
