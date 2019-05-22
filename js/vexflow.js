@@ -1,4 +1,4 @@
-/* Imported VEXFLOW API */ ! function (t, e) {
+! function (t, e) {
     "object" == typeof exports && "object" == typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.Vex = e() : t.Vex = e()
 }(window, function () {
     return function (t) {
