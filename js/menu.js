@@ -80,9 +80,9 @@ function selectDynamic() {
 
 function selectStatic() {
     if (elem.value === "1") {
-        location.href = "/trebleGame.html";
+        location.href = "./trebleGame.html";
     } else if (elem.value === "2") {
-        location.href = "/bass.html";
+        location.href = "./bass.html";
     } else {
         location.href = "./mixed.html";
     }
