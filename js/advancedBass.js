@@ -1,3 +1,7 @@
+/*
+Javascript file for the dynamic bass game.
+*/
+
 openNav();
 var navOpen;
 
@@ -53,7 +57,7 @@ function randomNote() {
             break;
 
         default:
-        // code block
+            // code block
     }
 
     randoNote = new VF.StaveNote({
@@ -87,7 +91,6 @@ var context = renderer.getContext();
 var tickContext = new VF.TickContext();
 
 // Create a stave of width 400 at position 0, 20 on the canvas.
-//var stave = new VF.Stave(0, 20, 400).addClef("treble");
 
 if (width > 770 && height > 400) {
     stave = new VF.Stave(0, 20, 400).addClef("bass");
@@ -105,7 +108,6 @@ if (width < 770 && height < 400) {
 // Connect it to the rendering context and draw!
 stave.setContext(context).draw();
 
-//tickContext.preFormat().setX(399);
 
 if (width > 770 && height > 400) {
     tickContext.preFormat().setX(370);
@@ -137,14 +139,6 @@ function addNote() {
     note.draw();
     context.closeGroup();
     group.classList.add("scroll");
-    // Force a dom-refresh by asking for the group's bounding box. Why? Most
-    // modern browsers are smart enough to realize that adding .scroll class
-    // hasn't changed anything about the rendering, so they wait to apply it
-    // at the next dom refresh, when they can apply any other changes at the
-    // same time for optimization. However, if we allow that to happen,
-    // then sometimes the note will immediately jump to its fully transformed
-    // position -- because the transform will be applied before the class with
-    // its transition rule.
     const box = group.getBoundingClientRect();
     group.classList.add("scrolling");
 
@@ -158,7 +152,7 @@ function addNote() {
     }
 
     // If a user doesn't answer in time make the note fall below the staff
-    window.setTimeout(function() {
+    window.setTimeout(function () {
         fallNote();
     }, 5000);
 }
@@ -172,11 +166,6 @@ function removeNote() {
     // getting its computed style we find its x-position, freeze it there, and
     // then send it straight up to note heaven with no horizontal motion.
     const transformMatrix = window.getComputedStyle(group).transform;
-    // transformMatrix will be something like 'matrix(1, 0, 0, 1, -118, 0)'
-    // where, since we're only translating in x, the 4th property will be
-    // the current x-translation. You can dive into the gory details of
-    // CSS3 transform matrices (along with matrix multiplication) if you want
-    // at http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/
     const x = transformMatrix.split(",")[4].trim();
     // And, finally, we set the note's style.transform property to send it skyward.
     group.style.transform = `translate(${x}px, -800px)`;
@@ -202,7 +191,7 @@ function countdown(minutes, seconds) {
         } else {
             if (minutes >= 1) {
                 // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function() {
+                setTimeout(function () {
                     countdown(minutes - 1, 59);
                 }, 1000);
             }
@@ -242,7 +231,7 @@ function playNote(e) {
     key.classList.add("playing");
 
     if (keyNote === curNote) {
-        $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
+        $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function () {
             $(".fancy-button").removeClass("active");
         });
         $(".fancy-button").addClass("active");
@@ -335,7 +324,7 @@ function start() {
     started = true;
     console.log("started");
     addNote();
-    noteSwitch = setInterval(function() {
+    noteSwitch = setInterval(function () {
         addNote();
     }, interval);
 }
@@ -346,7 +335,7 @@ var elem = document.querySelector('input[type="range"]');
 
 var target = document.querySelector(".value");
 
-var rangeValue = function() {
+var rangeValue = function () {
     switch (elem.value) {
         case "1":
             target.innerHTML = "normal";
@@ -370,7 +359,7 @@ elem.addEventListener("input", rangeValue);
 /* ---------------7. Saving the score ----------------------------*/
 
 function saveScore() {
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             let ref = database.ref("scores/users/" + user.uid + "/dynamicBass");
             ref.once("value").then(data => {
