@@ -30,7 +30,7 @@ body {
   display: inline-block;
 }
 
-#main-header {
+#allegro-header {
   text-align: center;
   padding: .5rem;
   padding-top: 1rem;
@@ -91,7 +91,7 @@ body {
   padding-right: 10px;
 }
 
-.active, .tablinks:hover {
+.tabactive, .tablinks:hover {
   background-color: goldenrod;
   transition-duration: 0.75s;
   border: 2px solid white;

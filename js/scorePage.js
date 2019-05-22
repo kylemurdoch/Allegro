@@ -90,10 +90,10 @@ function openBoard(evt, board) {
     }
     tablinks = document.getElementsByClassName("trebletabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 // Bass //////////////////////////////////////////////////////////////////////////////////////
@@ -104,10 +104,10 @@ function openBoard2(evt, board) {
     }
     tablinks = document.getElementsByClassName("basstabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 // Mixed //////////////////////////////////////////////////////////////////////////////////////
@@ -118,10 +118,10 @@ function openBoard3(evt, board) {
     }
     tablinks = document.getElementsByClassName("mixedtabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 // adv Treble //////////////////////////////////////////////////////////////////////////////////////
@@ -132,10 +132,10 @@ function openBoard4(evt, board) {
     }
     tablinks = document.getElementsByClassName("advtrebletabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 // adv Bass //////////////////////////////////////////////////////////////////////////////////////
@@ -146,10 +146,10 @@ function openBoard5(evt, board) {
     }
     tablinks = document.getElementsByClassName("advbasstabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 // Pitch //////////////////////////////////////////////////////////////////////////////////////
@@ -160,10 +160,10 @@ function openBoard6(evt, board) {
     }
     tablinks = document.getElementsByClassName("pitchtabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 document.getElementById("trebledefault").click();
