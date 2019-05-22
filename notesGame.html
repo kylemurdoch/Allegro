@@ -50,20 +50,20 @@
         <!-- Navigation -->
         <a class="menu-toggle rounded" href="#">
             <i class="fas fa-bars"></i>
-          </a>
-          <nav id="sidebar-wrapper">
+        </a>
+        <nav id="sidebar-wrapper">
             <ul class="sidebar-nav">
-              <li class="sidebar-brand">
-                <a class="js-scroll-trigger" href="#page-top">Allegro</a>
-              </li>
-              <li class="sidebar-nav-item">
-                <a class="js-scroll-trigger" href="#page-top" onclick=openGameOver()>Quit Game</a>
-              </li>
-              <li class="sidebar-nav-item">
-                <a class="js-scroll-trigger" href="./index.html">Sign Out</a>
-              </li>
+                <li class="sidebar-brand">
+                    <a class="js-scroll-trigger" href="#page-top">Allegro</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="js-scroll-trigger" href="#page-top" onclick="openGameOver()">Quit Game</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="js-scroll-trigger" href="./index.html">Sign Out</a>
+                </li>
             </ul>
-          </nav>
+        </nav>
 
         <div id="wrap">
             <div id="scorewrap">
@@ -241,7 +241,7 @@
             <div class="overlay-content">
                 <h1>Game Over</h1>
                 <h3 id="finalScore"></h3>
-                <h3>High Score:</h3>
+                <h3 id="highScore"></h3>
 
                 <div class="button" onclick="newGame()">
                     <p class="btnText">New Game</p>
