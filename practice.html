@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Practice</title>
 
-    <title>Practice</title>
+        <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
 
-    <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
+        <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
 
-    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
+        <!-- Bootstrap Core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- Custom Fonts -->
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+            rel="stylesheet"
+            type="text/css"
+        />
 
-    <!-- Custom Fonts -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
-        rel="stylesheet" type="text/css" />
+        <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
 
-    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
+        <!-- Custom CSS -->
+        <link href="css/stylish-portfolio.css" rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link href="css/stylish-portfolio.css" rel="stylesheet" />
+        <!-- Custom CSS -->
+        <link href="css/beginGame.css" rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link href="css/beginGame.css" rel="stylesheet" />
+        <link href="css/piano.css" rel="stylesheet" />
 
-    <link href="css/piano.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <link href="css/animate.css" rel="stylesheet" />
 
-    <link href="css/animate.css" rel="stylesheet" />
+        <link href="css/overlay.css" rel="stylesheet" />
 
-    <link href="css/overlay.css" rel="stylesheet" />
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+        <script src="js/firebase.js"></script>
+    </head>
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
-    <script src="js/firebase.js"></script>
-
-</head>
+    
 
 <body id="page-top">
 
@@ -124,78 +127,73 @@
                 <span class="hints">P</span>
             </button>
 
+        
+            </div>
         </div>
-    </div>
 
-    <div id="myNav" class="overlay">
-        <div class="overlay-content">
-            <h1>Start Game</h1>
-            <div class="button" onclick=setTreble()>
-                <p class="btnText">Practice Treble</p>
-                <div class="btnTwo">
-                    <p class="btnText2">GO!</p>
+        <div id="myNav" class="overlay">
+            <div class="overlay-content">
+                <h1>Start Game</h1>
+                <div class="button" onclick="setTreble()">
+                    <p class="btnText">Practice Treble</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+
+                <div class="button" onclick="setBass()">
+                    <p class="btnText">Practice Bass</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+
+                <div class="button" onclick="location.href='./menu.html';">
+                    <p class="btnText">Main Menu</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="button" onclick=setBass()>
-                <p class="btnText">Practice Bass</p>
-                <div class="btnTwo">
-                    <p class="btnText2">GO!</p>
-                </div>
-            </div>
-
-            <div class="button" onclick="location.href='./menu.html';">
-                <p class="btnText">Main Menu</p>
-                <div class="btnTwo">
-                    <p class="btnText2">GO!</p>
-                </div>
-            </div>
-
         </div>
-    </div>
 
-    <div id="gameOver" class="overlay">
-        <div class="overlay-content">
-            <h1>Game Over</h1>
-            <h3 id="finalScore"></h3>
-            <h3>High Score: </h3>
+        <div id="gameOver" class="overlay">
+            <div class="overlay-content">
+                <h1>Game Over</h1>
+                <h3 id="finalScore"></h3>
+                <h3>High Score:</h3>
 
-            <div class="button" onclick=newGame()>
-                <p class="btnText">New Game</p>
-                <div class="btnTwo">
-                    <p class="btnText2">GO!</p>
+                <div class="button" onclick="newGame()">
+                    <p class="btnText">New Game</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
+                </div>
+
+                <div class="button" onclick="location.href='./menu.html';">
+                    <p class="btnText">Main Menu</p>
+                    <div class="btnTwo">
+                        <p class="btnText2">GO!</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="button" onclick="location.href='./menu.html';">
-                <p class="btnText">Main Menu</p>
-                <div class="btnTwo">
-                    <p class="btnText2">GO!</p>
-                </div>
-            </div>
-
-
         </div>
-    </div>
 
-    <!--Importing vexflow script-->
-    <script src="js/vexflow.js"></script>
+        <!--Importing vexflow script-->
+        <script src="js/vexflow.js"></script>
 
+        <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+        <!-- Plugin JavaScript -->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for this template -->
+        <script src="js/stylish-portfolio.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.12.1/TweenMax.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/stylish-portfolio.min.js"></script>
-
-    <script src="js/practice.js"></script>
-</body>
-
+        <script src="js/practice.js"></script>
+    </body>
 </html>

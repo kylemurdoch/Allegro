@@ -1,33 +1,32 @@
 body {
-  background-color: #FFDC52;
+    background-color: #ffdc52;
 }
 
-
 .pic {
-  margin: auto;
-  width: 160px;
-  height: 160px;
-  border-radius: 80px;
-  border: 5px solid white;
-  background-size: contain;
-  margin-bottom: 15px;
-  margin-top: 15px;
+    margin: auto;
+    width: 160px;
+    height: 160px;
+    border-radius: 80px;
+    border: 5px solid white;
+    background-size: contain;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .menu-content {
-  vertical-align: top;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  background: white;
-  padding: 10px;
-  width: 300px;
-  margin: 1% auto;
-  top: 50%;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
-  border-radius: 2px;
-  text-align: center;
-  display: inline-block;
+    vertical-align: top;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    background: white;
+    padding: 10px;
+    width: 300px;
+    margin: 1% auto;
+    top: 50%;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    text-align: center;
+    display: inline-block;
 }
 
 #allegro-header {
@@ -39,30 +38,30 @@ body {
 }
 
 .inner {
-  display: inline-block;
-  text-align: center;
-  width: 33%;
+    display: inline-block;
+    text-align: center;
+    width: 33%;
 }
 
 #treble {
-  background-image: url(../img/musical-note.png);
-  background-size: 80%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: rgba(250, 0, 0, 0.568);
+    background-image: url(../img/musical-note.png);
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(250, 0, 0, 0.568);
 }
 
 #wrapper {
-  width: 100%;
+    width: 100%;
 }
 
 .tablinks {
-  color: black;
-  background-color: white;
-  border: 2px solid goldenrod;
-  border-radius: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
+    color: black;
+    background-color: white;
+    border: 2px solid goldenrod;
+    border-radius: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .tabactive, .tablinks:hover {
@@ -74,19 +73,32 @@ body {
   padding-right: 10px;
 }
 
-.tablinks:focus{
-  outline: none;  
+.tablinks:focus {
+    outline: none;
 }
 
 .scoretable {
-  border-collapse: collapse;
-  margin-top: 4%;
+    border-collapse: collapse;
+    margin-top: 4%;
 }
 
 
 tbody {
-  display: table;
-  width: 100%;
+    display: table;
+    width: 100%;
+}
+
+tr {
+    width: 100%;
+    border-bottom: 1px solid grey;
+    transition-duration: 0.5s;
+}
+
+th:nth-child(1) {
+    float: left;
+}
+th:nth-child(3) {
+    float: right;
 }
 
 tbody:nth-child(2):hover {
@@ -163,3 +175,10 @@ tr{
     width: 100%;
   }
 }
+td:nth-child(1) {
+    float: left;
+}
+td:nth-child(3) {
+    float: right;
+}
+
