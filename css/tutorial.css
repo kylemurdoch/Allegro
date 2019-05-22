@@ -1,11 +1,12 @@
+html,
 body {
     background: #FFDC52;
+    margin: 0;
 }
 
 #wrap {
     width: 700px;
     margin: auto;
-    margin-top: 2%;
     margin-bottom: 5%;
     text-align: center;
 }
@@ -102,6 +103,7 @@ body {
     min-height: 120px;
     text-align: center;
     padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 #bigger {
