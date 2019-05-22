@@ -2,9 +2,9 @@ var o = null;
 var g = null;
 var octave = null;
 var notes = [
-    [27.50, 30.87, 32.70, 36.71, 41.20, 43.65, 49.00],
-    [55.00, 61.74, 65.41, 73.42, 82.41, 87.31, 98.0],
-    [110.0,  123.5, 130.8, 146.8, 164.8, 174.6, 196.0],
+    [27.5, 30.87, 32.7, 36.71, 41.2, 43.65, 49.0],
+    [55.0, 61.74, 65.41, 73.42, 82.41, 87.31, 98.0],
+    [110.0, 123.5, 130.8, 146.8, 164.8, 174.6, 196.0],
     [220.0, 246.9, 261.6, 293.7, 329.6, 349.2, 392.2],
     [440.0, 493.9, 523.3, 587.3, 659.3, 698.5, 784.0],
     [880.0, 987.8, 1047, 1175, 1319, 1397, 1568],
@@ -13,7 +13,7 @@ var notes = [
 ];
 openWarning();
 var navOpen;
-
+let database = firebase.database();
 
 /* ---------------1. Setting up Music score ----------------------------*/
 
@@ -32,15 +32,11 @@ var key = 0;
 
 var keyNote = 0;
 
-
 function changeNote() {
-
-  //Generate random number between 0-6
-  newFreq = Math.floor((Math.random() * 7));
-  setTimeout(playRandomNote, 1500);
-
+    //Generate random number between 0-6
+    newFreq = Math.floor(Math.random() * 7);
+    setTimeout(playRandomNote, 1500);
 }
-
 
 /* ---------------2. Setting up Timer ----------------------------*/
 
@@ -50,27 +46,25 @@ var timerOn = true;
 function countdown(minutes, seconds) {
     function tick() {
         var counter = document.getElementById("time");
-        counter.innerHTML =
-            minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-        
-            
-        if(timerOn){
-        seconds--;
-        } else{
-          return;
+        counter.innerHTML = minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+
+        if (timerOn) {
+            seconds--;
+        } else {
+            return;
         }
         if (seconds >= 0) {
             timeoutHandle = setTimeout(tick, 1000);
         } else {
             if (minutes >= 1) {
                 // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function () {
+                setTimeout(function() {
                     countdown(minutes - 1, 59);
                 }, 1000);
             }
             //WHEN TIMER RUNS OUT
-            else{
-              timesUp() 
+            else {
+                timesUp();
             }
         }
     }
@@ -78,52 +72,44 @@ function countdown(minutes, seconds) {
     closeNav();
 }
 
-function timesUp(){
-  openGameOver();
+function timesUp() {
+    openGameOver();
 }
 
 /* ---------------3. Setting up Piano Keys ----------------------------*/
 
 const keys = document.querySelectorAll(".key");
 
-
 function playNote(e) {
-
     if (navOpen) return;
-  
-    if(e.keyCode !== undefined) {
-    key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-    console.log(e.keyCode);
+
+    if (e.keyCode !== undefined) {
+        key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        console.log(e.keyCode);
     } else {
-    key = document.querySelector(`.key[data-key="${e}"]`);
+        key = document.querySelector(`.key[data-key="${e}"]`);
     }
-  
+
     if (!key) return;
-  
+
     keyNote = key.getAttribute("data-note");
     playSound(keyNote);
     isEqual();
-   changeNote();
+    changeNote();
 }
-
-
 
 /*----------------------------------------------------------------------*/
 
-
 function removeTransition(e) {
-  /*if (e.propertyName !== "transform") return;*/ //Causes keys to get stuck.
-  this.classList.remove("playing");
-  this.classList.remove("right");
-  this.classList.remove("wrong");
+    /*if (e.propertyName !== "transform") return;*/ //Causes keys to get stuck.
+    this.classList.remove("playing");
+    this.classList.remove("right");
+    this.classList.remove("wrong");
 }
 
 keys.forEach(key => key.addEventListener("transitionend", removeTransition));
 
 window.addEventListener("keydown", playNote);
-
-
-
 
 /* ---------------4. Create an Overlay ----------------------------*/
 
@@ -131,69 +117,70 @@ function openWarning() {
     document.getElementById("warning").style.display = "block";
     document.getElementsByClassName("menu-toggle")[0].style.display = "none";
     navOpen = true;
-  }
+}
 
 function openOctave() {
-  document.getElementById("pickOctave").style.display = "block";
-  document.getElementsByClassName("menu-toggle")[0].style.display = "none";
-  navOpen = true;
+    document.getElementById("pickOctave").style.display = "block";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "none";
+    navOpen = true;
 }
 
 function openNav() {
-  document.getElementById("myNav").style.display = "block";
-  document.getElementsByClassName("menu-toggle")[0].style.display = "none";
-  navOpen = true;
+    document.getElementById("myNav").style.display = "block";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "none";
+    navOpen = true;
 }
 
 function openGameOver() {
-  timerOn = false;
-  document.getElementById("gameOver").style.display = "block";
-  document.getElementsByClassName("menu-toggle")[0].style.display = "none";
-  document.getElementById("finalScore").innerHTML = "Your Score: " + score;
-  navOpen = true;
+    timerOn = false;
+    document.getElementById("gameOver").style.display = "block";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "none";
+    document.getElementById("finalScore").innerHTML = "Your Score: " + score;
+    saveScore();
+    navOpen = true;
 }
 
 function closeWarning() {
     document.getElementById("warning").style.display = "none";
     document.getElementsByClassName("menu-toggle")[0].style.display = "block";
     navOpen = false;
-  }
+}
 
 function closeOctave() {
-  document.getElementById("pickOctave").style.display = "none";
-  document.getElementsByClassName("menu-toggle")[0].style.display = "block";
-  navOpen = false;
+    document.getElementById("pickOctave").style.display = "none";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "block";
+    navOpen = false;
 }
 
 function closeNav() {
-  document.getElementById("myNav").style.display = "none";
-  document.getElementsByClassName("menu-toggle")[0].style.display = "block";
-  navOpen = false;
+    document.getElementById("myNav").style.display = "none";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "block";
+    navOpen = false;
 }
 
 function closeGameOver() {
-  document.getElementById("gameOver").style.display = "none";
-  document.getElementsByClassName("menu-toggle")[0].style.display = "block";
-  navOpen = false;
+    document.getElementById("gameOver").style.display = "none";
+    document.getElementsByClassName("menu-toggle")[0].style.display = "block";
+    navOpen = false;
 }
 
 /* ---------------5. Replaying a game ----------------------------*/
 
-function newGame(){
-  location.reload();
+function newGame() {
+    location.reload();
 }
 
 /*--------------------------6. Play a given frequemcy and type of wave--------------------------*/
 function playSound(freq) {
     var context = new AudioContext();
-    o=context.createOscillator();
-    g=context.createGain();
-    o.type='sine';
+    o = context.createOscillator();
+    g = context.createGain();
+    o.type = "sine";
     o.connect(g);
-    o.frequency.value=notes[octave][freq];
+    o.frequency.value = notes[octave][freq];
     g.connect(context.destination);
     o.start(0);
-    g.gain.exponentialRampToValueAtTime(0.000000000000000000000000000000001,context.currentTime+1);
+    g.gain.exponentialRampToValueAtTime(0.000000000000000000000000000000001, context.currentTime + 1);
 }
 /*--------------------------7. Get the octave and apply it to the buttons--------------------------*/
 function getOctave(oct) {
@@ -208,17 +195,65 @@ function playRandomNote() {
 function isEqual() {
     if (keyNote == newFreq) {
         key.classList.add("right");
-        document.getElementById("score").innerHTML = ++score; 
-      } else {
+        document.getElementById("score").innerHTML = ++score;
+    } else {
         if (score > 0) {
-          key.classList.add("wrong");
-          document.getElementById("score").innerHTML = --score;
-      }
+            key.classList.add("wrong");
+            document.getElementById("score").innerHTML = --score;
         }
+    }
     //Make curNote key flash
     for (var i = 0; i < keys.length; i++) {
-      if (keys[i].getAttribute("data-note") === newFreq) {
-          keys[i].classList.add("right");
-      }
-  }
+        if (keys[i].getAttribute("data-note") === newFreq) {
+            keys[i].classList.add("right");
+        }
+    }
+}
+
+/* ---------------10. Saving the score ----------------------------*/
+
+function saveScore() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            let ref = database.ref("scores/users/" + user.uid + "/mixed");
+            ref.once("value").then(data => {
+                if (data.val() < score) {
+                    ref.set(score);
+                }
+            });
+
+            //global high score
+            let ref2 = database.ref("scores/global/mixed");
+            newData = {};
+            ref2.once("value").then(data => {
+                if (data.val().first.score < score && data.val().first.name != user.displayName) {
+                    newData.first = {
+                        name: user.displayName,
+                        score: score
+                    };
+                    newData.second = data.val().first;
+                    newData.third = data.val().second;
+                    ref2.set(newData);
+                } else if (data.val().second.score < score && data.val().first.name != user.displayName) {
+                    newData.first = data.val().first;
+                    newData.second = {
+                        name: user.displayName,
+                        score: score
+                    };
+                    newData.third = data.val().second;
+                    ref2.set(newData);
+                } else if (data.val().third.score < score && data.val().first.name != user.displayName) {
+                    newData.first = data.val().first;
+                    newData.second = data.val().second;
+                    newData.third = {
+                        name: user.displayName,
+                        score: score
+                    };
+                    ref2.set(newData);
+                }
+            });
+        } else {
+            console.log("user not signed in");
+        }
+    });
 }
