@@ -1,10 +1,12 @@
+/* Logic for the high score page */
+
 var i, tabcontents, tablinks;
 
 //initialize firebase database
 let database = firebase.database();
 
 // Set Player Scores //////////////////////////////////////////////////////////////////////////////////////
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         let ref = database.ref("scores/users/" + user.uid);
         ref.on(
