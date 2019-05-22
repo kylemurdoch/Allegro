@@ -58,29 +58,24 @@ body {
 .content {
     vertical-align: top;
     background: white;
-    padding: 10px
-;
+    padding: 10px;
     max-width: 400px;
-    height: 120px;
     margin: 1% auto;
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
     border-radius: 2px;
     display: inline-block;
-
     margin-bottom: 15px;
     margin-top: 15px;
     padding: 15px;
-
     text-align: left;
 
 }
-.content1{
+
+.content1 {
     vertical-align: top;
-    background: rgb(231, 231, 231);
-    padding: 10px
-;
+    background: white;
+    padding: 10px;
     max-width: 600px;
-    height: 120px;
     margin: 1% auto;
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
     border-radius: 2px;
@@ -88,7 +83,7 @@ body {
     margin-bottom: 15px;
     margin-top: 15px;
     padding: 15px;
-    
+
     text-align: left;
 }
 
@@ -116,7 +111,7 @@ body {
     background-image: url(../img/Kyle.jpg);
     background-color: rgba(171, 20, 230, 0.384);
     background-repeat: no-repeat;
-    background-size: 300px 350px;
+    background-size: 260px 350px;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -126,7 +121,7 @@ body {
 #Saeed {
     background-image: url(../img/Saeed.jpg);
     background-color: rgba(171, 20, 230, 0.384);
-    background-size: 300px 350px;
+    background-size: 330px 350px;
     background-position: center;
 
 }
@@ -134,7 +129,7 @@ body {
 #Henry {
     background-image: url(../img/Henry.jpg);
     background-color: rgba(171, 20, 230, 0.384);
-    background-size: 300px 350px;
+    background-size: 260px 350px;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -142,7 +137,7 @@ body {
 #Kris {
     background-image: url(../img/Kris.jpg);
     background-color: rgba(171, 20, 230, 0.384);
-    background-size: 300px 300px;
+    background-size: 200px 300px;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -150,7 +145,7 @@ body {
 #Greg {
     background-image: url(../img/Greg.jpg);
     background-color: rgba(171, 20, 230, 0.384);
-    background-size: 300px 350px;
+    background-size: 330px 350px;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -171,11 +166,12 @@ body {
 #bigger {
     height: 210px;
 }
-hr{
-    
-    border-width:1.5px;
-    margin-left:auto;
-    margin-right:auto;
-    width:50%;
-    color:rgba(134, 133, 133, 0.856);
+
+hr {
+
+    border-width: 1.5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    color: rgba(134, 133, 133, 0.856);
 }
