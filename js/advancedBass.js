@@ -392,7 +392,7 @@ function saveScore() {
             });
 
             //global high score
-            let ref2 = database.ref("scores/global/staticBass");
+            let ref2 = database.ref("scores/global/dynamicBass");
             newData = {};
             ref2.once("value").then(data => {
                 if (data.val().first.score < score) {
