@@ -226,7 +226,8 @@ function saveScore() {
             let ref2 = database.ref("scores/global/mixed");
             newData = {};
             ref2.once("value").then(data => {
-                if (data.val().first.score < score && data.val().first.name != user.displayName) {
+                if (data.val().first.score < score && data.val().first.name != user.displayName && !haveScore) {
+                    haveScore = true;
                     newData.first = {
                         name: user.displayName,
                         score: score
@@ -234,7 +235,8 @@ function saveScore() {
                     newData.second = data.val().first;
                     newData.third = data.val().second;
                     ref2.set(newData);
-                } else if (data.val().second.score < score && data.val().first.name != user.displayName) {
+                } else if (data.val().second.score < score && data.val().first.name != user.displayName && !haveScore) {
+                    haveScore = true;
                     newData.first = data.val().first;
                     newData.second = {
                         name: user.displayName,
@@ -242,7 +244,8 @@ function saveScore() {
                     };
                     newData.third = data.val().second;
                     ref2.set(newData);
-                } else if (data.val().third.score < score && data.val().first.name != user.displayName) {
+                } else if (data.val().third.score < score && data.val().first.name != user.displayName && !haveScore) {
+                    haveScore = true;
                     newData.first = data.val().first;
                     newData.second = data.val().second;
                     newData.third = {
