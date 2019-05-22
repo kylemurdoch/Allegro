@@ -53,7 +53,7 @@ function randomNote() {
             break;
 
         default:
-            // code block
+        // code block
     }
 
     randoNote = new VF.StaveNote({
@@ -158,7 +158,7 @@ function addNote() {
     }
 
     // If a user doesn't answer in time make the note fall below the staff
-    window.setTimeout(function () {
+    window.setTimeout(function() {
         fallNote();
     }, 5000);
 }
@@ -202,7 +202,7 @@ function countdown(minutes, seconds) {
         } else {
             if (minutes >= 1) {
                 // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function () {
+                setTimeout(function() {
                     countdown(minutes - 1, 59);
                 }, 1000);
             }
@@ -242,7 +242,7 @@ function playNote(e) {
     key.classList.add("playing");
 
     if (keyNote === curNote) {
-        $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function () {
+        $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
             $(".fancy-button").removeClass("active");
         });
         $(".fancy-button").addClass("active");
@@ -251,7 +251,6 @@ function playNote(e) {
         document.getElementById("score").innerHTML = ++score;
         removeNote();
     } else {
-
         if (score > 0) {
             document.getElementById("score").innerHTML = --score;
         }
@@ -336,7 +335,7 @@ function start() {
     started = true;
     console.log("started");
     addNote();
-    noteSwitch = setInterval(function () {
+    noteSwitch = setInterval(function() {
         addNote();
     }, interval);
 }
@@ -347,7 +346,7 @@ var elem = document.querySelector('input[type="range"]');
 
 var target = document.querySelector(".value");
 
-var rangeValue = function () {
+var rangeValue = function() {
     switch (elem.value) {
         case "1":
             target.innerHTML = "normal";
@@ -371,13 +370,14 @@ elem.addEventListener("input", rangeValue);
 /* ---------------7. Saving the score ----------------------------*/
 
 function saveScore() {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let ref = database.ref("scores/users/" + user.uid + "/dynamicBass");
             ref.once("value").then(data => {
                 if (data.val() < score) {
                     ref.set(score);
                 }
+                document.getElementById("highScore").innerHTML = "High Score: " + data.val();
             });
         } else {
             console.log("user not signed in");

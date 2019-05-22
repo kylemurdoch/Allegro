@@ -283,6 +283,7 @@ function saveScore() {
                 if (data.val() < score) {
                     ref.set(score);
                 }
+                document.getElementById("highScore").innerHTML = "High Score: " + data.val();
             });
         } else {
             console.log("user not signed in");
