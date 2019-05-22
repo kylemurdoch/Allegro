@@ -1,3 +1,5 @@
+/*Game logic for static bass game */
+
 openNav();
 var navOpen;
 
@@ -133,7 +135,7 @@ function changeNote() {
             break;
 
         default:
-        // code block
+            // code block
     }
     // And when you want to delete it, do this:
     context.svg.removeChild(group);
@@ -160,7 +162,7 @@ function countdown(minutes, seconds) {
         } else {
             if (minutes >= 1) {
                 // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function() {
+                setTimeout(function () {
                     countdown(minutes - 1, 59);
                 }, 1000);
             }
@@ -186,7 +188,6 @@ function playNote(e) {
     if (!navOpen) {
         if (e.keyCode !== undefined) {
             key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-            console.log(e.keyCode);
         } else {
             key = document.querySelector(`.key[data-key="${e}"]`);
         }
@@ -194,7 +195,6 @@ function playNote(e) {
         if (!navOpen) {
             if (e.keyCode !== undefined) {
                 key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-                console.log(e.keyCode);
             } else {
                 key = document.querySelector(`.key[data-key="${e}"]`);
             }
@@ -206,7 +206,7 @@ function playNote(e) {
             key.classList.add("playing");
 
             if (keyNote === curNote) {
-                $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
+                $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function () {
                     $(".fancy-button").removeClass("active");
                 });
                 $(".fancy-button").addClass("active");
@@ -214,7 +214,7 @@ function playNote(e) {
                 key.classList.add("right");
                 document.getElementById("score").innerHTML = ++score;
             } else {
-                $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
+                $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function () {
                     $(".fancy-button").removeClass("animated shake faster");
                 });
                 $(".fancy-button").addClass("animated shake faster");
@@ -237,7 +237,6 @@ function playNote(e) {
 /*----------------------------------------------------------------------*/
 
 function removeTransition(e) {
-    /*if (e.propertyName !== "transform") return;*/ //Causes keys to get stuck.
     this.classList.remove("playing");
     this.classList.remove("right");
     this.classList.remove("wrong");
@@ -285,7 +284,7 @@ function newGame() {
 /* ---------------7. Saving the score ----------------------------*/
 
 function saveScore() {
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             let ref = database.ref("scores/users/" + user.uid + "/staticBass");
             ref.once("value").then(data => {

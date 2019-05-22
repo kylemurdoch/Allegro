@@ -1,15 +1,13 @@
-var elem = document.querySelector('input[type="range"]');
-var target = document.querySelector(".value");
-var label = document.querySelector(".label");
+/* Logic for main menu */
+
 
 let database = firebase.database();
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         let ref = database.ref("scores/users/" + user.uid);
         ref.once("value").then(data => {
             try {
-                if (data.val().initialized == true) {
-                }
+                if (data.val().initialized == true) {}
             } catch (err) {
                 ref.set({
                     initialized: true,
@@ -28,7 +26,14 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-var rangeValue = function() {
+/*---------------------1. sliders --------------------------*/
+
+var elem = document.querySelector('input[type="range"]');
+var target = document.querySelector(".value");
+var label = document.querySelector(".label");
+
+
+var rangeValue = function () {
     switch (elem.value) {
         case "1":
             target.style.backgroundImage = "url('./img/treble.png')";
@@ -53,7 +58,7 @@ var elem2 = document.getElementById("slider2");
 var target2 = document.getElementById("value2");
 var label2 = document.getElementById("label2");
 
-var rangeValue = function() {
+var rangeValue = function () {
     switch (elem2.value) {
         case "1":
             target2.style.backgroundImage = "url('./img/treble.png')";
@@ -69,6 +74,8 @@ var rangeValue = function() {
 };
 
 elem2.addEventListener("input", rangeValue);
+
+/*---------------------2. selectors --------------------------*/
 
 function selectDynamic() {
     if (elem2.value === "1") {
