@@ -106,7 +106,7 @@ function playNote(e) {
     keyNote = key.getAttribute("data-note");
     playSound(keyNote);
     isEqual();
-   changeNote();
+    changeNote();
 }
 
 
@@ -211,12 +211,12 @@ function playRandomNote() {
 function isEqual() {
     if (keyNote == newFreq) {
         key.classList.add("right");
-        document.getElementById("score").innerHTML = ++score; 
+        //document.getElementById("score").innerHTML = ++score; 
       } else {
-        if (score > 0) {
+        //if (score > 0) {
           key.classList.add("wrong");
-          document.getElementById("score").innerHTML = --score;
-      }
+        //document.getElementById("score").innerHTML = --score;
+      //}
         }
     //Make curNote key flash
     for (var i = 0; i < keys.length; i++) {

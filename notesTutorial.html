@@ -50,38 +50,36 @@
 
     <body id="page-top">
         <!-- Navigation -->
-        <div class="menu-toggle rounded" href="#">
+        <a class="menu-toggle rounded" href="#">
             <i class="fas fa-bars"></i>
-        </div>
-        <nav id="sidebar-wrapper">
+          </a>
+          <nav id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a class="js-scroll-trigger" href="#page-top">Allegro</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="#page-top" onclick="openGameOver()">Quit Game</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="#about">B</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="#services">C</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="#portfolio">D</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="js-scroll-trigger" href="#contact">E</a>
-                </li>
+              <li class="sidebar-brand">
+                <a class="js-scroll-trigger" href="#page-top">Allegro</a>
+              </li>
+              <li class="sidebar-nav-item">
+                  <a class="js-scroll-trigger" href="./home.html">Home</a>
+              </li>
+              <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="#page-top" onclick=openGameOver()>Quit Game</a>
+              </li>
+              <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="./scorePage.html">High Scores</a>
+              </li>
+              <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="./home.html#about">About</a>
+              </li>
+              <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="./index.html">Sign Out</a>
+              </li>
             </ul>
-        </nav>
+          </nav>
 
         <div id="wrap">
             <div id="scorewrap">
-                <div id="time"></div>
                 <div class="fancy-button">
                     <div class="left-frills frills"></div>
-                    <div id="score">0</div>
                     <div class="right-frills frills"></div>
                 </div>
             </div>
