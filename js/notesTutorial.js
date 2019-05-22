@@ -104,7 +104,6 @@ function playNote(e) {
     if (!key) return;
   
     keyNote = key.getAttribute("data-note");
-    playSound(keyNote);
     isEqual();
     changeNote();
 }
