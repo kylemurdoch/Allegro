@@ -29,10 +29,12 @@ body {
     display: inline-block;
 }
 
-#main-header {
-    text-align: center;
-    padding: 0.5rem;
-    padding-top: 1rem;
+#allegro-header {
+  text-align: center;
+  padding: .5rem;
+  padding-top: 1rem;
+  text-shadow: 3px 3px 6px rgb(77, 162, 231);
+  
 }
 
 .inner {
@@ -49,34 +51,6 @@ body {
     background-color: rgba(250, 0, 0, 0.568);
 }
 
-#bass {
-    background-image: url(../img/bass.png);
-    background-size: 65%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: rgba(250, 0, 0, 0.568);
-}
-
-#mixed {
-    background-image: url(../img/book.png);
-    background-color: rgba(250, 0, 0, 0.568);
-}
-
-#advtreble {
-    background-image: url(../img/book.png);
-    background-color: rgba(250, 0, 0, 0.568);
-}
-
-#advbass {
-    background-image: url(../img/book.png);
-    background-color: rgba(250, 0, 0, 0.568);
-}
-
-#pitch {
-    background-image: url(../img/book.png);
-    background-color: rgba(250, 0, 0, 0.568);
-}
-
 #wrapper {
     width: 100%;
 }
@@ -90,14 +64,13 @@ body {
     padding-right: 10px;
 }
 
-.active,
-.tablinks:hover {
-    background-color: goldenrod;
-    transition-duration: 0.75s;
-    border: 2px solid white;
-    color: white;
-    padding-left: 10px;
-    padding-right: 10px;
+.tabactive, .tablinks:hover {
+  background-color: goldenrod;
+  transition-duration: 0.75s;
+  border: 2px solid white;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .tablinks:focus {
@@ -108,6 +81,7 @@ body {
     border-collapse: collapse;
     margin-top: 4%;
 }
+
 
 tbody {
     display: table;
@@ -127,6 +101,80 @@ th:nth-child(3) {
     float: right;
 }
 
+tbody:nth-child(2):hover {
+  -webkit-mask-image: linear-gradient(-75deg, rgba(0, 0, 0, .6) 40%, #000 50%, rgba(0, 0, 0, .6) 95%);
+  -webkit-mask-size: 200%;
+  animation: goldshine 3s infinite;
+}
+
+tbody:nth-child(3):hover {
+  -webkit-mask-image: linear-gradient(-75deg, rgba(0, 0, 0, .6) 40%, #000 50%, rgba(0, 0, 0, .6) 95%);
+  -webkit-mask-size: 200%;
+  animation: silvershine 3s infinite;
+}
+
+tbody:nth-child(4):hover {
+  -webkit-mask-image: linear-gradient(-75deg, rgba(0, 0, 0, .6) 40%, #000 50%, rgba(0, 0, 0, .6) 95%);
+  -webkit-mask-size: 200%;
+  animation: bronzeshine 3s infinite;
+}
+
+@-webkit-keyframes goldshine {
+  from {
+   -webkit-mask-position: 150%;
+   background-color: rgb(255, 215, 0, 0.85);   
+ }
+ 
+ to {
+   -webkit-mask-position: -50%;
+   background-color: rgb(255, 215, 0, 0.9);
+ }
+}
+
+@-webkit-keyframes silvershine {
+  from {
+   -webkit-mask-position: 150%;
+   background-color: rgb(215, 215, 215, 0.85);   
+ }
+ 
+ to {
+   -webkit-mask-position: -50%;
+   background-color: rgb(215, 215, 215, 0.9);
+ }
+}
+
+@-webkit-keyframes bronzeshine {
+  from {
+   -webkit-mask-position: 150%;
+   background-color: rgb(173, 138, 86, 0.85);   
+ }
+ 
+ to {
+   -webkit-mask-position: -50%;
+   background-color: rgb(173, 138, 86, 0.9);
+ }
+}
+
+tr{
+  border-bottom: 1px solid grey;
+  transition-duration: 0.5s;
+}
+
+/*tr:nth-of-type(2):hover{
+  
+}*/
+
+@media only screen and (max-width: 960px) {
+  .inner {
+    width: 48%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .inner {
+    width: 100%;
+  }
+}
 td:nth-child(1) {
     float: left;
 }
@@ -134,8 +182,3 @@ td:nth-child(3) {
     float: right;
 }
 
-tr:hover {
-    background-color: greenyellow;
-    font-size: 16pt;
-    transition-duration: 0.5s;
-}
