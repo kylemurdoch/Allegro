@@ -1,0 +1,155 @@
+/*Phone screen portrait */
+@media screen and (max-width: 770px) and (min-height:401px) {
+    #wrap {
+        margin: auto;
+        padding: 2%;
+        padding-top: 20%;
+        text-align: center;
+    }
+
+    body {
+        zoom: 80%;
+        width: 80%;
+        margin: auto;
+    }
+
+}
+
+/*Phone screen Landscape */
+@media screen and (max-height: 400px) {
+    #wrap {
+        margin: auto;
+        width: 70%;
+        padding-top: 2%;
+        text-align: center;
+        height: 80%;
+    }
+
+    body {
+        zoom: 70%;
+    }
+
+}
+
+/*Desktop screen */
+@media screen and (min-width: 770px) and (min-height:401px) {
+
+    body {
+        margin: 0;
+        zoom: 100%:
+    }
+
+}
+
+
+html,
+body {
+    background: #FFDC52;
+    margin: 0 auto;
+}
+
+#wrap {
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+.content {
+    vertical-align: top;
+    background: white;
+    padding: 10px;
+    max-width: 400px;
+    height: 160px;
+    margin: 1% auto;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 15px;
+    text-align: left;
+}
+
+.pic {
+    margin: auto;
+    width: 160px;
+    height: 160px;
+    border-radius: 80px;
+    border: 5px solid white;
+    margin: 15px 30px;
+    display: inline-block;
+}
+
+#allnotes {
+    height: 170px;
+    max-width: 650px;
+    background-image: url(../img/allnotes.png);
+    background-size: contain;
+    display: block;
+    background-repeat: no-repeat;
+    border: 5px solid white;
+}
+
+#c {
+    background-image: url(../img/c.png);
+    background-color: rgba(171, 20, 230, 0.384);
+    background-repeat: no-repeat;
+    background-size: 200px 100px;
+    background-repeat: no-repeat;
+    background-position: -10px 20px;
+}
+
+#notes {
+    background-image: url(../img/notes.png);
+    background-color: rgba(171, 20, 230, 0.384);
+    background-repeat: no-repeat;
+    padding-top: 100px;
+}
+
+#stave {
+    background-image: url(../img/stave.png);
+    background-color: rgba(171, 20, 230, 0.384);
+    background-size: contain;
+}
+
+#treble {
+    background-image: url(../img/trebleTut.png);
+    background-color: rgba(171, 20, 230, 0.384);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 20px;
+}
+
+#bass {
+    background-image: url(../img/bassTut.png);
+    background-color: rgba(171, 20, 230, 0.384);
+    background-size: 120px 100px;
+    background-repeat: no-repeat;
+    background-position: 20px 30px;
+}
+
+#clef {
+    background-image: url(../img/combined.png);
+    background-color: rgba(171, 20, 230, 0.384);
+    background-size: 110px 100px;
+    background-repeat: no-repeat;
+    background-position: 20px;
+}
+
+
+#title {
+    font-size: 60px;
+    line-height: 1;
+    color: #eee;
+    text-shadow: 0 0 5rem #028ae9;
+    transition: all .07s ease;
+    min-height: 120px;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+#bigger {
+    height: 210px;
+}

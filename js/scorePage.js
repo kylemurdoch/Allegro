@@ -4,7 +4,6 @@ var i, tabcontents, tablinks;
 let database = firebase.database();
 
 // Set Player Scores //////////////////////////////////////////////////////////////////////////////////////
-
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         let ref = database.ref("scores/users/" + user.uid);
@@ -24,63 +23,255 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log("user not signed in");
     }
 });
-
 // Set Global Scores //////////////////////////////////////////////////////////////////////////////////////
 
-let ref = database.ref("scores/global/");
+let ref = database.ref("scores/users/");
 ref.on(
     "value",
     data => {
-        // static treble
-        document.getElementById("treble1name").innerHTML = data.val().staticTreble.first.name;
-        document.getElementById("treble2name").innerHTML = data.val().staticTreble.second.name;
-        document.getElementById("treble3name").innerHTML = data.val().staticTreble.third.name;
-        document.getElementById("treble1score").innerHTML = data.val().staticTreble.first.score;
-        document.getElementById("treble2score").innerHTML = data.val().staticTreble.second.score;
-        document.getElementById("treble3score").innerHTML = data.val().staticTreble.third.score;
-
-        // dynamic treble
-        document.getElementById("advTreble1name").innerHTML = data.val().dynamicTreble.first.name;
-        document.getElementById("advTreble2name").innerHTML = data.val().dynamicTreble.second.name;
-        document.getElementById("advTreble3name").innerHTML = data.val().dynamicTreble.third.name;
-        document.getElementById("advTreble1score").innerHTML = data.val().dynamicTreble.first.score;
-        document.getElementById("advTreble2score").innerHTML = data.val().dynamicTreble.second.score;
-        document.getElementById("advTreble3score").innerHTML = data.val().dynamicTreble.third.score;
-
-        // static bass
-        document.getElementById("bass1name").innerHTML = data.val().staticBass.first.name;
-        document.getElementById("bass2name").innerHTML = data.val().staticBass.second.name;
-        document.getElementById("bass3name").innerHTML = data.val().staticBass.third.name;
-        document.getElementById("bass1score").innerHTML = data.val().staticBass.first.score;
-        document.getElementById("bass2score").innerHTML = data.val().staticBass.second.score;
-        document.getElementById("bass3score").innerHTML = data.val().staticBass.third.score;
-
-        // dynamic bass
-        document.getElementById("advBass1name").innerHTML = data.val().dynamicBass.first.name;
-        document.getElementById("advBass2name").innerHTML = data.val().dynamicBass.second.name;
-        document.getElementById("advBass3name").innerHTML = data.val().dynamicBass.third.name;
-        document.getElementById("advBass1score").innerHTML = data.val().dynamicBass.first.score;
-        document.getElementById("advBass2score").innerHTML = data.val().dynamicBass.second.score;
-        document.getElementById("advBass3score").innerHTML = data.val().dynamicBass.third.score;
-
-        // mixed
-        document.getElementById("mixed1name").innerHTML = data.val().mixed.first.name;
-        document.getElementById("mixed2name").innerHTML = data.val().mixed.second.name;
-        document.getElementById("mixed3name").innerHTML = data.val().mixed.third.name;
-        document.getElementById("mixed1score").innerHTML = data.val().mixed.first.score;
-        document.getElementById("mixed2score").innerHTML = data.val().mixed.second.score;
-        document.getElementById("mixed3score").innerHTML = data.val().mixed.third.score;
-
-        // pitch
-        document.getElementById("pitch1name").innerHTML = data.val().pitch.first.name;
-        document.getElementById("pitch2name").innerHTML = data.val().pitch.second.name;
-        document.getElementById("pitch3name").innerHTML = data.val().pitch.third.name;
-        document.getElementById("pitch1score").innerHTML = data.val().pitch.first.score;
-        document.getElementById("pitch2score").innerHTML = data.val().pitch.second.score;
-        document.getElementById("pitch3score").innerHTML = data.val().pitch.third.score;
+        let users = data.val();
+        let usera = [];
+        let i = 0;
+        for (var key in users) {
+            if (users.hasOwnProperty(key)) {
+                data = {
+                    name: users[key].name,
+                    staticTreble: users[key].staticTreble,
+                    dynamicTreble: users[key].dynamicTreble,
+                    staticBass: users[key].staticBass,
+                    dynamicBass: users[key].dynamicBass,
+                    mixed: users[key].mixed,
+                    pitch: users[key].pitch
+                };
+                usera[i] = data;
+            }
+            i++;
+        }
+        setTreble(usera);
+        setAdvTreble(usera);
+        setBass(usera);
+        setAdvBass(usera);
+        setMixed(usera);
+        setPitch(usera);
     },
     err => {}
 );
+
+function setTreble(list) {
+    let temp;
+    let n = list.length;
+    let el = document.getElementById("globaltreble");
+    el.innerHTML = "<tr><th>Rank</th><th>Name</th><th>Score</th></tr>";
+
+    for (let m = n; m >= 0; m--) {
+        for (let i = 0; i < n - 1; i++) {
+            k = i + 1;
+            if (list[i].staticTreble < list[k].staticTreble) {
+                temp = list[k];
+                list[k] = list[i];
+                list[i] = temp;
+            }
+        }
+    }
+
+    for (let i = 0; i < n; i++) {
+        if (list[i].staticTreble > 0) {
+            let newHTML =
+                "<tr>" +
+                "<td>" +
+                (i + 1) +
+                "</td>" +
+                "<td>" +
+                list[i].name +
+                "</td>" +
+                "<td>" +
+                list[i].staticTreble +
+                "</td>" +
+                "</tr>";
+            el.innerHTML = el.innerHTML + newHTML;
+        }
+    }
+}
+
+function setBass(list) {
+    let temp;
+    let n = list.length;
+    let el = document.getElementById("globalbass");
+    el.innerHTML = "<tr><th>Rank</th><th>Name</th><th>Score</th></tr>";
+
+    for (let m = n; m >= 0; m--) {
+        for (let i = 0; i < n - 1; i++) {
+            k = i + 1;
+            if (list[i].staticBass < list[k].staticBass) {
+                temp = list[k];
+                list[k] = list[i];
+                list[i] = temp;
+            }
+        }
+    }
+
+    for (let i = 0; i < n; i++) {
+        if (list[i].staticBass > 0) {
+            let newHTML =
+                "<tr>" +
+                "<td>" +
+                (i + 1) +
+                "</td>" +
+                "<td>" +
+                list[i].name +
+                "</td>" +
+                "<td>" +
+                list[i].staticBass +
+                "</td>" +
+                "</tr>";
+            el.innerHTML = el.innerHTML + newHTML;
+        }
+    }
+}
+
+function setMixed(list) {
+    let temp;
+    let n = list.length;
+    let el = document.getElementById("globalmixed");
+    el.innerHTML = "<tr><th>Rank</th><th>Name</th><th>Score</th></tr>";
+
+    for (let m = n; m >= 0; m--) {
+        for (let i = 0; i < n - 1; i++) {
+            k = i + 1;
+            if (list[i].mixed < list[k].mixed) {
+                temp = list[k];
+                list[k] = list[i];
+                list[i] = temp;
+            }
+        }
+    }
+
+    for (let i = 0; i < n; i++) {
+        if (list[i].mixed > 0) {
+            let newHTML =
+                "<tr>" +
+                "<td>" +
+                (i + 1) +
+                "</td>" +
+                "<td>" +
+                list[i].name +
+                "</td>" +
+                "<td>" +
+                list[i].mixed +
+                "</td>" +
+                "</tr>";
+            el.innerHTML = el.innerHTML + newHTML;
+        }
+    }
+}
+
+function setAdvTreble(list) {
+    let temp;
+    let n = list.length;
+    let el = document.getElementById("globaladvtreble");
+    el.innerHTML = "<tr><th>Rank</th><th>Name</th><th>Score</th></tr>";
+
+    for (let m = n; m >= 0; m--) {
+        for (let i = 0; i < n - 1; i++) {
+            k = i + 1;
+            if (list[i].dynamicTreble < list[k].dynamicTreble) {
+                temp = list[k];
+                list[k] = list[i];
+                list[i] = temp;
+            }
+        }
+    }
+
+    for (let i = 0; i < n; i++) {
+        if (list[i].dynamicTreble > 0) {
+            let newHTML =
+                "<tr>" +
+                "<td>" +
+                (i + 1) +
+                "</td>" +
+                "<td>" +
+                list[i].name +
+                "</td>" +
+                "<td>" +
+                list[i].dynamicTreble +
+                "</td>" +
+                "</tr>";
+            el.innerHTML = el.innerHTML + newHTML;
+        }
+    }
+}
+
+function setAdvBass(list) {
+    let temp;
+    let n = list.length;
+    let el = document.getElementById("globaladvbass");
+    el.innerHTML = "<tr><th>Rank</th><th>Name</th><th>Score</th></tr>";
+
+    for (let m = n; m >= 0; m--) {
+        for (let i = 0; i < n - 1; i++) {
+            k = i + 1;
+            if (list[i].dynamicBass < list[k].dynamicBass) {
+                temp = list[k];
+                list[k] = list[i];
+                list[i] = temp;
+            }
+        }
+    }
+
+    for (let i = 0; i < n; i++) {
+        if (list[i].dynamicBass > 0) {
+            let newHTML =
+                "<tr>" +
+                "<td>" +
+                (i + 1) +
+                "</td>" +
+                "<td>" +
+                list[i].name +
+                "</td>" +
+                "<td>" +
+                list[i].dynamicBass +
+                "</td>" +
+                "</tr>";
+            el.innerHTML = el.innerHTML + newHTML;
+        }
+    }
+}
+
+function setPitch(list) {
+    let temp;
+    let n = list.length;
+    let el = document.getElementById("globalpitch");
+    el.innerHTML = "<tr><th>Rank</th><th>Name</th><th>Score</th></tr>";
+
+    for (let m = n; m >= 0; m--) {
+        for (let i = 0; i < n - 1; i++) {
+            k = i + 1;
+            if (list[i].pitch < list[k].pitch) {
+                temp = list[k];
+                list[k] = list[i];
+                list[i] = temp;
+            }
+        }
+    }
+
+    for (let i = 0; i < n; i++) {
+        if (list[i].pitch > 0) {
+            let newHTML =
+                "<tr>" +
+                "<td>" +
+                (i + 1) +
+                "</td>" +
+                "<td>" +
+                list[i].name +
+                "</td>" +
+                "<td>" +
+                list[i].pitch +
+                "</td>" +
+                "</tr>";
+            el.innerHTML = el.innerHTML + newHTML;
+        }
+    }
+}
 
 // Treble //////////////////////////////////////////////////////////////////////////////////////
 function openBoard(evt, board) {
@@ -90,10 +281,10 @@ function openBoard(evt, board) {
     }
     tablinks = document.getElementsByClassName("trebletabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 // Bass //////////////////////////////////////////////////////////////////////////////////////
@@ -104,10 +295,10 @@ function openBoard2(evt, board) {
     }
     tablinks = document.getElementsByClassName("basstabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 // Mixed //////////////////////////////////////////////////////////////////////////////////////
@@ -118,10 +309,10 @@ function openBoard3(evt, board) {
     }
     tablinks = document.getElementsByClassName("mixedtabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 // adv Treble //////////////////////////////////////////////////////////////////////////////////////
@@ -132,10 +323,10 @@ function openBoard4(evt, board) {
     }
     tablinks = document.getElementsByClassName("advtrebletabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 // adv Bass //////////////////////////////////////////////////////////////////////////////////////
@@ -146,10 +337,10 @@ function openBoard5(evt, board) {
     }
     tablinks = document.getElementsByClassName("advbasstabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 // Pitch //////////////////////////////////////////////////////////////////////////////////////
@@ -160,10 +351,10 @@ function openBoard6(evt, board) {
     }
     tablinks = document.getElementsByClassName("pitchtabs");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
     }
     document.getElementById(board).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " tabactive";
 }
 
 document.getElementById("trebledefault").click();
