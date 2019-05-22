@@ -13,6 +13,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             } catch (err) {
                 ref.set({
                     initialized: true,
+                    name: user.displayName,
                     staticTreble: 0,
                     staticBass: 0,
                     dynamicTreble: 0,
