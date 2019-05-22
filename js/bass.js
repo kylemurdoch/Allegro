@@ -133,7 +133,7 @@ function changeNote() {
             break;
 
         default:
-            // code block
+        // code block
     }
     // And when you want to delete it, do this:
     context.svg.removeChild(group);
@@ -160,7 +160,7 @@ function countdown(minutes, seconds) {
         } else {
             if (minutes >= 1) {
                 // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function () {
+                setTimeout(function() {
                     countdown(minutes - 1, 59);
                 }, 1000);
             }
@@ -206,7 +206,7 @@ function playNote(e) {
             key.classList.add("playing");
 
             if (keyNote === curNote) {
-                $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function () {
+                $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
                     $(".fancy-button").removeClass("active");
                 });
                 $(".fancy-button").addClass("active");
@@ -214,7 +214,7 @@ function playNote(e) {
                 key.classList.add("right");
                 document.getElementById("score").innerHTML = ++score;
             } else {
-                $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function () {
+                $(".fancy-button").bind("animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd", function() {
                     $(".fancy-button").removeClass("animated shake faster");
                 });
                 $(".fancy-button").addClass("animated shake faster");
@@ -285,12 +285,43 @@ function newGame() {
 /* ---------------7. Saving the score ----------------------------*/
 
 function saveScore() {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             let ref = database.ref("scores/users/" + user.uid + "/staticBass");
             ref.once("value").then(data => {
                 if (data.val() < score) {
                     ref.set(score);
+                }
+            });
+
+            //global high score
+            let ref2 = database.ref("scores/global/staticBass");
+            newData = {};
+            ref2.once("value").then(data => {
+                if (data.val().first.score < score) {
+                    newData.first = {
+                        name: user.displayName,
+                        score: score
+                    };
+                    newData.second = data.val().first;
+                    newData.third = data.val().second;
+                    ref2.set(newData);
+                } else if (data.val().second.score < score) {
+                    newData.first = data.val().first;
+                    newData.second = {
+                        name: user.displayName,
+                        score: score
+                    };
+                    newData.third = data.val().second;
+                    ref2.set(newData);
+                } else if (data.val().third.score < score) {
+                    newData.first = data.val().first;
+                    newData.second = data.val().second;
+                    newData.third = {
+                        name: user.displayName,
+                        score: score
+                    };
+                    ref2.set(newData);
                 }
             });
         } else {
