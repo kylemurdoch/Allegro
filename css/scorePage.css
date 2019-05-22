@@ -43,7 +43,10 @@ body {
 }
 
 #treble {
-  background-image: url(../img/treble.png);
+  background-image: url(../img/musical-note.png);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: rgba(250, 0, 0, 0.568);
 }
 
@@ -79,3 +82,45 @@ body {
   width: 100%;
 }
 
+.tablinks {
+  color: black;
+  background-color: white;
+  border: 2px solid goldenrod;
+  border-radius: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.active, .tablinks:hover {
+  background-color: goldenrod;
+  transition-duration: 0.75s;
+  border: 2px solid white;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tablinks:focus{
+  outline: none;  
+}
+
+.scoretable {
+  border-collapse: collapse;
+  margin-top: 4%;
+}
+
+tbody {
+  display: table;
+  width: 100%;
+}
+
+tr{
+  border-bottom: 1px solid grey;
+  transition-duration: 0.5s;
+}
+
+tr:hover{
+  background-color: greenyellow;
+  font-size: 16pt;
+  transition-duration: 0.5s;
+}
