@@ -9,13 +9,6 @@ With a fun scoring system and constructive feedback, we are sure you wil learn m
 
 After a quick tutorial and some practice, you'll be reading notes like a pro!
 
-## Preview
-
-[![Allegro Preview](https://playallegro.com/img/Allegro_preview.png)](https://playallegro.com)
-
-
-**[View Live Preview](https://playallegro.com)**
-
 
 ## Game Modes
 
