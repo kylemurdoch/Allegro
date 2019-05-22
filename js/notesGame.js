@@ -1,3 +1,5 @@
+/* Logic for perfect pitch game */
+
 var o = null;
 var g = null;
 var octave = null;
@@ -58,7 +60,7 @@ function countdown(minutes, seconds) {
         } else {
             if (minutes >= 1) {
                 // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                setTimeout(function() {
+                setTimeout(function () {
                     countdown(minutes - 1, 59);
                 }, 1000);
             }
@@ -213,7 +215,7 @@ function isEqual() {
 /* ---------------10. Saving the score ----------------------------*/
 
 function saveScore() {
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             let ref = database.ref("scores/users/" + user.uid + "/mixed");
             ref.once("value").then(data => {

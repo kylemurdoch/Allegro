@@ -1,3 +1,5 @@
+/* Logic for practice static notes game */
+
 openNav();
 var navOpen;
 
@@ -235,7 +237,6 @@ function countdown(minutes, seconds) {
             timeoutHandle = setTimeout(tick, 1000);
         } else {
             if (minutes >= 1) {
-                // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
                 setTimeout(function () {
                     countdown(minutes - 1, 59);
                 }, 1000);
@@ -299,7 +300,6 @@ function playNote(e) {
 /*----------------------------------------------------------------------*/
 
 function removeTransition(e) {
-    /*if (e.propertyName !== "transform") return;*/ //Causes keys to get stuck.
     this.classList.remove("playing");
     this.classList.remove("right");
     this.classList.remove("wrong");
