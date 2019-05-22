@@ -57,7 +57,13 @@
                 <a class="js-scroll-trigger" href="#page-top">Allegro</a>
               </li>
               <li class="sidebar-nav-item">
-                <a class="js-scroll-trigger" href="#page-top" onclick=openGameOver()>Quit Game</a>
+                  <a class="js-scroll-trigger" href="./menu.html">Menu</a>
+              </li>
+              <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="./scorePage.html">High Scores</a>
+              </li>
+              <li class="sidebar-nav-item">
+                <a class="js-scroll-trigger" href="./AboutUs.html">About Us</a>
               </li>
               <li class="sidebar-nav-item">
                 <a class="js-scroll-trigger" href="./index.html">Sign Out</a>
@@ -67,14 +73,13 @@
 
         <div id="wrap">
             <div id="scorewrap">
-                <div id="time"></div>
                 <div class="fancy-button">
                     <div class="left-frills frills"></div>
-                    <div id="score">0</div>
                     <div class="right-frills frills"></div>
                 </div>
             </div>
 
+            <div id="nowplaying"></div>
             <!--Div that contains music bar-->
             <div class="soundButton">
                 <button id="sound" onclick="playRandomNote()">
@@ -123,11 +128,11 @@
 
         <div id="warning" class="overlay">
             <div class="overlay-content">
-                <h1>WARNING!</h1>
+                <h1>Tutorial</h1>
                 <h3 id="finalScore"></h3>
-                <h3>The higher the octave the lower the volume, and vice versa.</h3>
+                <h3>The following will help you to hear in the 4th octave.</h3>
 
-                <div class="button" onclick="openOctave();closeWarning();">
+                <div class="button" onclick="closeWarning();changeNote()">
                     <p class="btnText">Next</p>
                     <div class="btnTwo">
                         <p class="btnText2">GO!</p>
@@ -195,7 +200,7 @@
                     </div>
                 </div>
 
-                <div class="button" onclick="location.href='/menu.html';">
+                <div class="button" onclick="location.href='./menu.html';">
                     <p class="btnText">Main Menu</p>
                     <div class="btnTwo">
                         <p class="btnText2">GO!</p>
@@ -262,6 +267,7 @@
         <!--Importing vexflow script-->
         <script src="js/vexflow.js"></script>
 
+
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
             <i class="fas fa-angle-up"></i>
@@ -279,6 +285,6 @@
         <!-- Custom scripts for this template -->
         <script src="js/stylish-portfolio.min.js"></script>
 
-        <script src="js/notesGame.js"></script>
+        <script src="./js/notesTutorial.js"></script>
     </body>
 </html>

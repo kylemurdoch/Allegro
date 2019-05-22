@@ -13,11 +13,13 @@ firebase.auth().onAuthStateChanged(function(user) {
             } catch (err) {
                 ref.set({
                     initialized: true,
+                    name: user.displayName,
                     staticTreble: 0,
                     staticBass: 0,
                     dynamicTreble: 0,
                     dynamicBass: 0,
-                    mixed: 0
+                    mixed: 0,
+                    pitch: 0
                 });
             }
         });
