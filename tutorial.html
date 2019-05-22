@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Main Menu</title>
+    <title>Tutorial</title>
 
 
     <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400" />
@@ -32,11 +32,9 @@
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link href="css/beginGame.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
-    <link href="css/menu.css" rel="stylesheet" />
+    <link href="css/tutorial.css" rel="stylesheet" />
 
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
 
@@ -77,82 +75,63 @@
         </ul>
     </nav>
 
-    <div id="wrapper">
-        <div class="inner">
-            <div id="start" class="pic"></div>
-            <div class="menu-content">
-                <h2>Getting Started</h2>
-                <p>For those new to reading music</p>
-                <div class="button" onclick="countdown(0,3)">
-                    <p class="btnText">Tutorial</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
+    <div id="title"> Five Key Definitions for Reading Music</div>
 
-                <div class="button" onclick="countdown(1,0)">
-                    <p class="btnText">Pratice Game</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-            </div>
+    <div id="wrap">
+
+        <div id="notes" class="pic"></div>
+        <div class="content"><b>1. Music Notes:</b> are sounds which are represented by seven letters, A through
+            G. B
+            is a higher
+            frequency note than A, C is an higher frequency note than B, and so on. The next full note above a G
+            is an A. </b></div>
+
+        <div class="content"><br> <b>2. The Stave:</b> Is the set of five horizontal lines on which music
+            notes
+            appear.
+        </div>
+        <div id="stave" class="pic"></div>
+
+        <div id="clef" class="pic"></div>
+        <div class="content"><br><b>2. The Clef:</b> is the first symbol that appears on the stave. It is the reference
+            point which
+            tells the reader how to read the notes on the stave. </div>
+
+
+        <div class="content"> <b>3. Middle C:</b> is the C near the middle of the piano keyboard. If most of the notes
+            written on a stave are above middle C,
+            the stave will have a treble clef. Otherwise, if most of the notes on the stave fall below middle C, the
+            stave will have a bass clef.</div>
+        <div id="c" class="pic"></div>
+
+
+        <div id="treble" class="pic"></div>
+        <div id="bigger" class="content"> <b>The Treble Clef:</b> is a cursive G symbol that appears on the second
+            line from the
+            bottom of a stave. The symbol indicates that the notes that appear on that line is the G above middle C.
+            All other notes
+            on the stave can be deteremined by looking at their location relative to the treble clef.
+            For the example, the note above the treble clef is an A and the note beow the treble clef is an F.
         </div>
 
-        <div class="inner">
-            <div id="static" class="pic"></div>
-            <div class="menu-content">
-                <h2>Static Reading</h2>
-                <p>Identify one note at a time <br>in treble, bass, or mixed clef</p>
-                <div class="value"></div>
-                <div class="label">treble</div>
-                <input id="slider1" type="range" min="1" max="3" step="1" value="1" />
-                <div class="button" onclick="selectStatic()">
-                    <p class="btnText">Play</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
 
-            </div>
-        </div>
+        <div id="bigger" class="content"> <b>The Bass Clef:</b> is a music symbol that appears on the second
+            line from the top of a stave. The symbol indicates that notes on that line are the F below middle C. All
+            other notes
+            on the stave can be deteremined by looking at their location relative to the bass clef.
+            i.e. the note above the treble clef is an G and the note beow the treble clef is an E.</div>
+        <div id="bass" class="pic"></div>
 
-        <div class="inner">
-            <div id="dynamic" class="pic"></div>
-            <div class="menu-content">
-                <h2>Dynamic Reading</h2>
-                <p>Identify a cascade of sliding notes <br>in treble or bass clef</p>
-                <div id="value2" class="value"></div>
-                <div id="label2" class="label">treble</div>
-                <input id="slider2" type="range" min="1" max="2" step="1" value="1" />
-                <div class="button" onclick="selectDynamic()">
-                    <p class="btnText">Play</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
 
-            </div>
-        </div>
+        <div id="allnotes" class="content"></div>
 
-        <div class="inner">
-            <div id="listen" class="pic"></div>
-            <div class="menu-content">
-                <h2>Pitch Game</h2>
-                <p>Identify one note at time by its sound</p>
 
-                <div class="button" onclick="">
-                    <p class="btnText">Play</p>
-                    <div class="btnTwo">
-                        <p class="btnText2">GO!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
 
     </div>
 
-    <script src="js/menu.js"></script>
+
 
 
     <!-- Bootstrap core JavaScript -->
