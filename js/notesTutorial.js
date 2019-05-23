@@ -210,10 +210,8 @@ function playRandomNote() {
 function isEqual() {
   if (keyNote == newFreq) {
       key.classList.add("right");
-      document.getElementById("score").innerHTML = ++score;
   } else {
       if (score > 0) {
-          document.getElementById("score").innerHTML = --score;
       }
       for (var i = 0; i < keys.length; i++) {
           if (keys[i].getAttribute("data-note") == newFreq) {
