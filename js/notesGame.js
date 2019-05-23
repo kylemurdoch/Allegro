@@ -91,7 +91,7 @@ function playNote(e) {
     }
 
     if (!key) return;
-
+    key.classList.add("playing");
     keyNote = key.getAttribute("data-note");
     isEqual();
     changeNote();
@@ -197,16 +197,15 @@ function isEqual() {
         document.getElementById("score").innerHTML = ++score;
     } else {
         if (score > 0) {
-            key.classList.add("wrong");
             document.getElementById("score").innerHTML = --score;
+        }
+        for (var i = 0; i < keys.length; i++) {
+            if (keys[i].getAttribute("data-note") == newFreq) {
+                keys[i].classList.add("wrong");
+            }
         }
     }
     //Make curNote key flash
-    for (var i = 0; i < keys.length; i++) {
-        if (keys[i].getAttribute("data-note") == newFreq) {
-            keys[i].classList.add("right");
-        }
-    }
 }
 
 /* ---------------10. Saving the score ----------------------------*/
